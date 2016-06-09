@@ -1,10 +1,10 @@
-ovftest 'asdf' {
+ovftest 'MyOVFModule' {
     version 0.1.0
     ovftype 'simple'
     test 'storage.capacity'
     fromsource 'psgallery'
     parameters @{
-        x = 'asdf'
+        FreeSystemDriveThreshold = 40000
     }
 }
 
@@ -17,4 +17,3 @@ ovftest 'mymodule' {
         abc = 123
     }
 }
-
