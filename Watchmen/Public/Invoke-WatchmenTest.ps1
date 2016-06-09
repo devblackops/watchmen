@@ -5,7 +5,9 @@ function Invoke-WatchmenTest {
         [string[]]$Path,
         
         [parameter(ParameterSetName = 'InputObject', Mandatory, ValueFromPipeline)]
-        [pscustomobject[]]$InputObject
+        [pscustomobject[]]$InputObject,
+
+        [switch]$IncludePesterOutput
     )
     
     begin {
@@ -23,11 +25,31 @@ function Invoke-WatchmenTest {
         }
         
         foreach ($test in $tests) {
-            #$tests = Get-WatchmenTest -Path $script
-            
-            #foreach ($item in $tests) {
-                Write-Verbose -Message "Invoking test [$($test.ModuleName)]"    
-            #}
+            $ovfModule = Get-OperationValidation -ModuleName $test.ModuleName
+            if ($ovfModule) {
+                
+                Write-Verbose -Message "Invoking test [$($test.ModuleName)]"
+
+                $params = @{
+                    TestInfo = $ovfModule
+                    IncludePesterOutput = $IncludePesterOutput   
+                }
+
+                if ($ovfModule.ScriptParameters) {
+                    #Write-Verbose "OVF test has parameters we can override!"
+                    if ($test.Parameters) {
+                        Write-Verbose "Overriding OVF test with parameters:"
+                        Write-Verbose ($test.Parameters | fl * | out-string)
+                        $params.Overrides = $test.Parameters
+                    }
+                }             
+                
+                #$results = $ovfModule | Invoke-OperationValidation -IncludePesterOutput:$IncludePesterOutput -overrides
+                $results = Invoke-OperationValidation @params
+                $results
+            } else {
+                Write-Error -Message "Unable to find OVF module [$($test.ModuleName)]"
+            }
         }
     }
     

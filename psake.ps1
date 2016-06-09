@@ -3,7 +3,7 @@ properties {
     
 }
 
-task default
+task default -depends prereqs
 
 task prereqs {
     if (!(Get-Module -Name Pester -ListAvailable)) { Install-Module -Name Pester }
