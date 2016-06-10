@@ -26,8 +26,16 @@ function Invoke-WatchmenTest {
         
         foreach ($test in $tests) {
             $ovfModule = Get-OperationValidation -ModuleName $test.ModuleName
+            if (-not $ovfModule) {
+                if ($test.fromSource) {
+                    Write-Verbose -Message "Attemping to retrieve module for Repository [$($test.FromSource)]"
+                    $ovfModule = Get-OperationValidation -ModuleName $test.ModuleName
+                } else {
+                    Write-Error -Message "Unable to find OVF module [$($test.ModuleName)]"
+                }
+            }
+            
             if ($ovfModule) {
-                
                 Write-Verbose -Message "Invoking test [$($test.ModuleName)]"
 
                 $params = @{
@@ -47,8 +55,6 @@ function Invoke-WatchmenTest {
                 #$results = $ovfModule | Invoke-OperationValidation -IncludePesterOutput:$IncludePesterOutput -overrides
                 $results = Invoke-OperationValidation @params
                 $results
-            } else {
-                Write-Error -Message "Unable to find OVF module [$($test.ModuleName)]"
             }
         }
     }
