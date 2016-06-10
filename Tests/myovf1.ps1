@@ -4,7 +4,7 @@ ovftest 'MyOVFModule' {
     test 'storage.capacity'
     fromsource 'psgallery'
     parameters @{
-        FreeSystemDriveThreshold = 40000
+        FreeSystemDriveThreshold = 1000
     }
 }
 
