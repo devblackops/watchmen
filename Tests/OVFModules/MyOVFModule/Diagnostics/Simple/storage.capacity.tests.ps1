@@ -9,19 +9,22 @@ param(
 Describe 'Storage Capacity' {
 
     Context 'Volumes' {
-        $volumes = Get-Volume | where DriveType -eq 'Fixed' 
-        it "System drive [$SystemDrive] has $FreeSystemDriveThreshold MB free" {            
-            $sysDrive = $volumes | where DriveLetter -eq $SystemDrive
+        $volumes = Get-Volume | where DriveType -eq 'Fixed'
+        $sysDrive = $volumes | where DriveLetter -eq $SystemDrive
+        $nonSysDrives = $volumes | ? { $_.DriveLetter -ne $SystemDrive -and $_.DriveLetter -ne $null -and $_.FileSystemLabel -ne $null }
+
+        it "System volume [$SystemDrive] has $FreeSystemDriveThreshold MB free" {            
+            
             ($sysDrive.SizeRemaining / 1MB) -ge $FreeSystemDriveThreshold | should be $true
         }
                 
-        foreach ($volume in $volumes | where DriveLetter -ne $SystemDrive) {
+        foreach ($volume in $nonSysDrives) {
             $driveLetter = $volume.DriveLetter
-            it "Non-System drive [$driveLetter] has greater than $FreeNonSystemDriveThreshold MB free" {
+            it "Non-System volume [$driveLetter] has greater than $FreeNonSystemDriveThreshold MB free" {
                 ($volume.SizeRemaining / 1MB) -ge $FreeNonSystemDriveThreshold | should be $true
             }
             
-            it "Non-System drive [$driveLetter] has greater than $FreeNonSystemDriveThresholdPct% free" {
+            it "Non-System volume [$driveLetter] has greater than $FreeNonSystemDriveThresholdPct% free" {
                 ($volume.SizeRemaining / $volume.Size) -ge $FreeNonSystemDriveThresholdPct | should be $true
             }
         }
