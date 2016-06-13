@@ -1,20 +1,22 @@
-function FromSource {
-    [cmdletbinding()]    
+function Notifies {
     param(
         [parameter(Mandatory, Position = 0)]
-        [string]$Source
+        [scriptblock]$Script
     )
 
     begin {
         Write-Debug -Message "Entering: $($PSCmdlet.MyInvocation.MyCommand.Name)"
         Assert-InWatchmen -Command $PSCmdlet.MyInvocation.MyCommand.Name
+        $global:Watchmen.InNotifies = $true
     }
 
     process {
-        $script:ThisWatchmenTest.Source = $Source
+        $global:ThisNotifiers = @()
+        $global:ThisNotifiers += . $Script
     }
 
     end {
+        $global:Watchmen.InNotifies = $false
         Write-Debug -Message "Exiting: $($PSCmdlet.MyInvocation.MyCommand.Name)"
-    }
+    }    
 }

@@ -1,8 +1,7 @@
-function FromSource {
-    [cmdletbinding()]    
+function Slack {    
     param(
         [parameter(Mandatory, Position = 0)]
-        [string]$Source
+        [hashtable[]]$SlackConfig
     )
 
     begin {
@@ -11,7 +10,14 @@ function FromSource {
     }
 
     process {
-        $script:ThisWatchmenTest.Source = $Source
+        [pscustomobject]@{
+            PSTypeName = 'Watchmen.Notifier.Slack'
+            Type = 'Slack'
+            Values = $SlackConfig | % {
+                $_.PSTypeName = 'Watchmen.Notifier.Slack.Config'
+                [pscustomobject]$_
+            }
+        }
     }
 
     end {

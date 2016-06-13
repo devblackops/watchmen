@@ -5,16 +5,16 @@ Infrastructure test runner using Pester
 
 #### mytests.ps1
 ```powershell
-ovfsetup {
-    notifies @(
+WatchmenOptions {
+    notifies {
         email 'brandon@devblackops.io'
         filesystem '\\fileserver01\monitoringshare\'
         syslog 'mysyslogserver.mydomain.tld'
         eventlog
-    )
+    }
 }
 
-ovftest 'MyOVFModule' {
+WatchmenTest 'MyOVFModule' {
     version 1.0.0             # Execute tests from a specific version of the module. Default is latest 
     type 'Simple'             # Valid values 'simple', 'comprehensive', 'all'. Default is 'all'
     test 'Storage.Capacity'   # Name of test to execute. Default is '*'
@@ -23,9 +23,9 @@ ovftest 'MyOVFModule' {
     parameters {              # Parameters that are passed into the Pester script like the example above.
         FreeSystemDriveThreshold = 40000
     }
-    notifies @(
+    notifies {
         email @('bgates@microsoft.com', 'emusk@teslamotors.com')
-    )    
+    }
 }
 ```
 

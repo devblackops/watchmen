@@ -1,8 +1,7 @@
-function FromSource {
-    [cmdletbinding()]    
+function Syslog {    
     param(
         [parameter(Mandatory, Position = 0)]
-        [string]$Source
+        [string[]]$Endpoints
     )
 
     begin {
@@ -11,7 +10,11 @@ function FromSource {
     }
 
     process {
-        $script:ThisWatchmenTest.Source = $Source
+        [pscustomobject]@{
+            PSTypeName = 'Watchmen.Notifier.Syslog'
+            Type = 'Syslog'
+            Values = $Endpoints
+        }
     }
 
     end {

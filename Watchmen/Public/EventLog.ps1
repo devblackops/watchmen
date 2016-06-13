@@ -1,17 +1,24 @@
-function FromSource {
-    [cmdletbinding()]    
+function EventLog {
+    [cmdletbinding()]   
     param(
         [parameter(Mandatory, Position = 0)]
-        [string]$Source
+        [hashtable[]]$Log
     )
-
+    
     begin {
         Write-Debug -Message "Entering: $($PSCmdlet.MyInvocation.MyCommand.Name)"
         Assert-InWatchmen -Command $PSCmdlet.MyInvocation.MyCommand.Name
     }
-
+    
     process {
-        $script:ThisWatchmenTest.Source = $Source
+        [pscustomobject]@{
+            PSTypeName = 'Watchmen.Notifier.EventLog'
+            Type = 'EventLog'
+            Values = $Log | % {
+                $_.PSTypeName = 'Watchmen.Notifier.EventLog.Config'
+                [pscustomobject]$_
+            }
+        }
     }
 
     end {

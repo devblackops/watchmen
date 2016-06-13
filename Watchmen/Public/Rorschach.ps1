@@ -1,8 +1,7 @@
-function FromSource {
-    [cmdletbinding()]    
+function Rorschach {
     param(
         [parameter(Mandatory, Position = 0)]
-        [string]$Source
+        [hashtable[]]$Settings
     )
 
     begin {
@@ -11,10 +10,14 @@ function FromSource {
     }
 
     process {
-        $script:ThisWatchmenTest.Source = $Source
+        $global:ThisRorschach = [pscustomobject]@{
+            PSTypeName = 'Watchmen.Rorschach'
+            Endpoint = $Settings.Endpoint
+            Credendial = $Settings.Credential
+        }
     }
 
     end {
         Write-Debug -Message "Exiting: $($PSCmdlet.MyInvocation.MyCommand.Name)"
-    }
+    }    
 }

@@ -1,8 +1,8 @@
-function FromSource {
-    [cmdletbinding()]    
+function TestType {    
     param(
         [parameter(Mandatory, Position = 0)]
-        [string]$Source
+        [ValidateSet('Simple', 'Comprehensive', 'All')]
+        [string]$Type
     )
 
     begin {
@@ -11,7 +11,7 @@ function FromSource {
     }
 
     process {
-        $script:ThisWatchmenTest.Source = $Source
+        $script:ThisWatchmenTest.Type = $Type
     }
 
     end {

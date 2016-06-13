@@ -1,8 +1,19 @@
-function version {    
+function Version {    
     param(
         [parameter(Mandatory, Position = 0)]
         [string]$Version
     )
-    
-    $script:ThisModule.Version = $Version
+
+    begin {
+        Write-Debug -Message "Entering: $($PSCmdlet.MyInvocation.MyCommand.Name)"
+        Assert-InWatchmen -Command $PSCmdlet.MyInvocation.MyCommand.Name
+    }
+
+    process {
+        $script:ThisWatchmenTest.Version = $Version
+    }
+
+    end {
+        Write-Debug -Message "Exiting: $($PSCmdlet.MyInvocation.MyCommand.Name)"
+    }
 }
