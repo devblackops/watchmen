@@ -13,7 +13,7 @@ WatchmenTest 'MyOVFModule' {
     version 0.1.0
     testType 'simple'
     test 'storage.capacity'
-    fromsource 'psgallery'
+    fromsource 'artifactory'
     parameters @{
         FreeSystemDriveThreshold = 1000
     }
@@ -31,7 +31,7 @@ WatchmenTest 'MyOVFModule' {
     version 0.1.0
     testType 'simple'
     test 'storage.capacity'
-    fromsource 'psgallery'
+    fromsource 'artifactory'
     parameters @{
         FreeSystemDriveThreshold = 50000
     }
