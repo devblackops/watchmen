@@ -32,9 +32,19 @@ function Invoke-WatchmenTest {
         foreach ($test in $tests) {
             $ovfModule = Get-OperationValidation -ModuleName $test.ModuleName
             if (-not $ovfModule) {
-                if ($test.fromSource) {
-                    Write-Verbose -Message "Attemping to retrieve module from repository [$($test.FromSource)]"
-                    $ovfModule = Get-OperationValidation -ModuleName $test.ModuleName
+                if ($test.source) {
+
+                    Write-Verbose -Message "Attemping to retrieve module from repository [$($test.Source)]"
+                    $foundModule = Find-Module -Name $test.ModuleName -Repository $test.Source -ErrorAction SilentlyContinue
+                    if ($foundModule) {
+
+                        Write-Verbose -Message "Installing module [$($test.ModuleName)] from [$($test.Source)]"
+                        $foundModule | Install-Module -Confirm:$false
+
+                        $ovfModule = Get-OperationValidation -ModuleName $test.ModuleName
+                    } else {
+                        Write-Error -Message "Unable to find OVF module [$($test.ModuleName)] in repository [$($test.Source)]"
+                    }
                 } else {
                     Write-Error -Message "Unable to find OVF module [$($test.ModuleName)]"
                 }
