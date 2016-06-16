@@ -30,18 +30,34 @@ function Invoke-WatchmenTest {
         }
         
         foreach ($test in $tests) {
-            $ovfModule = Get-OperationValidation -ModuleName $test.ModuleName
-            if (-not $ovfModule) {
+
+            $getParams = @{
+                ModuleName = $Test.ModuleName
+            }
+
+            # Optionally get a test type 
+            if ($test.Type -eq 'Simple' -or $test.Type -eq 'Comprehensive') {
+                $getParams.TestType = $test.Type
+            }
+
+            $ovfTestInfo = Get-OperationValidation @getParams
+            if (-not $ovfTestInfo) {
                 if ($test.source) {
 
                     Write-Verbose -Message "Attemping to retrieve module from repository [$($test.Source)]"
-                    $foundModule = Find-Module -Name $test.ModuleName -Repository $test.Source -ErrorAction SilentlyContinue
+
+                    if ($Test.Version) {
+                        $foundModule = Find-Module -Name $test.ModuleName -Repository $test.Source -MinimumVersion $test.Version -MaximumVersion $test.Version -ErrorAction SilentlyContinue
+                    } else {
+                        $foundModule = Find-Module -Name $test.ModuleName -Repository $test.Source -ErrorAction SilentlyContinue
+                    }
+                    
                     if ($foundModule) {
 
                         Write-Verbose -Message "Installing module [$($test.ModuleName)] from [$($test.Source)]"
                         $foundModule | Install-Module -Confirm:$false
 
-                        $ovfModule = Get-OperationValidation -ModuleName $test.ModuleName
+                        $ovfTestInfo = Get-OperationValidation -ModuleName $test.ModuleName
                     } else {
                         Write-Error -Message "Unable to find OVF module [$($test.ModuleName)] in repository [$($test.Source)]"
                     }
@@ -51,35 +67,46 @@ function Invoke-WatchmenTest {
             }
             
             # Execute the OVF test
-            if ($ovfModule) {
-                Write-Verbose -Message "Invoking OVF test [$($test.ModuleName)]"
-                $params = @{
-                    TestInfo = $ovfModule
-                    IncludePesterOutput = $IncludePesterOutput   
-                }
-                if ($ovfModule.ScriptParameters) {
-                    if ($test.Parameters) {
-                        Write-Verbose "Overriding OVF test with parameters:"
-                        Write-Verbose ($test.Parameters | fl * | out-string)
-                        $params.Overrides = $test.Parameters
-                    }
-                }             
-                $results = Invoke-OperationValidation @params
+            if ($ovfTestInfo) {
 
-                # Search the OperationValidation results for any failures
-                # If any are found, execute the 'Notifiers' in the Watchmen test
-                if ('failed' -in $results.Result) {
+                # Optionally filter the tests by name
+                if ($test.Test) {
+                    $filtered = $ovfTestInfo | where Name -like $test.Test    
+                }
+
+                foreach ($ovfTest in $filtered) {
+                    Write-Verbose -Message "Invoking OVF test [$($test.ModuleName)][$($ovfTest.Name)]"
+                    $params = @{
+                        TestInfo = $ovfTest
+                        IncludePesterOutput = $IncludePesterOutput   
+                    }
+                
+                    if ($ovfTest.ScriptParameters) {
+                        if ($test.Parameters) {
+                            Write-Verbose "Overriding OVF test with parameters:"
+                            Write-Verbose ($test.Parameters | fl * | out-string)
+                            $params.Overrides = $test.Parameters
+                        }
+                    }             
+                    $results = Invoke-OperationValidation @params
+
+                    # Search the OperationValidation results for any failures
+                    # If any are found, execute the 'Notifiers' in the Watchmen test
+                    if ('failed' -in $results.Result) {
+
+                        # TODO
+                        # Act on any errors from the notifiers
+                        $notifierResults = Invoke-WatchmenNotifier -TestResult $results -WatchmenTest $test
+
+                    }
 
                     # TODO
-                    # Act on any errors from the notifiers
-                    $notifierResults = Invoke-WatchmenNotifier -TestResult $results -WatchmenTest $test
+                    # If we have a Rorschach endpoint defined, send the results to it
 
+                    $results
                 }
 
-                # TODO
-                # If we have a Rorschach endpoint defined, send the results to it
-
-                $results
+                
             }
         }
     }
