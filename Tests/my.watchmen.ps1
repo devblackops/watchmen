@@ -10,9 +10,9 @@ WatchmenOptions {
 
 # This test should PASS
 WatchmenTest 'MyOVFModule' {
-    version 0.1.0
-    testType 'simple'
-    test 'storage.capacity'
+    #version 0.2.1
+    #testType 'simple'
+    test 'more services'
     fromsource 'artifactory'
     parameters @{
         FreeSystemDriveThreshold = 1000
@@ -26,19 +26,19 @@ WatchmenTest 'MyOVFModule' {
     }
 }
 
-# This test should FAIL
-WatchmenTest 'MyOVFModule' {
-    version 0.1.0
-    testType 'simple'
-    test 'storage.capacity'
-    fromsource 'artifactory'
-    parameters @{
-        FreeSystemDriveThreshold = 50000
-    }
-    notifies {
-        email 'someguy@somecompany.com'
-    }
-}
+# # This test should FAIL
+# WatchmenTest 'MyOVFModule' {
+#     version 0.1.0
+#     testType 'simple'
+#     test 'storage.capacity'
+#     fromsource 'artifactory'
+#     parameters @{
+#         FreeSystemDriveThreshold = 50000
+#     }
+#     notifies {
+#         email 'someguy@somecompany.com'
+#     }
+# }
 
 # WatchmenTest 'mymodule' {
 #     version 1.6.0
