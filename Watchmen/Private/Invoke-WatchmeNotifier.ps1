@@ -6,7 +6,6 @@ function Invoke-WatchmenNotifier {
     )
 
     # Execute any 'Notifiers' in the Watchmen test
-    Write-Error "There was a failure in [$($WatchmenTest.ModuleName)][$($WatchmenTest.Test)]!"
 
     if ($WatchmenTest.Notifiers.Count -ne 0) {
         foreach ($notifier in $WatchmenTest.Notifiers) {
