@@ -4,7 +4,7 @@ properties {
     $tests = '.\Tests'
 }
 
-task default -depends Prereqs, Analyze, Test
+task default -depends Prereqs, Analyze
 
 task Prereqs {
     $modules = 'Pester', 'PSDeploy', 'PSScriptAnalyzer'
