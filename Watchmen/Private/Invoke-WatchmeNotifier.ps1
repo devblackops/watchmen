@@ -1,35 +1,52 @@
 function Invoke-WatchmenNotifier {
     [cmdletbinding()]
     param(
-        $WatchmenTest,
-        $TestResults
+        [parameter(Mandatory, ValueFromPipeline)]
+        $TestResults,
+
+        $WatchmenTest
     )
 
-    # Execute any 'Notifiers' in the Watchmen test
+    begin {
+        # If this test doesn't have any notifiers, don't bother
+        # going through the pipeline even if the test results
+        # have a failure 
+        if ($WatchmenTest.Notifiers.Count -ne 0) { return }         
+    }
 
-    if ($WatchmenTest.Notifiers.Count -ne 0) {
-        foreach ($notifier in $WatchmenTest.Notifiers) {
-            Write-Verbose -Message "Invoking notifier [$($notifier.type)]"
-            switch ($notifier.type) {
-                'Email' {
-                    $notifier | Invoke-NotifierEmail -Results $TestResults
-                }
-                'EventLog' {
-                    Invoke-NotifierEventLog -Notifier $notifier -Results $TestResults
-                }
-                'FileSystem' {
-                    Invoke-NotifierFilesystem -Notifier $notifier -Results $TestResults
-                }
-                'Slack' {
-                    Invoke-NotifierSlack -Notifier $notifier -Results $TestResults
-                }
-                'Syslog' {
-                    Invoke-NotifierSyslog -Notifier $notifier -Results $TestResults
-                }
-                default {
-                    Write-Error -Message "Unknown notifier [$($notifier.type)]"
+    process {
+        foreach ($testResult in $TestResults) {
+            $results = @()
+            
+            # TODO
+            # Act on any errors from the notifiers
+
+            foreach ($notifier in $WatchmenTest.Notifiers) {
+                Write-Verbose -Message "Invoking notifier [$($notifier.type)]"
+                switch ($notifier.type) {
+                    'Email' {
+                        $results += $notifier | Invoke-NotifierEmail -Results $testResult
+                    }
+                    'EventLog' {
+                        $results += $notifier | Invoke-NotifierEventLog -Results $testResult
+                    }
+                    'FileSystem' {
+                        $results += $notifier | Invoke-NotifierFilesystem -Results $testResult
+                    }
+                    'Slack' {
+                        $results += $notifier | Invoke-NotifierSlack -Results $testResult
+                    }
+                    'Syslog' {
+                        $results += $notifier | Invoke-NotifierSyslog -Results $testResult
+                    }
+                    default {
+                        Write-Error -Message "Unknown notifier [$($notifier.type)]"
+                    }
                 }
             }
+            return $results
         }
     }
+
+    end { }
 }
