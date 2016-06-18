@@ -7,7 +7,6 @@ function Invoke-NotifierEmail {
         [parameter(Mandatory)]
         [ValidateScript({ $_.PSObject.TypeNames[0] -eq 'OperationValidationResult' })]
         [pscustomobject]$Results
-
     )
 
     $o = ($Notifier | Format-Table -Property *  -AutoSize| Out-String)
