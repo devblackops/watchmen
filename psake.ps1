@@ -44,11 +44,11 @@ task Pester -Depends Init {
 }
 
 task UpdateHelpMarkdown -Depends Init {
-    Update-MarkdownHelp -Path "$projectRoot\ModuleHelp\*"
+    Update-MarkdownHelp -Path "$projectRoot\ModuleHelp\*" -Encoding ([System.Text.Encoding]::Unicode)
 }
 
 task GenerateHelp -Depends Init {
-    New-ExternalHelp -OutputPath "$sut\en-US" -Path "$projectRoot\ModuleHelp\*" -Force
+    New-ExternalHelp -OutputPath "$sut\en-US" -Path "$projectRoot\ModuleHelp\*" -Force -Encoding ([System.Text.Encoding]::Unicode)
 }
 
 task Deploy -depends Test, GenerateHelp {
