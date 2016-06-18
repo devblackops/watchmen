@@ -1,0 +1,5 @@
+site_name: Watchmen Docs
+repo_url: https://github.com/devblackops/watchmen
+theme: readthedocs
+pages:
+  - Home: index.md

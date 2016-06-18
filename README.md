@@ -1,3 +1,6 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/vci22inhjp3wn13n?svg=true)](https://ci.appveyor.com/project/devblackops/watchmen)
+[![Documentation Status](https://readthedocs.org/projects/watchmen/badge/?version=latest)](http://watchmen.readthedocs.io/en/latest/?badge=latest)
+
 # Watchmen
 
 Infrastructure test runner using Pester
