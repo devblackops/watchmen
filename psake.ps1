@@ -1,7 +1,4 @@
-
 properties {
-
-
     $projectRoot = $ENV:BHProjectPath
     if(-not $projectRoot) {
         $projectRoot = $PSScriptRoot
