@@ -22,28 +22,28 @@ foreach ($command in $commands) {
     $commandName = $command.Name
 
     # The module-qualified command fails on Microsoft.PowerShell.Archive cmdlets
-    $Help = Get-Help $commandName -ErrorAction SilentlyContinue
+    $help = Get-Help $commandName -ErrorAction SilentlyContinue
 
     Describe "Test help for $commandName" {
 
         # If help is not found, synopsis in auto-generated help is the syntax diagram
         It "should not be auto-generated" {
-            $Help.Synopsis | Should Not BeLike '*`[`<CommonParameters`>`]*'
+            $help.Synopsis | Should Not BeLike '*`[`<CommonParameters`>`]*'
         }
 
         # Should be a description for every function
         It "gets description for $commandName" {
-            $Help.Description | Should Not BeNullOrEmpty
+            $help.Description | Should Not BeNullOrEmpty
         }
 
         # Should be at least one example
         It "gets example code from $commandName" {
-            ($Help.Examples.Example | Select-Object -First 1).Code | Should Not BeNullOrEmpty
+            ($help.Examples.Example | Select-Object -First 1).Code | Should Not BeNullOrEmpty
         }
 
         # Should be at least one example description
         It "gets example help from $commandName" {
-            ($Help.Examples.Example.Remarks | Select-Object -First 1).Text | Should Not BeNullOrEmpty
+            ($help.Examples.Example.Remarks | Select-Object -First 1).Text | Should Not BeNullOrEmpty
         }
 
         Context "Test parameter help for $commandName" {
@@ -53,11 +53,11 @@ foreach ($command in $commands) {
 
             $parameters = $command.ParameterSets.Parameters | Sort-Object -Property Name -Unique | Where-Object { $_.Name -notin $common }
             $parameterNames = $parameters.Name
-            $HelpParameterNames = $Help.Parameters.Parameter.Name | Sort-Object -Unique
+            $HelpParameterNames = $help.Parameters.Parameter.Name | Sort-Object -Unique
 
             foreach ($parameter in $parameters) {
                 $parameterName = $parameter.Name
-                $parameterHelp = $Help.parameters.parameter | Where-Object Name -EQ $parameterName
+                $parameterHelp = $help.parameters.parameter | Where-Object Name -EQ $parameterName
 
                 # Should be a description for every parameter
                 It "gets help for parameter: $parameterName : in $commandName" {
@@ -83,6 +83,20 @@ foreach ($command in $commands) {
                 # Shouldn't find extra parameters in help.
                 It "finds help parameter in code: $helpParm" {
                     $helpParm -in $parameterNames | Should Be $true
+                }
+            }
+        }
+
+        Context "Help Links should be Valid for $commandName" {            
+            $link = $help.relatedLinks.navigationLink.uri
+        
+            foreach ($link in $links) {
+                if ($link) {
+                    # Should have a valid uri if one is provided.
+                    it "[$link] should have 200 Status Code for $commandName" {        
+                        $Results = Invoke-WebRequest -Uri $link -UseBasicParsing
+                        $Results.StatusCode | Should Be '200'
+                    }
                 }
             }
         }
