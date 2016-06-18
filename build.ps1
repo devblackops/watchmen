@@ -4,8 +4,10 @@ param(
 )
 
 Get-PackageProvider -Name Nuget -ForceBootstrap | Out-Null
-if (!(Get-Module -Name BuildHelpers -ListAvailable)) { Install-Module -Name BuildHelpers }
-if (!(Get-Module -Name psake -ListAvailable)) { Install-Module -Name psake }
+
+$reqModules = @('BuildHelpers', 'psake')
+Install-Module $reqmodules
+Import-Module $reqModules -Verbose:$false
 
 Set-BuildEnvironment
 
