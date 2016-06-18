@@ -12,19 +12,19 @@ function Invoke-WatchmenNotifier {
             Write-Verbose -Message "Invoking notifier [$($notifier.type)]"
             switch ($notifier.type) {
                 'Email' {
-                    Invoke-NotifierEmail -Test $WatchmenTest -Results $TestResults
+                    $notifier | Invoke-NotifierEmail -Results $TestResults
                 }
                 'EventLog' {
-                    Invoke-NotifierEventLog -Test $WatchmenTest -Results $TestResults
+                    Invoke-NotifierEventLog -Notifier $notifier -Results $TestResults
                 }
                 'FileSystem' {
-                    Invoke-NotifierFilesystem -Test $WatchmenTest -Results $TestResults
+                    Invoke-NotifierFilesystem -Notifier $notifier -Results $TestResults
                 }
                 'Slack' {
-                    Invoke-NotifierSlack -Test $WatchmenTest -Results $TestResults
+                    Invoke-NotifierSlack -Notifier $notifier -Results $TestResults
                 }
                 'Syslog' {
-                    Invoke-NotifierSyslog -Test $WatchmenTest -Results $TestResults
+                    Invoke-NotifierSyslog -Notifier $notifier -Results $TestResults
                 }
                 default {
                     Write-Error -Message "Unknown notifier [$($notifier.type)]"
