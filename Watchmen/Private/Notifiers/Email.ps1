@@ -1,5 +1,0 @@
-function Invoke-NotifierEmail {
-    param(
-        
-    )
-}
