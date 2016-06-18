@@ -1,6 +1,7 @@
 function Get-WatchmenTest {
     [cmdletbinding()]
     param(
+        [parameter(Mandatory, ValueFromPipeline)]
         [ValidateScript({Test-Path $_})]
         [string[]]$Path = (Get-Location).Path,
 
@@ -42,7 +43,7 @@ function Get-WatchmenTest {
             }
         } catch {
             throw $_
-#            Remove-Variable -Name Watchmen -Scope Global -ErrorAction Ignore
+            # Remove-Variable -Name Watchmen -Scope Global -ErrorAction Ignore
         }
     }
     
