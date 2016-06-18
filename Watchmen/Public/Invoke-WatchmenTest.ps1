@@ -10,7 +10,11 @@ function Invoke-WatchmenTest {
         [parameter(ParameterSetName = 'InputObject', Mandatory, ValueFromPipeline)]
         [pscustomobject[]]$InputObject,
 
-        [switch]$IncludePesterOutput
+        [switch]$IncludePesterOutput,
+
+        [switch]$PassThru,
+
+        [switch]$DisableNotifiers
     )
     
     begin {
@@ -31,9 +35,9 @@ function Invoke-WatchmenTest {
         
         foreach ($test in $tests) {
 
+            # Resolve the OVF test info and install module if needed
             $ovfTestInfo = Get-OvfTestInfo -Test $test
             
-            # Execute the OVF test
             if ($ovfTestInfo) {
 
                 # Optionally filter the tests by name
@@ -41,39 +45,20 @@ function Invoke-WatchmenTest {
                     $filtered = $ovfTestInfo | where Name -like $test.Test    
                 }
 
-                $testResults = @()                
+                # Execute the OVF test 
+                $testResults = $filtered | Invoke-OvfTest -Test $test
 
-                foreach ($ovfTest in $filtered) {
-                    Write-Verbose -Message "Invoking OVF test [$($test.ModuleName)][$($ovfTest.Name)]"
-                    $params = @{
-                        TestInfo = $ovfTest
-                        IncludePesterOutput = $IncludePesterOutput   
-                    }
-                
-                    if ($ovfTest.ScriptParameters) {
-                        if ($test.Parameters) {
-                            Write-Verbose "Overriding OVF test with parameters:"
-                            Write-Verbose ($test.Parameters | fl * | out-string)
-                            $params.Overrides = $test.Parameters
-                        }
-                    }             
-                    $testResults += Invoke-OperationValidation @params
-                }
-
-                # Search the OperationValidation results for any failures
-                # If any are found, execute the 'Notifiers' in the Watchmen test
-                if ('failed' -in $testResults.Result) {
-
-                    # TODO
-                    # Act on any errors from the notifiers
-                    $notifierResults = Invoke-WatchmenNotifier -TestResult $testResults -WatchmenTest $test
-
-                }
+                # Call notifiers on any failures unless told not to
+                if (-not $PSBoundParameters.ContainsKey('DisableNotifiers')) {
+                    $testResults | ? {'failed' -in $_.Result} | Invoke-WatchmenNotifier -WatchmenTest $test
+                }                
 
                 # TODO
-                # If we have a Rorschach endpoint defined, send the results to it
+                # If we have a Rorschach endpoint defined, send the results to it                
 
-                $testResults
+                if ($PSBoundParameters.ContainsKey('PassThru')) {
+                    $testResults
+                }
             } else {
                 Write-Error -Message "Unable to find OVF into for module [$($Test.ModuleName)]"
             }
