@@ -6,7 +6,7 @@ param(
 Get-PackageProvider -Name Nuget -ForceBootstrap | Out-Null
 
 $reqModules = @('BuildHelpers', 'psake')
-Install-Module $reqmodules
+Install-Module $reqmodules -Confirm:$false
 Import-Module $reqModules -Verbose:$false
 
 Set-BuildEnvironment
