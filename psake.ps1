@@ -25,7 +25,9 @@ task Init {
     Import-Module $modules -Verbose:$false -Force
 }
 
-task Analyze {
+task Test -Depends Init, Analyze, Pester
+
+task Analyze -Depends Init {
     $saResults = Invoke-ScriptAnalyzer -Path $sut -Severity Error -Recurse -Verbose:$false
     if ($saResults) {
         $saResults | Format-Table
@@ -33,7 +35,7 @@ task Analyze {
     }
 }
 
-task test {    
+task Pester -Depends Init {    
     $testResults = Invoke-Pester -Path $tests -PassThru
     if ($testResults.FailedCount -gt 0) {
         $testResults | Format-List
@@ -41,15 +43,15 @@ task test {
     }
 }
 
-task UpdateHelpMarkdown {
+task UpdateHelpMarkdown -Depends Init {
     Update-MarkdownHelp -Path "$projectRoot\ModuleHelp\*"
 }
 
-task GenerateHelp {
+task GenerateHelp -Depends Init {
     New-ExternalHelp -OutputPath "$sut\en-US" -Path "$projectRoot\ModuleHelp\*" -Force
 }
 
-task Deploy -depends GenerateHelp {
+task Deploy -depends Test, GenerateHelp {
     # Gate deployment
     if(
         $ENV:BHBuildSystem -ne 'Unknown' -and
@@ -57,7 +59,7 @@ task Deploy -depends GenerateHelp {
         $ENV:BHCommitMessage -match '!deploy'
     ) {
         $params = @{
-            Path = $projectRoot
+            Path = "$projectRoot\module.psdeploy.ps1"
             Force = $true
             Recurse = $false
         }
