@@ -3,8 +3,15 @@ WatchmenOptions {
         endpoint = 'rorschach.local'
         credential = $null
     }
-    notifies {
-        email 'brandon@devblackops.io'        
+    notifies {        
+        email @{
+            fromAddress = 'watchmen@mydomain.com'
+            smtpserver = 'mail.mydomain.com'
+            port = 25
+            subject = 'Watchmen test #{test} failed!'
+            to = 'fred@flinstone.com'
+        }
+        email 'brandon@devblackops.io'
     }
 }
 

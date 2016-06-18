@@ -17,6 +17,7 @@ function Initialize-Watchmen {
                 Endpoint = $null
                 Credential = $null
             }
+            NotifierOptions = @{}
         }
         TestSets = @(
              [pscustomobject]@{
