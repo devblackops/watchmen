@@ -20,7 +20,7 @@ task Init {
     "Build System Details:"
     Get-Item ENV:BH*
     
-    $modules = 'Pester', 'PSDeploy', 'PSScriptAnalyzer'
+    $modules = 'Pester', 'PSDeploy', 'PSScriptAnalyzer', 'platyPS'
     Install-Module $modules -Confirm:$false
     Import-Module $modules -Verbose:$false -Force
 }
@@ -41,7 +41,15 @@ task test {
     }
 }
 
-task deploy {
+task UpdateHelpMarkdown {
+    Update-MarkdownHelp -Path "$projectRoot\ModuleHelp\*"
+}
+
+task GenerateHelp {
+    New-ExternalHelp -OutputPath "$sut\en-US" -Path "$projectRoot\ModuleHelp\*" -Force
+}
+
+task Deploy -depends GenerateHelp {
     # Gate deployment
     if(
         $ENV:BHBuildSystem -ne 'Unknown' -and
