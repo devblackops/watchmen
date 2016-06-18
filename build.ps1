@@ -21,11 +21,7 @@ function Resolve-Module {
                     Measure-Object -Property Version -Maximum | 
                     Select-Object -ExpandProperty Maximum
 
-                if ($Version -lt $GalleryVersion) {
-                    if ((Get-PSRepository -Name PSGallery).InstallationPolicy -ne 'Trusted') { 
-                        Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-                    }
-                    
+                if ($Version -lt $GalleryVersion) {                                        
                     Write-Verbose -Message "$($ModuleName) Installed Version [$($Version.tostring())] is outdated. Installing Gallery Version [$($GalleryVersion.tostring())]"
                     
                     Install-Module -Name $ModuleName -Verbose:$false -Force
@@ -46,6 +42,7 @@ function Resolve-Module {
 }
 
 Get-PackageProvider -Name Nuget -ForceBootstrap | Out-Null
+Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 
 'BuildHelpers', 'psake' | Resolve-Module
 
