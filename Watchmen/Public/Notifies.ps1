@@ -12,7 +12,7 @@ function Notifies {
 
     process {
         $global:ThisNotifiers = @()
-        $global:ThisNotifiers += . $Script
+        $global:ThisNotifiers += . $Script        
     }
 
     end {
