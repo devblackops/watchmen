@@ -12,7 +12,10 @@ function Email {
         [string[]]$To,
 
         [parameter(Mandatory, Position = 0, ParameterSetName = 'options')]
-        [hashtable]$Options
+        [hashtable]$Options,
+
+        [parameter(Mandatory, Position = 0, ParameterSetName = 'bool')]
+        [bool]$Enable
     )
 
     begin {
@@ -30,6 +33,7 @@ function Email {
             Port = 25
             Credential = $null
             To = @()
+            Enabled = $true
         }
 
         if ($PSCmdlet.ParameterSetName -eq 'emailaddress') {
@@ -45,6 +49,9 @@ function Email {
                 $e.Port = $global:Watchmen.Config.NotifierOptions.Email.Port
                 $e.Credential = $global:Watchmen.Config.NotifierOptions.Email.Credential
                 $e.To = $To
+                if (-not $Enable) {
+                    $e.Enabled = $false
+                }
             } else {
                 throw "No email options have been specified in WatchmenOptions!"
             }

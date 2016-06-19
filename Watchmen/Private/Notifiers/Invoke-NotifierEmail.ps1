@@ -10,6 +10,8 @@ function Invoke-NotifierEmail {
         [pscustomobject]$Results
     )
 
-    $o = ($Notifier | Format-Table -Property *  -AutoSize| Out-String)
-    Write-Verbose -Message "Email notifier called with options:`n$o"
+    if ($Notifier.Enabled) {
+        $o = ($Notifier | Format-Table -Property *  -AutoSize| Out-String)
+        Write-Verbose -Message "Email notifier called with options:`n$o"
+    }
 }

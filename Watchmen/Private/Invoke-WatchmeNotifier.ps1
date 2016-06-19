@@ -22,26 +22,30 @@ function Invoke-WatchmenNotifier {
             # Act on any errors from the notifiers
 
             foreach ($notifier in $WatchmenTest.Notifiers) {
-                Write-Verbose -Message "Invoking notifier [$($notifier.type)]"
-                switch ($notifier.type) {
-                    'Email' {
-                        $results += $notifier | Invoke-NotifierEmail -Results $testResult
+                if ($notifier.Enabled) {
+                    Write-Verbose -Message "Invoking notifier [$($notifier.type)]"
+                    switch ($notifier.type) {
+                        'Email' {
+                            $results += $notifier | Invoke-NotifierEmail -Results $testResult
+                        }
+                        'EventLog' {
+                            $results += $notifier | Invoke-NotifierEventLog -Results $testResult
+                        }
+                        'FileSystem' {
+                            $results += $notifier | Invoke-NotifierFilesystem -Results $testResult
+                        }
+                        'Slack' {
+                            $results += $notifier | Invoke-NotifierSlack -Results $testResult
+                        }
+                        'Syslog' {
+                            $results += $notifier | Invoke-NotifierSyslog -Results $testResult
+                        }
+                        default {
+                            Write-Error -Message "Unknown notifier [$($notifier.type)]"
+                        }
                     }
-                    'EventLog' {
-                        $results += $notifier | Invoke-NotifierEventLog -Results $testResult
-                    }
-                    'FileSystem' {
-                        $results += $notifier | Invoke-NotifierFilesystem -Results $testResult
-                    }
-                    'Slack' {
-                        $results += $notifier | Invoke-NotifierSlack -Results $testResult
-                    }
-                    'Syslog' {
-                        $results += $notifier | Invoke-NotifierSyslog -Results $testResult
-                    }
-                    default {
-                        Write-Error -Message "Unknown notifier [$($notifier.type)]"
-                    }
+                } else {
+                    Write-Verbose -Message "Skipping notifier [$($notifier.type)]. Disabled for this test."
                 }
             }
             return $results

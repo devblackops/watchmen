@@ -1,11 +1,11 @@
 function EventLog {
     [cmdletbinding(DefaultParameterSetName = 'eventlog')]   
     param(
-        [parameter(Mandatory, Position = 0, ParameterSetName = 'bool')]
-        [bool]$Enable,
-
         [parameter(Mandatory, Position = 0, ParameterSetName = 'eventlog')]
-        [hashtable[]]$Options
+        [hashtable[]]$Options,
+
+        [parameter(Mandatory, Position = 0, ParameterSetName = 'bool')]
+        [bool]$Enable
     )
     
     begin {
@@ -19,6 +19,7 @@ function EventLog {
             Type = 'EventLog'
             EventType = 'Error'
             EventId = 1
+            Enabled = $true
         }
 
         if ($PSCmdlet.ParameterSetName -eq 'bool') {
@@ -29,6 +30,9 @@ function EventLog {
             if ($global.Watchmen.Config.NotifierOptions.EventLog) {
                 $e.EventType = $global:Watchmen.Config.NotifierOptions.EventLog.EventType
                 $e.EventId = $global:Watchmen.Config.NotifierOptions.EventLog.EventId
+                if (-not $Enable) {
+                    $e.Enabled = $false
+                }
             } else {
                 throw 'No event log options have been specified in WatchmenOptions!'
             }
