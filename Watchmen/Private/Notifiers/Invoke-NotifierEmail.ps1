@@ -1,4 +1,5 @@
 function Invoke-NotifierEmail {
+    [cmdletbinding()]
     param(
         [parameter(Mandatory, ValueFromPipeline)]
         [ValidateScript({ $_.PSObject.TypeNames[0] -eq 'Watchmen.Notifier.Email' })]
