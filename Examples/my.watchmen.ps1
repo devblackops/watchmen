@@ -16,6 +16,7 @@ WatchmenOptions {
             eventid = '1'
             eventtype = 'error'
         }
+        filesystem 'c:\temp\watchmen.log'
     }
 }
 
