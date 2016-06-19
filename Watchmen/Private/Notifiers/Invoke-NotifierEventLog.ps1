@@ -1,4 +1,5 @@
 function Invoke-NotifierEventLog {
+    [cmdletbinding()]
     param(
         [parameter(Mandatory, ValueFromPipeline)]
         [ValidateScript({ $_.PSObject.TypeNames[0] -eq 'Watchmen.Notifier.EventLog' })]
@@ -9,8 +10,6 @@ function Invoke-NotifierEventLog {
         [pscustomobject]$Results
     )
 
-    Write-Verbose -Message "Creating new Watchmen event log entry for failed test [$($Results.Module)][$($Results.ShortName)]"
-    
     $o = ($Notifier | Format-Table -Property *  -AutoSize| Out-String)
     Write-Verbose -Message "Event log notifier called with options:`n$o"
 
