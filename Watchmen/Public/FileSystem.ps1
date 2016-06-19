@@ -14,7 +14,7 @@ function FileSystem {
     [pscustomobject]@{
             PSTypeName = 'Watchmen.Notifier.FileSystem'
             Type = 'FileSystem'
-            Values = $Paths
+            Path = $Paths
         }
     }
     
