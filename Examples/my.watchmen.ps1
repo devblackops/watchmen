@@ -12,6 +12,10 @@ WatchmenOptions {
             to = 'fred@flinstone.com'
         }
         email 'brandon@devblackops.io'
+        eventlog @{
+            eventid = '1'
+            eventtype = 'error'
+        }
     }
 }
 
