@@ -10,10 +10,19 @@ Infrastructure test runner using Pester
 ```powershell
 WatchmenOptions {
     notifies {
-        email 'brandon@devblackops.io'
-        filesystem '\\fileserver01\monitoringshare\'
+        email '<admin@example.com'
+        filesystem '\\fileserver01.mydomain.tld\monitoringshare\'
         syslog 'mysyslogserver.mydomain.tld'
-        eventlog
+        eventlog @{
+            eventid = '1'
+            eventtype = 'error'
+        }
+        slack @{
+            Title = 'Watchmen Bot'
+            Token = '<webhookurl>'
+            Channel = '#watchmen'
+            IconEmoji = ':fire:'
+        }
     }
 }
 
@@ -39,5 +48,5 @@ $tests = Get-WatchmenTest -Path .\Tests\myovf1.ps1
 
 Executing watchmen tests
 ```powershell
-$tests | Invoke-WatchmenTest -Verbose
+$tests | Invoke-WatchmenTest -Verbose -IncludePesterOutput
 ```
