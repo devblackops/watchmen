@@ -29,6 +29,7 @@ function Email {
             Type = 'Email'
             FromAddress = [string]::Empty
             Subject = [string]::Empty
+            Message = [string]::Empty
             SmtpServer = [string]::Empty
             Port = 25
             Credential = $null
@@ -45,6 +46,7 @@ function Email {
             if ($global:Watchmen.Config.NotifierOptions.Email) {
                 $e.FromAddress = $global:Watchmen.Config.NotifierOptions.Email.FromAddress
                 $e.Subject = $global:Watchmen.Config.NotifierOptions.Email.Subject
+                $e.Message = $global:Watchmen.Config.NotifierOptions.Email.Message
                 $e.SmtpServer = $global:Watchmen.Config.NotifierOptions.Email.SmtpServer
                 $e.Port = $global:Watchmen.Config.NotifierOptions.Email.Port
                 $e.Credential = $global:Watchmen.Config.NotifierOptions.Email.Credential
@@ -59,6 +61,7 @@ function Email {
             Write-Debug -Message 'Email options specified'
             $e.FromAddress = $Options.FromAddress
             $e.Subject = $Options.Subject
+            $e.Message = $Options.Message
             $e.SmtpServer = $Options.SmtpServer
             $e.Port = $Options.Port
             $e.Credential = $Options.Credential
