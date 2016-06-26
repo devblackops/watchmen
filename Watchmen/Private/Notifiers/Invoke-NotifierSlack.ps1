@@ -53,7 +53,7 @@ Duration: $($results.RawResult.Time.ToString())
         )
 
         $params = @{
-            Color = [System.Drawing.Color]::Red 
+            Color = ([System.Drawing.Color]::Red) 
             Title = "Test details:"
             TitleLink = $Notifier.TitleLink
             Fields = $fields
