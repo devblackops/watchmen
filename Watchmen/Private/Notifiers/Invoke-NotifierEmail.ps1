@@ -17,6 +17,7 @@ function Invoke-NotifierEmail {
         # If a custom subject line was specified, replace any variables
         if (($Notifier.Subject -ne [string]::Empty) -and ($null -ne $Notifier.Subject)) {
             $subject = $Notifier.Subject
+            $subject = $subject.Replace('#{computername}', $env:COMPUTERNAME)
             $subject = $subject.Replace('#{module}', $results.module)
             $subject = $subject.Replace('#{file}', $results.FileName)
             $subject = $subject.Replace('#{descibe}', $results.RawResult.Describe)
@@ -45,19 +46,12 @@ function Invoke-NotifierEmail {
 Watchmen reported a failure in OVF test:
 
 Module: $($results.Module)
-
 File: $($results.FileName)
-
 Descibe:  $($results.RawResult.Describe)
-
 Context: $($results.RawResult.Context)
-
 Test: $($results.RawResult.Name)
-
 Result: $($results.Result)
-
 Message: $($results.RawResult.FailureMessage)
-
 Duration: $($results.RawResult.Time.ToString())
 "@
         }
@@ -65,10 +59,19 @@ Duration: $($results.RawResult.Time.ToString())
         $params = @{
             To =  $Notifier.To
             From = $Notifier.FromAddress
-            SmtpHost = $Notifier.SmtpServer
+            SmtpServer = $Notifier.SmtpServer
             Subject = $subject
             Body = $msg
+            UseSSL = $true
+            Port = $Notifier.Port
         }
-        Send-MailMessage @params 
+        if ($Notifier.Credential) {
+            $params.Credential = $Notifier.Credential
+        }
+
+        Write-Verbose -Message ($params | fl * | out-string)
+
+        Send-MailMessage @params
+        #Microsoft.PowerShell.Utility\Send-MailMessage @params
     }
 }

@@ -10,7 +10,7 @@ function Version {
     }
 
     process {
-        $script:ThisWatchmenTest.Version = $Version
+        $global:watchmen.ThisTest.Version = $Version
     }
 
     end {

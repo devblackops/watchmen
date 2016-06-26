@@ -11,8 +11,14 @@ function Notifies {
     }
 
     process {
-        $global:ThisNotifiers = @()
-        $global:ThisNotifiers += . $Script        
+
+        if ($global:Watchmen.InConfig) {
+            Write-Debug -Message 'Adding notifiers to $global:Watchmen.Options.Notifiers'
+            $global:Watchmen.Options.Notifiers += . $script
+        } elseif ($global:Watchmen.InTest) {
+            Write-Debug -Message 'Adding notifiers to $global:Watchmen.ThisTest.Notifiers'
+            $global:Watchmen.ThisTest.Notifiers += . $script      
+        }  
     }
 
     end {

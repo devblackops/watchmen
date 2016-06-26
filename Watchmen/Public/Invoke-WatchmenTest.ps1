@@ -30,7 +30,8 @@ function Invoke-WatchmenTest {
                 $tests += Get-WatchmenTest -Path $script -Recurse:$Recurse
             }    
         } else {
-            $tests = $InputObject.Tests
+            #$tests = $InputObject.Tests
+            $tests = $InputObject
         }
         
         foreach ($test in $tests) {
@@ -50,7 +51,9 @@ function Invoke-WatchmenTest {
 
                 # Call notifiers on any failures unless told not to
                 if (-not $PSBoundParameters.ContainsKey('DisableNotifiers')) {
-                    $testResults | ? {'failed' -in $_.Result} | Invoke-WatchmenNotifier -WatchmenTest $test
+                    $tr = @($testResults | ? {'failed' -in $_.Result})
+                    Write-Verbose -Message "[$($t.Count)] notifiers to call"
+                    Invoke-WatchmenNotifier -TestResults $tr -WatchmenTest $test
                 }                
 
                 # TODO

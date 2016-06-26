@@ -26,8 +26,8 @@ function FileSystem {
             # somewhere before this we have specifed additional file system parameters inside a WatchmenOptions
             # block. Merge in those values
 
-            if ($global.Watchmen.Config.NotifierOptions.FileSystem) {
-                $e.Path = $global:Watchmen.Config.NotifierOptions.FileSystem.Path
+            if ($global.Watchmen.Options.NotifierOptions.FileSystem) {
+                $e.Path = $global:Watchmen.Options.NotifierOptions.FileSystem.Path
                 if (-not $Enable) {
                     $e.Enable = $false
                 }
@@ -41,7 +41,7 @@ function FileSystem {
             # If 'Filesystem' was called from inside WatchmenOptions, then persist these settings
             # in the watchmen state for future reference
             if ($global:Watchmen.InConfig) {
-                $global:Watchmen.Config.NotifierOptions.FileSystem = $e
+                $global:Watchmen.Options.NotifierOptions.FileSystem = $e
             }
         }
         

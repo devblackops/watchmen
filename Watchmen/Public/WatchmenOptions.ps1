@@ -5,27 +5,14 @@ function WatchmenOptions {
     )
 
     begin {
-        Write-Debug -Message "Entering: $($PSCmdlet.MyInvocation.MyCommand.Name)"
-        
-        # # Initialize Watchmen config
-        # if ($null -eq $global:Watchmen) {
-        #     #Initialize-Watchmen
-        # } else {        
-        # }
-
+        Write-Debug -Message "Entering: $($PSCmdlet.MyInvocation.MyCommand.Name)"        
         # Mark that we are inside an 'WatchmenOptions' block and subsequent commands are allowed
         $global:Watchmen.InConfig = $true
     }
 
-    process {
-        
+    process {        
         # Execute any functions passed in
         . $Script
-
-        # Any Notifiers to config
-        $global:Watchmen.Config.Notifiers = $global:ThisNotifiers
-
-        $global:Watchmen.Config.Rorschach = $global:ThisRorschach
     }
 
     end {    

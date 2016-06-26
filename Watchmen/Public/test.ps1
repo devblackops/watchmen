@@ -10,7 +10,7 @@ function Test {
     }
 
     process {
-        $script:ThisWatchmenTest.Test = $Test
+        $global:watchmen.ThisTest.Test = $Test
     }
 
     end {

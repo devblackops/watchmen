@@ -11,7 +11,7 @@ function TestType {
     }
 
     process {
-        $script:ThisWatchmenTest.Type = $Type
+        $global:watchmen.ThisTest.Type = $Type
     }
 
     end {

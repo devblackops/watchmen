@@ -2,9 +2,9 @@ function Invoke-WatchmenNotifier {
     [cmdletbinding()]
     param(
         [parameter(Mandatory, ValueFromPipeline)]
-        $TestResults,
+        [pscustomobject[]]$TestResults,
 
-        $WatchmenTest
+        [pscustomobject]$WatchmenTest
     )
 
     begin {

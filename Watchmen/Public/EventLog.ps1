@@ -27,9 +27,9 @@ function EventLog {
             # somewhere before this we have specifed additional event log parameters inside a WatchmenOptions
             # block. Merge in those values
 
-            if ($global.Watchmen.Config.NotifierOptions.EventLog) {
-                $e.EventType = $global:Watchmen.Config.NotifierOptions.EventLog.EventType
-                $e.EventId = $global:Watchmen.Config.NotifierOptions.EventLog.EventId
+            if ($global.Watchmen.Options.NotifierOptions.EventLog) {
+                $e.EventType = $global:Watchmen.Options.NotifierOptions.EventLog.EventType
+                $e.EventId = $global:Watchmen.Options.NotifierOptions.EventLog.EventId
                 if (-not $Enable) {
                     $e.Enabled = $false
                 }
@@ -44,7 +44,7 @@ function EventLog {
             # If 'EventLog' was called from inside WatchmenOptions, then persist these settings
             # in the watchmen state for future reference
             if ($global:Watchmen.InConfig) {
-                $global:Watchmen.Config.NotifierOptions.EvenLog = $e
+                $global:Watchmen.Options.NotifierOptions.EvenLog = $e
             }    
         }
 

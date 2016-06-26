@@ -10,7 +10,7 @@ function Parameters {
     }
 
     process {
-        $script:ThisWatchmenTest.Parameters = $Parameters
+        $global:watchmen.ThisTest.Parameters = $Parameters
     }
 
     end {

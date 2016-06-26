@@ -11,7 +11,7 @@ function FromSource {
     }
 
     process {
-        $script:ThisWatchmenTest.Source = $Source
+        $global:watchmen.ThisTest.Source = $Source
     }
 
     end {

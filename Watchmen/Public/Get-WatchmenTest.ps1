@@ -27,19 +27,10 @@ function Get-WatchmenTest {
                     $tests = @()                    
                     $tests += . $file.FullName
 
-                    $testSet = [pscustomobject]@{
-                        PSTypeName = 'Watchmen.TestSet'
-                        #Id = $global:WatchMen.CurrentTestSetId - 1
-                        Config = $global:watchmen.Config
-                        Tests = $tests
-                        Notifiers = $global:ThisNotifiers
-                    }
-
                     $global:watchmen.TestSets += $testSet
-                    #$global:Watchmen.TestSets[$testSet.Id].Tests += $testSet
-                }                        
+                }              
                 
-                return $testSet
+                return $tests
             }
         } catch {
             throw $_

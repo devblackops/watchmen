@@ -27,7 +27,7 @@ function Syslog {
             # block. Merge in those values
 
             if ($global:Watchmen.Config.NotifierOpsions.Syslog) {
-                $e.Endpoint = $global:Watchmen.Config.NotifierOptions.Syslog.Endpoint
+                $e.Endpoint = $global:Watchmen.Options.NotifierOptions.Syslog.Endpoint
                 if (-not $Enable) {
                     $e.Enabled = $false
                 }
@@ -41,7 +41,7 @@ function Syslog {
             # If 'Syslog' was called from inside WatchmenOptions, then persist these settings
             # in the watchmen state for future reference
             if ($global:Watchmen.InConfig) {
-                $global:Watchmen.Config.NotifierOptions.Syslog = $e
+                $global:Watchmen.Options.NotifierOptions.Syslog = $e
             }
         }
 

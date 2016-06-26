@@ -33,6 +33,7 @@ function Email {
             SmtpServer = [string]::Empty
             Port = 25
             Credential = $null
+            UseSSL = $false
             To = @()
             Enabled = $true
         }
@@ -43,13 +44,14 @@ function Email {
             # specifed additional email parameters inside a WatchmenOptions block.
             # Merge in those values
 
-            if ($global:Watchmen.Config.NotifierOptions.Email) {
-                $e.FromAddress = $global:Watchmen.Config.NotifierOptions.Email.FromAddress
-                $e.Subject = $global:Watchmen.Config.NotifierOptions.Email.Subject
-                $e.Message = $global:Watchmen.Config.NotifierOptions.Email.Message
-                $e.SmtpServer = $global:Watchmen.Config.NotifierOptions.Email.SmtpServer
-                $e.Port = $global:Watchmen.Config.NotifierOptions.Email.Port
-                $e.Credential = $global:Watchmen.Config.NotifierOptions.Email.Credential
+            if ($global:Watchmen.Options.NotifierOptions.Email) {
+                $e.FromAddress = $global:Watchmen.Options.NotifierOptions.Email.FromAddress
+                $e.Subject = $global:Watchmen.Options.NotifierOptions.Email.Subject
+                $e.Message = $global:Watchmen.Options.NotifierOptions.Email.Message
+                $e.SmtpServer = $global:Watchmen.Options.NotifierOptions.Email.SmtpServer
+                $e.Port = $global:Watchmen.Options.NotifierOptions.Email.Port
+                $e.Credential = $global:Watchmen.Options.NotifierOptions.Email.Credential
+                $e.UseSSL = $global:Watchmen.Options.NotifierOptions.Email.UseSSL
                 $e.To = $To
                 if (-not $Enable) {
                     $e.Enabled = $false
@@ -65,12 +67,13 @@ function Email {
             $e.SmtpServer = $Options.SmtpServer
             $e.Port = $Options.Port
             $e.Credential = $Options.Credential
+            $e.UseSSL = $Options.UseSSL
             $e.To = $Options.To
 
             # If 'Email' was called from inside WatchmenOptions, then persist these settings
             # in the watchmen state for future reference
             if ($global:Watchmen.InConfig) {
-                $global:Watchmen.Config.NotifierOptions.Email = $e
+                $global:Watchmen.Options.NotifierOptions.Email = $e
             }
         }
 

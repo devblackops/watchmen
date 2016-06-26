@@ -10,7 +10,7 @@ function Initialize-Watchmen {
         InConfig = $false
         InTest = $false
         InNotifies = $false
-        Config = [pscustomobject]@{
+        Options = [pscustomobject]@{
             PSTypeName = 'Watchmen.Config'
             Notifiers = @()
             Rorschach = [pscustomobject]@{
@@ -19,11 +19,12 @@ function Initialize-Watchmen {
             }
             NotifierOptions = @{}
         }
+        ThisTest = $null
         TestSets = @(
              [pscustomobject]@{
                  PSTypeName = 'Watchmen.TestSet'
                  ID = 0
-                 Config = $null
+                 Options = $null
                  Tests = @()
                  Notifiers = @{}
              }

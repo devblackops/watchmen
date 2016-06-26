@@ -12,20 +12,13 @@ function WatchmenTest {
     begin {
         Write-Debug -Message "Entering: $($PSCmdlet.MyInvocation.MyCommand.Name)"
 
-        #Write-Verbose -Message "Current Watchmen Test set ID is $($global:Watchmen.CurrentTestSetId)"
-
-        # Initialize Watchmen config if an 'OvfSetup' function hasn't been executed yet
-        if ($null -eq $global:Watchmen) {
-            #Initialize-Watchmen        
-        }
-
         # Mark that we are inside an 'WatchmenTest' block and subsequent commands are allowed
         $global:Watchmen.InTest = $true
     }
 
     process {
 
-        $script:ThisWatchmenTest = @{
+        $global:watchmen.ThisTest = @{
             PSTypeName = 'Watchmen.Test'
             ModuleName = $Name
             parameters = @{}
@@ -40,15 +33,10 @@ function WatchmenTest {
         . $Script
 
         # Add any Notifiers that were defined in WatchmenOptions
-        $script:ThisWatchmenTest.Notifiers += $global:Watchmen.Config.Notifiers
+        $global:watchmen.ThisTest.Notifiers += $global:Watchmen.Options.Notifiers
 
-        # Add any Notifiers to the test
-        $script:ThisWatchmenTest.Notifiers += $global:ThisNotifiers
-
-        $t = [pscustomobject]$script:ThisWatchmenTest
+        $t = [pscustomobject]$global:watchmen.ThisTest
         Write-Verbose -Message "Created Watchmen test [$($t.ModuleName)[$($t.Test)]]"
-
-        Remove-Variable -Name ThisWatchmenTest -Scope Script       
 
         return $t
     }
