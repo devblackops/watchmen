@@ -41,23 +41,24 @@ Duration: $($results.RawResult.Time.ToString())
 "@
 
         $fields = @(
-            @{title = 'Computer'; value = $env:COMPUTERNAME }
-            @{title = 'Test'; value = $results.RawResult.Name }
-            @{title = 'Module'; value = $results.Module }
-            @{title = 'File'; value = $results.FileName }
-            @{title = 'Descibe'; value = $results.RawResult.Describe }
-            @{title = 'Context'; value = $results.RawResult.Context }    
-            @{title = 'Result'; value = $results.Result }
-            @{title = 'Message'; value = $results.RawResult.FailureMessage }
-            @{title = 'Duration'; value = $results.RawResult.Time.ToString() }
+            @{title = 'Computer'; value = $env:COMPUTERNAME; short = $true }
+            @{title = 'Module'; value = $results.Module; short = $true }
+            @{title = 'Test'; value = $results.RawResult.Name; short = $false }            
+            @{title = 'Descibe'; value = $results.RawResult.Describe; short = $true }
+            @{title = 'Context'; value = $results.RawResult.Context; short = $true }            
+            @{title = 'File'; value = $results.FileName; short = $false }                            
+            @{title = 'Result'; value = $results.Result; short = $true }
+            @{title = 'Message'; value = $results.RawResult.FailureMessage; short = $true }
+            @{title = 'Duration'; value = $results.RawResult.Time.ToString(); short = $true }
         )
 
         $params = @{
-            Color = ([System.Drawing.Color]::Red) 
-            Title = "Test details:"
+            Color = ([System.Drawing.Color]::Red)
+            Title = "$($Notifer.IconEmoji) $($env:COMPUTERNAME) - $($results.Result.ToUpper()) - $($results.RawResult.Name)" 
+            #Title = "Test details:"
             TitleLink = $Notifier.TitleLink
             Fields = $fields
-            PreText = "$($Notifer.IconEmoji) $($env:COMPUTERNAME) - $($results.Result.ToUpper()) - $($results.RawResult.Name)"
+            PreText = "Failed Watchmen Test"
             AuthorName = $Notifier.AuthorName
             Fallback = $text
         }
