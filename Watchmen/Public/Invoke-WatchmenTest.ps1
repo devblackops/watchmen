@@ -53,7 +53,9 @@ function Invoke-WatchmenTest {
                 if (-not $PSBoundParameters.ContainsKey('DisableNotifiers')) {
                     $tr = @($testResults | ? {'failed' -in $_.Result})
                     Write-Verbose -Message "[$($t.Count)] notifiers to call"
-                    Invoke-WatchmenNotifier -TestResults $tr -WatchmenTest $test
+                    if ($tr.Count -gt 0) {
+                        Invoke-WatchmenNotifier -TestResults $tr -WatchmenTest $test
+                    }
                 }                
 
                 # TODO
