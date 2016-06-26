@@ -48,6 +48,15 @@ task GenerateHelp -Depends Init {
     New-ExternalHelp -OutputPath "$sut\en-US" -Path "$projectRoot\ModuleHelp\*" -Force -Encoding ([System.Text.Encoding]::UTF8)
 }
 
+task ExportFunctions {
+    $files = Get-ChildItem -Path $sut\Public | Select -ExpandProperty Name
+    $functions = @()
+    $files | % {
+        $functions += $_.Split('.')[0]
+    }
+    Update-ModuleManifest -Path $sut\Watchmen.psd1 -FunctionsToExport $functions
+}
+
 task Deploy -depends Test, GenerateHelp {
     # Gate deployment
     if(
