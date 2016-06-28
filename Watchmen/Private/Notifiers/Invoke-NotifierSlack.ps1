@@ -16,7 +16,7 @@ function Invoke-NotifierSlack {
         Import-Module -Name PSSlack -Verbose:$false -ErrorAction Stop
 
         $o = ($Notifier | Format-Table -Property * -AutoSize | Out-String)
-        Write-Verbose -Message "Slack notifier called with options:`n$o" 
+        Write-Debug -Message "Slack notifier called with options:`n$o" 
         
         $text = @"
 Watchmen reported a failure in OVF test:
@@ -68,6 +68,6 @@ Duration: $($results.RawResult.Time.ToString())
         } else {
             $msg = $att | New-SlackMessage -Channel $Notifer.Channel -IconUrl $Notifier.IconUrl
         }    
-        $msg | Send-SlackMessage -Uri $Notifier.Token
+        $msg | Send-SlackMessage -Uri $Notifier.Token | Out-Null
     }
 }

@@ -11,7 +11,7 @@ function Invoke-NotifierFilesystem {
     )
 
     $o = ($Notifier | Format-Table -Property * -AutoSize | Out-String)
-    Write-Verbose -Message "File system notifier called with options:`n$o" 
+    Write-Debug -Message "File system notifier called with options:`n$o" 
 
     $time = "[$((Get-Date).ToUniversalTime().ToString('u'))]"
     $sev = 'ERROR'

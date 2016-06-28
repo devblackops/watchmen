@@ -12,7 +12,7 @@ function Invoke-NotifierEmail {
 
     if ($Notifier.Enabled) {
         $o = ($Notifier | Format-Table -Property *  -AutoSize| Out-String)
-        Write-Verbose -Message "Email notifier called with options:`n$o"
+        Write-Debug -Message "Email notifier called with options:`n$o"
 
         # If a custom subject line was specified, replace any variables
         if (($Notifier.Subject -ne [string]::Empty) -and ($null -ne $Notifier.Subject)) {
@@ -69,9 +69,6 @@ Duration: $($results.RawResult.Time.ToString())
             $params.Credential = $Notifier.Credential
         }
 
-        Write-Verbose -Message ($params | fl * | out-string)
-
         Send-MailMessage @params
-        #Microsoft.PowerShell.Utility\Send-MailMessage @params
     }
 }

@@ -17,7 +17,7 @@ function Invoke-NotifierSyslog {
         Import-Module -Name Posh-SYSLOG -Verbose:$false -ErrorAction Stop
 
         $o = ($Notifier | Format-Table -Property * -AutoSize | Out-String)
-        Write-Verbose -Message "Syslog notifier called with options:`n$o"
+        Write-Debug -Message "Syslog notifier called with options:`n$o"
     
         $msg = "$($Results.RawResult.Describe) -> $($Results.RawResult.Context) -> $($Results.RawResult.Name) -> $($Results.RawResult.Result.ToUpper())"
 

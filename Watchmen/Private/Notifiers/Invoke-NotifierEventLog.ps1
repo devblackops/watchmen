@@ -11,7 +11,7 @@ function Invoke-NotifierEventLog {
     )
 
     $o = ($Notifier | Format-Table -Property *  -AutoSize| Out-String)
-    Write-Verbose -Message "Event log notifier called with options:`n$o"
+    Write-Debug -Message "Event log notifier called with options:`n$o"
 
     # TODO
     # Even though we're specifying the 'Application' log, Write-EventLog is writing these events to the 'System' log.class Name
