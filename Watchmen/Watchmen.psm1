@@ -33,5 +33,10 @@ $script:CommandFences = @{
     )
 }
 
-# Export public functions
+# Aliases
+New-Alias -Name gwt -Value Get-WatchmenTest
+New-Alias -Name iwt -Value Invoke-WatchmenTest
+
+# Export aliases / functions
+Export-ModuleMember -Alias 'gwt','iwt'
 Export-ModuleMember -Function $Public.Basename

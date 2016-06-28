@@ -61,19 +61,10 @@ WatchmenTest 'OVF.Example2' {
     # }
 }
 
-# # This test should FAIL
-# WatchmenTest 'MyOVFModule' {
-#     version 0.1.0
-#     testType 'simple'
-#     test 'storage.capacity'
-#     fromsource 'artifactory'
-#     parameters @{
-#         FreeSystemDriveThreshold = 50000
-#     }
-#     notifies {
-#         email 'someguy@somecompany.com'
-#     }
-# }
+# This test should FAIL because module is missing
+WatchmenTest 'MyOVFModule' {
+    fromsource 'PSGallery'    
+}
 
 # WatchmenTest 'mymodule' {
 #     version 1.6.0
