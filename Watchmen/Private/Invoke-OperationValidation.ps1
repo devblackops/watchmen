@@ -62,6 +62,8 @@ function Invoke-OperationValidation {
 
         [switch]$IncludePesterOutput,
 
+        [Version]$Version,
+
         [hashtable]$Overrides
     )
     
@@ -78,13 +80,21 @@ function Invoke-OperationValidation {
     }
     PROCESS {
         if ( $PSCmdlet.ParameterSetName -eq "UseGetOperationTest" ) {
-            $tests = Get-OperationValidation -ModuleName $ModuleName -TestType $TestType 
+            if ($PSBoundParameters.ContainsKey('Version')) {
+                $tests = Get-OperationValidation -ModuleName $ModuleName -TestType $TestType -Version $Version
+            } else {
+                $tests = Get-OperationValidation -ModuleName $ModuleName -TestType $TestType
+            }             
             $tests | Invoke-OperationValidation -IncludePesterOutput:$IncludePesterOutput -Overrides $Overrides
             return
         }
         
         if ( ($testFilePath -eq $null) -and ($TestInfo -eq $null) ) {
-            Get-OperationValidation | Invoke-OperationValidation -IncludePesterOutput:$IncludePesterOutput -Overrides $Overrides
+            if ($PSBoundParameters.ContainsKey('Version')) {
+                Get-OperationValidation -Version $Version | Invoke-OperationValidation -IncludePesterOutput:$IncludePesterOutput -Overrides $Overrides
+            } else {
+                Get-OperationValidation | Invoke-OperationValidation -IncludePesterOutput:$IncludePesterOutput -Overrides $Overrides
+            }            
             return
         }
         
@@ -103,11 +113,6 @@ function Invoke-OperationValidation {
                 
                 if ($ti.ScriptParameters) {
                     if ($PSBoundParameters.ContainsKey('Overrides')) {
-                        #$pesterParams.Parameters = $ti.ScriptParameters
-                        #$pesterParams.Parameters = @{
-                        #    FreeSystemDriveThreshold = 40000
-                        #}
-
                         $pesterParams = @{
                             Script = @{
                                 Path = $ti.FilePath
@@ -127,7 +132,7 @@ function Invoke-OperationValidation {
                     }                    
                 }   
 
-                $testResult = Invoke-pester @pesterParams
+                $testResult = Invoke-Pester @pesterParams
                 Add-member -InputObject $testResult -MemberType NoteProperty -Name Path -Value $ti.FilePath
                 Convert-TestResult $testResult
             }

@@ -14,6 +14,10 @@ function Get-OvfTestInfo {
         $params.TestType = $Test.Type
     }
     
+    if ($null -ne$Test.Version) {
+        $params.Version = $Test.Version
+    }
+
     $ovfTestInfo = Get-OperationValidation @params
     if (-not $ovfTestInfo) {
         if ($Test.source) {

@@ -55,7 +55,9 @@ function Get-OperationValidation {
         [string[]]$ModuleName = "*",
 
         [ValidateSet("Simple","Comprehensive")]
-        [string[]]$TestType =  @("Simple","Comprehensive")
+        [string[]]$TestType =  @("Simple","Comprehensive"),
+
+        [version]$Version
     )
 
     BEGIN {
@@ -101,7 +103,11 @@ function Get-OperationValidation {
         }
 
         function Get-ModuleList  {
-            param ( [string[]]$Name )
+            param (
+                [string[]]$Name,
+                [version]$Version
+            )
+
             foreach($p in $env:psmodulepath.split(";")) {
                 if ( test-path -path $p ) {
                     foreach($modDir in get-childitem -path $p -directory) {
@@ -109,11 +115,30 @@ function Get-OperationValidation {
                             if ( $modDir.Name -like $n ) {
                                 # now determine if there's a diagnostics directory, or a version
                                 if ( test-path -path ($modDir.FullName + "\Diagnostics")) {
+
+                                    # Did we specify a specific version to find?
+                                    if ($PSBoundParameters.ContainsKey('Version')) {
+                                        $manifestFile = Get-ChildItem -Path $modDir.FullName -Filter '*.psd1' | Select-Object -First 1
+                                        $manifest = Test-ModuleManifest -Path $manifestFile.FullName
+                                        if ($manifest.Version -eq $Version) {
+                                            $modDir.FullName
+                                            break
+                                        }
+                                    } else {
                                     $modDir.FullName
                                     break
+                                    }
                                 }
-                                $versionDirectories = Get-Childitem -path $modDir.FullName -dir | 
-                                    where-object { $_.name -as [version] }
+
+                                # Get latest version of no specific version specified
+                                if ($PSBoundParameters.ContainsKey('Version')) {
+                                    $versionDirectories = Get-Childitem -path $modDir.FullName -dir | 
+                                        where-object { $_.name -as [version] -and $_.Name -eq $Version }
+                                } else {
+                                    $versionDirectories = Get-Childitem -path $modDir.FullName -dir | 
+                                        where-object { $_.name -as [version] }
+                                }
+                                
                                 $potentialDiagnostics = $versionDirectories | where-object {
                                     test-path ($_.fullname + "\Diagnostics")
                                     }
@@ -135,7 +160,11 @@ function Get-OperationValidation {
     
     PROCESS {
         Write-Progress -Activity "Inspecting Modules" -Status " "
-        $moduleCollection = Get-ModuleList -Name $ModuleName   
+        if ($PSBoundParameters.ContainsKey('Version')) {
+            $moduleCollection = Get-ModuleList -Name $ModuleName -Version $Version
+        } else {
+            $moduleCollection = Get-ModuleList -Name $ModuleName
+        }        
         $count = 1; 
         $moduleCount = @($moduleCollection).Count
         foreach($module in $moduleCollection) {
