@@ -2,6 +2,9 @@ function Invoke-WatchmenTest {
     [cmdletbinding(DefaultParameterSetName = 'File')]
     param(
         [parameter(ParameterSetName = 'File', Mandatory, ValueFromPipeline)]
+        [ValidateScript({
+            Test-Path -Path $_
+        })]
         [string[]]$Path,
 
         [parameter(ParameterSetName = 'File')]
@@ -51,10 +54,9 @@ function Invoke-WatchmenTest {
 
                 # Call notifiers on any failures unless told not to
                 if (-not $PSBoundParameters.ContainsKey('DisableNotifiers')) {
-                    $tr = @($testResults | ? {'failed' -in $_.Result})
-                    Write-Verbose -Message "[$($t.Count)] notifiers to call"
-                    if ($tr.Count -gt 0) {
-                        Invoke-WatchmenNotifier -TestResults $tr -WatchmenTest $test
+                    $failedTests = @($testResults | ? {'failed' -in $_.Result})
+                    if ($failedTests.Count -gt 0) {
+                        Invoke-WatchmenNotifier -TestResults $failedTests -WatchmenTest $test
                     }
                 }                
 
