@@ -33,7 +33,6 @@ function Invoke-WatchmenTest {
                 $tests += Get-WatchmenTest -Path $script -Recurse:$Recurse
             }    
         } else {
-            #$tests = $InputObject.Tests
             $tests = $InputObject
         }
         
