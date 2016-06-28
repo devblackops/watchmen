@@ -38,8 +38,8 @@ function Invoke-WatchmenTest {
         
         foreach ($test in $tests) {
 
-            # Resolve the OVF test info and install module if needed
-            $ovfTestInfo = Get-OvfTestInfo -Test $test
+            # Resolve the OVF test info and install module if needed            
+            $ovfTestInfo = Get-OvfTestInfo -Test $test                       
             
             if ($ovfTestInfo) {
 
@@ -66,7 +66,7 @@ function Invoke-WatchmenTest {
                     $testResults
                 }
             } else {
-                Write-Error -Message "Unable to find OVF into for module [$($Test.ModuleName)]"
+                Write-Error -Message "Unable to find OVF tests in module [$($Test.ModuleName)]"
             }
         }
     }
