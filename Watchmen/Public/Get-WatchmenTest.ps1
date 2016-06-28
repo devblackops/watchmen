@@ -24,6 +24,7 @@ function Get-WatchmenTest {
                 }
 
                 foreach ($file in $files) {
+                    Write-Verbose -Message "Loading Watchmen tests from file [$($file.FullName)]"
                     $tests = @()                    
                     $tests += . $file.FullName
 

@@ -1,41 +1,64 @@
+$u = 'watchmen'
+$p = 'aKa20o01C00rdin8tor' | ConvertTo-SecureString -AsPlainText -Force
+$c = New-Object System.Management.Automation.PSCredential($u, $p)
+
+
+
 WatchmenOptions {
-    rorschach @{
-        endpoint = 'rorschach.local'
-        credential = $null
-    }
-    notifies {        
+    # rorschach @{
+    #     endpoint = 'rorschach.local'
+    #     credential = $null
+    # }
+    notifies {
         email @{
             fromAddress = 'watchmen@mydomain.com'
-            smtpserver = 'mail.mydomain.com'
-            port = 25
-            subject = 'Watchmen test #{test} failed!'
-            to = 'fred@flinstone.com'
-        }
-        email 'brandon@devblackops.io'
+            smtpserver = 'smtp.sendgrid.net'
+            port =587
+            subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
+            to = 'brandolomite@gmail.com'
+            credential = $c
+            usessl = $true
+        }        
         eventlog @{
             eventid = '1'
             eventtype = 'error'
         }
+        eventlog @{
+            eventid = '10'
+            eventtype = 'warning'
+        }
         filesystem 'c:\temp\watchmen.log'
+        slack @{
+            #preText = 'Watchmen test failure'
+            token = 'https://hooks.slack.com/services/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'
+            author = 'Watchmen bot'
+            IconUrl = 'http://codinginmysleep.com/wp-content/uploads/2012/09/WatchmenBloodySmiley-150x150.png'
+            IconEmoji = ':fire:'
+            channel = '#watchmen_alerts'            
+        }
+        syslog 'localhost'
     }
 }
 
-# This test should PASS
-WatchmenTest 'MyOVFModule' {
+# This test should FAIL
+WatchmenTest 'OVF.Example1' {
     #version 0.2.1
-    #testType 'simple'
-    test 'more services'
-    fromsource 'artifactory'
+    testType 'simple'    
+    #fromsource 'artifactory'
     parameters @{
-        FreeSystemDriveThreshold = 1000
+        FreeSystemDriveThreshold = 50000
     }
     notifies {
-        email 'bgates@microsoft.com'
-        email @(
-            'john@doe.com'
-            'jan@doe.com'
-        )
+        filesystem 'c:\temp\watchmen2.log'
     }
+}
+
+WatchmenTest 'OVF.Example2' {
+    testType 'simple'
+    test 'more services'
+    # notifies {
+    #     slack $false
+    # }
 }
 
 # # This test should FAIL
@@ -87,23 +110,4 @@ WatchmenTest 'MyOVFModule' {
 #     parameters @{
 #         abc = 123
 #     }
-# }
-
-# ovfsetup {    
-#     filesystem '\\fileserver01\monitoringshare\', '\\nas01\alerts'
-#     filesystem '\\fileasdf\myalerts'
-#     syslog 'mysyslogserver.mydomain.tld'
-#     syslog 'logs.mydomain.tld', '10.10.10.10'
-#     eventlog @{
-#         log = 'application'
-#         eventid = '123'
-#     }
-#     eventlog @{
-#         log = 'system'
-#         eventid = '123'
-#     }
-#     eventlog @(
-#         @{ log = 'myalerts'; eventid = '123' }
-#         @{ log = 'myapp.monitoring'; eventid = '42' }
-#     )
 # }
