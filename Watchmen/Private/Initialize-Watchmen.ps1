@@ -12,7 +12,14 @@ function Initialize-Watchmen {
         InNotifies = $false
         Options = [pscustomobject]@{
             PSTypeName = 'Watchmen.Config'
-            Notifiers = @()
+            #Notifiers = @()
+            Notifiers = @{
+                Email = @()
+                EventLog = @()
+                FileSystem = @()
+                Slack = @()
+                Syslog = @()
+            }
             Rorschach = [pscustomobject]@{
                 Endpoint = $null
                 Credential = $null

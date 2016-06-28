@@ -18,7 +18,7 @@ function WatchmenTest {
 
     process {
 
-        $global:watchmen.ThisTest = @{
+        $global:Watchmen.ThisTest = @{
             PSTypeName = 'Watchmen.Test'
             ModuleName = $Name
             parameters = @{}
@@ -26,14 +26,20 @@ function WatchmenTest {
             Test = '*'
             Type = 'all'        
             Version = $null
-            Notifiers = @()
+            Notifiers = @{
+                Email = @()
+                EventLog = @()
+                FileSystem = @()
+                Slack = @()
+                Syslog = @()
+            }
         }
 
         # Execute any functions passed in        
         . $Script
 
         # Add any Notifiers that were defined in WatchmenOptions
-        $global:watchmen.ThisTest.Notifiers += $global:Watchmen.Options.Notifiers
+        #$global:watchmen.ThisTest.Notifiers += $global:Watchmen.Options.Notifiers
 
         $t = [pscustomobject]$global:watchmen.ThisTest
         Write-Verbose -Message "Created Watchmen test [$($t.ModuleName)[$($t.Test)]]"
