@@ -56,13 +56,13 @@ function Invoke-WatchmenTest {
 
                 if (@($testResults | Where Result -eq 'Failed').Count -gt 0) {
                     foreach ($failedTest in $testResults | Where Result -eq 'Failed') {
-                        Write-Warning -Message "Failed: $($failedTest.Name)" 
+                        Write-Warning -Message "  Failed: $($failedTest.Name)" 
                     }
                 }
 
                 # Call notifiers on any failures unless told not to
                 if (-not $PSBoundParameters.ContainsKey('DisableNotifiers')) {
-                    $failedTests = @($testResults | ? {'failed' -in $_.Result})
+                    $failedTests = @($testResults | ? {'Failed' -in $_.Result})
                     if ($failedTests.Count -gt 0) {
                         Invoke-WatchmenNotifier -TestResults $failedTests -WatchmenTest $test
                     }

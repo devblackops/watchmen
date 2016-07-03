@@ -26,7 +26,7 @@ function Invoke-WatchmenNotifier {
                 if ($notifierType.Count -gt 0) {
                     foreach ($notifier in $notifierType) {
                         if ($notifier.Enabled) {
-                            Write-Verbose -Message "Invoking notifier [$($notifier.type)]"
+                            Write-Verbose -Message "  Calling notifier [$($notifier.type)]"
                             switch ($notifier.type) {
                                 'Email' {
                                     $results += $notifier | Invoke-NotifierEmail -Results $testResult
