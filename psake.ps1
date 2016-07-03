@@ -16,7 +16,7 @@ task Init {
     "`nSTATUS: Testing with PowerShell $psVersion"
     "Build System Details:"
     Get-Item ENV:BH*
-    
+
     $modules = 'Pester', 'PSDeploy', 'PSScriptAnalyzer', 'platyPS'
     Install-Module $modules -Confirm:$false
     Import-Module $modules -Verbose:$false -Force
@@ -32,7 +32,7 @@ task Analyze -Depends Init {
     }
 }
 
-task Pester -Depends Init {    
+task Pester -Depends Init {
     $testResults = Invoke-Pester -Path $tests -PassThru
     if ($testResults.FailedCount -gt 0) {
         $testResults | Format-List
