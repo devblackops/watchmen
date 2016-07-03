@@ -65,8 +65,6 @@ function Invoke-WatchmenTest {
                 if ($PSBoundParameters.ContainsKey('PassThru')) {
                     $testResults
                 }
-            } else {
-                Write-Error -Message "Unable to find OVF tests in module [$($Test.ModuleName)]"
             }
         }
     }
