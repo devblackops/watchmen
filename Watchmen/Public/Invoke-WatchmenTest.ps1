@@ -23,6 +23,8 @@ function Invoke-WatchmenTest {
     begin {
         Write-Debug -Message "Entering: $($PSCmdlet.MyInvocation.MyCommand.Name)"
         $tests = @()
+
+        $finalResults = @()
     }
 
     process {
@@ -50,6 +52,13 @@ function Invoke-WatchmenTest {
 
                 # Execute the OVF test
                 $testResults = $filtered | Invoke-OvfTest -Test $test
+                $finalResults += $testResults
+
+                if (@($testResults | Where Result -eq 'Failed').Count -gt 0) {
+                    foreach ($failedTest in $testResults | Where Result -eq 'Failed') {
+                        Write-Warning -Message "Failed: $($failedTest.Name)" 
+                    }
+                }
 
                 # Call notifiers on any failures unless told not to
                 if (-not $PSBoundParameters.ContainsKey('DisableNotifiers')) {
@@ -70,6 +79,9 @@ function Invoke-WatchmenTest {
     }
 
     end {
+        $pass = @($finalResults | Where Result -eq 'Passed').Count
+        $fail = @($finalResults | Where Result -eq 'Failed').Count
+        Write-Verbose -Message "Test results: Passed [$Pass] -- Failed [$fail]"
         Write-Debug -Message "Exiting: $($PSCmdlet.MyInvocation.MyCommand.Name)"
     }
 }
