@@ -29,7 +29,7 @@ function WatchmenTest {
             Notifiers = @{
                 Email = @()
                 EventLog = @()
-                FileSystem = @()
+                LogFile = @()
                 Slack = @()
                 Syslog = @()
             }
