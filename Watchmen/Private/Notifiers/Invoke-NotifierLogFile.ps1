@@ -1,8 +1,8 @@
-function Invoke-NotifierFilesystem {
+function Invoke-NotifierLogFile {
     [cmdletbinding()]
     param(
         [parameter(Mandatory, ValueFromPipeline)]
-        [ValidateScript({ $_.PSObject.TypeNames[0] -eq 'Watchmen.Notifier.FileSystem' })]
+        [ValidateScript({ $_.PSObject.TypeNames[0] -eq 'Watchmen.Notifier.LogFile' })]
         [pscustomobject]$Notifier,
 
         [parameter(Mandatory)]
@@ -11,7 +11,7 @@ function Invoke-NotifierFilesystem {
     )
 
     $o = ($Notifier | Format-Table -Property * -AutoSize | Out-String)
-    Write-Debug -Message "File system notifier called with options:`n$o" 
+    Write-Debug -Message "Log file notifier called with options:`n$o" 
 
     $time = "[$((Get-Date).ToUniversalTime().ToString('u'))]"
     $sev = 'ERROR'

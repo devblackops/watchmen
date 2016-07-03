@@ -34,8 +34,8 @@ function Invoke-WatchmenNotifier {
                                 'EventLog' {
                                     $results += $notifier | Invoke-NotifierEventLog -Results $testResult
                                 }
-                                'FileSystem' {
-                                    $results += $notifier | Invoke-NotifierFilesystem -Results $testResult
+                                'LogFile' {
+                                    $results += $notifier | Invoke-NotifierLogFile -Results $testResult
                                 }
                                 'Slack' {
                                     $results += $notifier | Invoke-NotifierSlack -Results $testResult

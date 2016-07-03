@@ -16,7 +16,7 @@ function Initialize-Watchmen {
             Notifiers = @{
                 Email = @()
                 EventLog = @()
-                FileSystem = @()
+                LogFile = @()
                 Slack = @()
                 Syslog = @()
             }

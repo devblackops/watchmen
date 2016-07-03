@@ -1,4 +1,4 @@
-function FileSystem {
+function LogFile {
     [cmdletbinding()]
     param(
         [parameter(Mandatory, Position = 0)]
@@ -12,8 +12,8 @@ function FileSystem {
 
     process {
         $e = [pscustomobject]@{
-            PSTypeName = 'Watchmen.Notifier.FileSystem'
-            Type = 'FileSystem'
+            PSTypeName = 'Watchmen.Notifier.LogFile'
+            Type = 'LogFile'
             Name = $Path
             Path = $Path
             Enabled = $true
