@@ -1,5 +1,5 @@
 function New-OperationValidationInfo {
-    param ( 
+    param (
         [Parameter(Mandatory=$true)][string]$File,
         [Parameter(Mandatory=$true)][string]$FilePath,
         [Parameter(Mandatory=$true)][string[]]$Name,
