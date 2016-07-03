@@ -23,15 +23,17 @@ function Get-WatchmenTest {
                     $files = $item
                 }
 
+                $tests = @()
                 foreach ($file in $files) {
                     Write-Verbose -Message "Loading Watchmen tests from file [$($file.FullName)]"
-                    $tests = @()
-                    $tests += . $file.FullName
+                    $fileTests = @()
+                    $fileTests += . $file.FullName
 
-                    $global:watchmen.TestSets += $testSet
+                    $tests += $fileTests
+                    $global:watchmen.TestSets += $fileTests
                 }
 
-                return $tests
+                $tests
             }
         } catch {
             throw $_
