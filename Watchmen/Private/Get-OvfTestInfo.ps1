@@ -7,6 +7,7 @@ function Get-OvfTestInfo {
 
     $params = @{
         ModuleName = $Test.ModuleName
+        Verbose = $false
     }
 
     # Optionally get a test type

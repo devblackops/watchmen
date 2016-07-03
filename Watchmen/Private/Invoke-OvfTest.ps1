@@ -12,10 +12,11 @@ function Invoke-OvfTest {
 
     process {
         foreach ($ovfTest in $OvfTestInfo) {
-            Write-Verbose -Message "Invoking OVF test [$($Test.ModuleName)][$($ovfTest.Name)]"
+            Write-Verbose -Message "Running OVF test [$($Test.ModuleName)][$($ovfTest.Name)]"
             $params = @{
                 TestInfo = $ovfTest
                 IncludePesterOutput = $IncludePesterOutput
+                Verbose = $false
             }
 
             if ($ovfTest.ScriptParameters) {
