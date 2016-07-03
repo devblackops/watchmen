@@ -10,7 +10,7 @@ online version:
 ## SYNTAX
 
 ```
-EventLog [-Log] <Hashtable[]> [<CommonParameters>]
+EventLog -Options <Hashtable[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,8 +25,8 @@ PS C:\> {{ Add example code here }}
 {{ Add example description here }}
 ## PARAMETERS
 
-### -Log
-{{Fill Log Description}}
+### -Options
+{{Fill Options Description}}
 
 ```yaml
 Type: Hashtable[]
@@ -34,7 +34,7 @@ Parameter Sets: (All)
 Aliases: 
 
 Required: True
-Position: 0
+Position: Named
 Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False

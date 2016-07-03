@@ -7,7 +7,6 @@ online version:
 # Get-WatchmenTest
 ## SYNOPSIS
 Reads one or more Watchmen files and returns the test objects.
-
 ## SYNTAX
 
 ```
@@ -24,15 +23,12 @@ PS C:\> $tests = Get-WatchmenTest -Path c:\watchmen\my.watchmen.ps1
 ```
 
 Reads in the Watchmen file c:\watchmen\my.watchmen.ps1
-
-
 ### Example 2
 ```
 PS C:\> $allTests = Get-WatchmenTest -Path c:\watchmen -Recurse
 ```
 
 Recursively reads in Watchmen files from path c:\watchmen
-
 ## PARAMETERS
 
 ### -Path

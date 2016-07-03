@@ -9,12 +9,6 @@ online version:
 Generate an email object
 ## SYNTAX
 
-### emailaddress (Default)
-```
-Email [-To] <String[]> [<CommonParameters>]
-```
-
-### options
 ```
 Email [-Options] <Hashtable> [<CommonParameters>]
 ```
@@ -36,22 +30,7 @@ PS C:\> {{ Add example code here }}
 
 ```yaml
 Type: Hashtable
-Parameter Sets: options
-Aliases: 
-
-Required: True
-Position: 0
-Default value: 
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -To
-{{Fill To Description}}
-
-```yaml
-Type: String[]
-Parameter Sets: emailaddress
+Parameter Sets: (All)
 Aliases: 
 
 Required: True

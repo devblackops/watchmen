@@ -10,7 +10,7 @@ online version:
 ## SYNTAX
 
 ```
-LogFile [-Paths] <String[]> [<CommonParameters>]
+LogFile [-Path] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,8 +25,8 @@ PS C:\> {{ Add example code here }}
 {{ Add example description here }}
 ## PARAMETERS
 
-### -Paths
-{{Fill Paths Description}}
+### -Path
+{{Fill Path Description}}
 
 ```yaml
 Type: String[]
