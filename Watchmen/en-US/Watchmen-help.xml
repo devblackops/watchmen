@@ -268,25 +268,29 @@
 <command:details><command:name>Get-WatchmenTest</command:name>
 <command:verb>Get</command:verb>
 <command:noun>WatchmenTest</command:noun>
-<maml:description><maml:para>{{Fill in the Synopsis}}
+<maml:description><maml:para>Reads one or more Watchmen files and returns the test objects.
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>{{Fill in the Description}}
+<maml:description><maml:para>Reads one or more Watchmen files and returns the test objects.
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>Get-WatchmenTest</maml:name>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none"><maml:name>Path</maml:name>
-<maml:Description><maml:para>{{Fill Path Description}}
+<maml:Description><maml:para>Path to to a Watchmen file or a folder containing Watchmen files.
+</maml:para>
+<maml:para>If a path to a folder is given, only files with a *.watchmen.ps1 convention are processed.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
 <dev:type><maml:name>String[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>Current directory</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Recurse</maml:name>
-<maml:Description><maml:para>{{Fill Recurse Description}}
+<maml:Description><maml:para>Recursively read in Watchmen files from given path.
+</maml:para>
+<maml:para>Only Watchmen files with a *.watchmen.ps1 convention are processed.
 </maml:para>
 </maml:Description>
 <dev:type><maml:name>SwitchParameter</maml:name>
@@ -296,16 +300,20 @@
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none"><maml:name>Path</maml:name>
-<maml:Description><maml:para>{{Fill Path Description}}
+<maml:Description><maml:para>Path to to a Watchmen file or a folder containing Watchmen files.
+</maml:para>
+<maml:para>If a path to a folder is given, only files with a *.watchmen.ps1 convention are processed.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
 <dev:type><maml:name>String[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>Current directory</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Recurse</maml:name>
-<maml:Description><maml:para>{{Fill Recurse Description}}
+<maml:Description><maml:para>Recursively read in Watchmen files from given path.
+</maml:para>
+<maml:para>Only Watchmen files with a *.watchmen.ps1 convention are processed.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
@@ -333,8 +341,14 @@
 </maml:alert>
 </maml:alertSet>
 <command:examples><command:example><maml:title>Example 1</maml:title>
-<dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
-<dev:remarks><maml:para>{{ Add example description here }}
+<dev:code>PS C:\&gt; $tests = Get-WatchmenTest -Path c:\watchmen\my.watchmen.ps1</dev:code>
+<dev:remarks><maml:para>Reads in the Watchmen file c:\watchmen\my.watchmen.ps1
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>Example 2</maml:title>
+<dev:code>PS C:\&gt; $allTests = Get-WatchmenTest -Path c:\watchmen -Recurse</dev:code>
+<dev:remarks><maml:para>Recursively reads in Watchmen files from path c:\watchmen
 </maml:para>
 </dev:remarks>
 </command:example>

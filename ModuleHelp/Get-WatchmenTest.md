@@ -6,7 +6,8 @@ online version:
 
 # Get-WatchmenTest
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Reads one or more Watchmen files and returns the test objects.
+
 ## SYNTAX
 
 ```
@@ -14,19 +15,30 @@ Get-WatchmenTest [-Path] <String[]> [-Recurse] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Reads one or more Watchmen files and returns the test objects.
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> $tests = Get-WatchmenTest -Path c:\watchmen\my.watchmen.ps1
 ```
 
-{{ Add example description here }}
+Reads in the Watchmen file c:\watchmen\my.watchmen.ps1
+
+
+### Example 2
+```
+PS C:\> $allTests = Get-WatchmenTest -Path c:\watchmen -Recurse
+```
+
+Recursively reads in Watchmen files from path c:\watchmen
+
 ## PARAMETERS
 
 ### -Path
-{{Fill Path Description}}
+Path to to a Watchmen file or a folder containing Watchmen files.
+
+If a path to a folder is given, only files with a *.watchmen.ps1 convention are processed. 
 
 ```yaml
 Type: String[]
@@ -35,13 +47,15 @@ Aliases:
 
 Required: True
 Position: 0
-Default value: 
+Default value: Current directory
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
 ### -Recurse
-{{Fill Recurse Description}}
+Recursively read in Watchmen files from given path.
+
+Only Watchmen files with a *.watchmen.ps1 convention are processed.
 
 ```yaml
 Type: SwitchParameter
