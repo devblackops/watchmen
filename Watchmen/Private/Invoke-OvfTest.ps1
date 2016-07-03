@@ -17,7 +17,7 @@ function Invoke-OvfTest {
                 TestInfo = $ovfTest
                 IncludePesterOutput = $IncludePesterOutput
             }
-        
+
             if ($ovfTest.ScriptParameters) {
                 if ($Test.Parameters) {
                     Write-Debug "Overriding OVF test with parameters:"
@@ -29,5 +29,5 @@ function Invoke-OvfTest {
         }
     }
 
-    end {}    
+    end {}
 }
