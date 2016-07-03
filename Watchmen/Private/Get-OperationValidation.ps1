@@ -182,11 +182,9 @@ function Get-OperationValidation {
 
                         $script = Get-Command -Name $file.fullname
                         $parameters = $script.Parameters
-                        if ($parameters) {
-                            #Write-Verbose ($parameters | fl * | out-string)
-                            Write-Verbose 'Test script has parameters we can override!'
-                            Write-Verbose "`n$($parameters.Keys | Out-String)"
-
+                        if ($parameters.Keys.Count -gt 0) {
+                            Write-Debug -Message 'Test script has overrideable parameters'
+                            Write-Debug -Message "`n$($parameters.Keys | Out-String)"
                         }
 
                         $testName = Get-TestFromScript -scriptPath $file.FullName

@@ -20,8 +20,8 @@ function Invoke-OvfTest {
         
             if ($ovfTest.ScriptParameters) {
                 if ($Test.Parameters) {
-                    Write-Verbose "Overriding OVF test with parameters:"
-                    Write-Verbose ($Test.Parameters | fl * | out-string)
+                    Write-Debug "Overriding OVF test with parameters:"
+                    Write-Debug ($Test.Parameters | fl * | out-string)
                     $params.Overrides = $Test.Parameters
                 }
             }
