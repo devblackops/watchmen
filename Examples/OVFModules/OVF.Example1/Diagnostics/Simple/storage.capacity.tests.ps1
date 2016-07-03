@@ -9,11 +9,12 @@ param(
 Describe 'Storage Capacity' {
 
     Context 'Volumes' {
+        
         $volumes = Get-Volume | where DriveType -eq 'Fixed'
         $sysDrive = $volumes | where DriveLetter -eq $SystemDrive
         $nonSysDrives = $volumes | ? { $_.DriveLetter -ne $SystemDrive -and $_.DriveLetter -ne $null -and $_.FileSystemLabel -ne $null }
 
-        it "System volume [$SystemDrive] has $FreeSystemDriveThreshold MB free" {            
+        it "System volume [$SystemDrive] has greater than $FreeSystemDriveThreshold MB free" {            
             
             ($sysDrive.SizeRemaining / 1MB) -ge $FreeSystemDriveThreshold | should be $true
         }
