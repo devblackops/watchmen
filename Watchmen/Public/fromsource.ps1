@@ -1,5 +1,5 @@
 function FromSource {
-    [cmdletbinding()]    
+    [cmdletbinding()]
     param(
         [parameter(Mandatory, Position = 0)]
         [string]$Source

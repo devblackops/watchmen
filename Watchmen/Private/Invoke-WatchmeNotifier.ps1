@@ -10,14 +10,14 @@ function Invoke-WatchmenNotifier {
     begin {
         # If this test doesn't have any notifiers, don't bother
         # going through the pipeline even if the test results
-        # have a failure 
-        if ($WatchmenTest.Notifiers.Count -ne 0) { return }         
+        # have a failure
+        if ($WatchmenTest.Notifiers.Count -ne 0) { return }
     }
 
     process {
         foreach ($testResult in $TestResults) {
             $results = @()
-            
+
             # TODO
             # Act on any errors from the notifiers
 

@@ -1,5 +1,5 @@
 function Email {
-    [cmdletbinding()]    
+    [cmdletbinding()]
     param(
         [parameter(Mandatory, Position = 0)]
         [hashtable]$Options

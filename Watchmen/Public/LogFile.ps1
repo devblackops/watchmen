@@ -4,7 +4,7 @@ function LogFile {
         [parameter(Mandatory, Position = 0)]
         [string[]]$Path
     )
-    
+
     begin {
         Write-Debug -Message "Entering: $($PSCmdlet.MyInvocation.MyCommand.Name)"
         Assert-InWatchmen -Command $PSCmdlet.MyInvocation.MyCommand.Name
@@ -17,12 +17,12 @@ function LogFile {
             Name = $Path
             Path = $Path
             Enabled = $true
-        }       
-        
+        }
+
         return $e
     }
-    
+
     end {
         Write-Debug -Message "Exiting: $($PSCmdlet.MyInvocation.MyCommand.Name)"
-    }    
+    }
 }

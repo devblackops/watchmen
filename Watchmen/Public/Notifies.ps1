@@ -20,7 +20,7 @@ function Notifies {
             }
         } elseif ($global:Watchmen.InTest) {
             # Add locally defined notifiers to the test
-            Write-Debug -Message 'Adding notifiers to $global:Watchmen.ThisTest.Notifiers'            
+            Write-Debug -Message 'Adding notifiers to $global:Watchmen.ThisTest.Notifiers'
             $notifiers = . $script
             foreach ($notifier in $notifiers) {
                 $global:Watchmen.ThisTest.Notifiers.($Notifier.Type) += $Notifier
@@ -31,13 +31,13 @@ function Notifies {
                 $globalNotifier = $global:Watchmen.Options.Notifiers.($key)
                 if ($globalNotifier.Count -gt 0) {
                     $global:Watchmen.ThisTest.Notifiers.($key) += $globalNotifier
-                } 
+                }
             }
-        }  
+        }
     }
 
     end {
         $global:Watchmen.InNotifies = $false
         Write-Debug -Message "Exiting: $($PSCmdlet.MyInvocation.MyCommand.Name)"
-    }    
+    }
 }

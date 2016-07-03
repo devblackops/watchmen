@@ -3,10 +3,10 @@ function WatchmenTest {
     param(
         [parameter( ParameterSetName = 'Name', Position = 0)]
         [string]$Name = (New-Guid).ToString(),
-                
+
         [parameter( ParameterSetName = 'Name', Position = 1, Mandatory = $True)]
         [parameter( ParameterSetName = 'NoName', Position = 0, Mandatory = $True)]
-        [scriptblock]$Script    
+        [scriptblock]$Script
     )
 
     begin {
@@ -22,9 +22,9 @@ function WatchmenTest {
             PSTypeName = 'Watchmen.Test'
             ModuleName = $Name
             parameters = @{}
-            Source = $null        
+            Source = $null
             Test = '*'
-            Type = 'all'        
+            Type = 'all'
             Version = $null
             Notifiers = @{
                 Email = @()
@@ -35,7 +35,7 @@ function WatchmenTest {
             }
         }
 
-        # Execute any functions passed in        
+        # Execute any functions passed in
         . $Script
 
         # Add any Notifiers that were defined in WatchmenOptions

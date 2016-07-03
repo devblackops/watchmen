@@ -1,4 +1,4 @@
-function Parameters {    
+function Parameters {
     param(
         [Parameter(Mandatory)]
         [hashtable]$Parameters

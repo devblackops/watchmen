@@ -36,14 +36,14 @@ Result: $($results.Result)
 Message: $($results.RawResult.FailureMessage)
 
 Duration: $($results.RawResult.Time.ToString())
-"@    
+"@
     $params = @{
         LogName = 'Application'
         Source = 'Watchmen'
         EventId = $Notifier.EventId
         EntryType = $Notifier.EventType
         Message = $msg
-    }    
+    }
     New-EventLog -LogName $params.LogName -Source 'Watchmen' -ErrorAction Ignore
     Write-EventLog @params
 }

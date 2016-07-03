@@ -13,7 +13,7 @@ function Syslog {
     process {
         $e = [pscustomobject]@{
             PSTypeName = 'Watchmen.Notifier.Syslog'
-            Type = 'Syslog'            
+            Type = 'Syslog' 
             Endpoint = @()
             Enabled = $true
         }

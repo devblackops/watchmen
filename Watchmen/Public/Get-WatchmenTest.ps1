@@ -7,12 +7,12 @@ function Get-WatchmenTest {
 
         [switch]$Recurse
     )
-    
+
     begin {
-        Write-Debug -Message "Entering: $($PSCmdlet.MyInvocation.MyCommand.Name)"        
+        Write-Debug -Message "Entering: $($PSCmdlet.MyInvocation.MyCommand.Name)"
         Initialize-Watchmen
     }
-    
+
     process {
         try {
             foreach ($loc in $path) {
@@ -25,12 +25,12 @@ function Get-WatchmenTest {
 
                 foreach ($file in $files) {
                     Write-Verbose -Message "Loading Watchmen tests from file [$($file.FullName)]"
-                    $tests = @()                    
+                    $tests = @()
                     $tests += . $file.FullName
 
                     $global:watchmen.TestSets += $testSet
-                }              
-                
+                }
+
                 return $tests
             }
         } catch {
@@ -38,7 +38,7 @@ function Get-WatchmenTest {
             # Remove-Variable -Name Watchmen -Scope Global -ErrorAction Ignore
         }
     }
-    
+
     end {
         #Remove-Variable -Name Watchmen -Scope Global -ErrorAction Ignore
         Write-Debug -Message "Exiting: $($PSCmdlet.MyInvocation.MyCommand.Name)"

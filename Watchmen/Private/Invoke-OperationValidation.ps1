@@ -66,7 +66,7 @@ function Invoke-OperationValidation {
 
         [hashtable]$Overrides
     )
-    
+
     BEGIN {
         $quiet = ! $IncludePesterOutput
         if ( ! (get-module -Name Pester)) {
@@ -84,20 +84,20 @@ function Invoke-OperationValidation {
                 $tests = Get-OperationValidation -ModuleName $ModuleName -TestType $TestType -Version $Version
             } else {
                 $tests = Get-OperationValidation -ModuleName $ModuleName -TestType $TestType
-            }             
+            }
             $tests | Invoke-OperationValidation -IncludePesterOutput:$IncludePesterOutput -Overrides $Overrides
             return
         }
-        
+
         if ( ($testFilePath -eq $null) -and ($TestInfo -eq $null) ) {
             if ($PSBoundParameters.ContainsKey('Version')) {
                 Get-OperationValidation -Version $Version | Invoke-OperationValidation -IncludePesterOutput:$IncludePesterOutput -Overrides $Overrides
             } else {
                 Get-OperationValidation | Invoke-OperationValidation -IncludePesterOutput:$IncludePesterOutput -Overrides $Overrides
-            }            
+            }
             return
         }
-        
+
         if ( $testInfo -ne $null ) {
             # first check to be sure all of the TestInfos are sane
             foreach($ti in $testinfo) {
@@ -105,12 +105,12 @@ function Invoke-OperationValidation {
                     throw "TestInfo must contain the path and the list of tests"
                 }
             }
-            
+
             write-verbose -Message ("EXECUTING: {0} {1}" -f $ti.FilePath,($ti.Name -join ","))
             foreach($tname in $ti.Name) {
 
                 Write-Verbose "Test name: $tname"
-                
+
                 if ($ti.ScriptParameters) {
                     if ($PSBoundParameters.ContainsKey('Overrides')) {
                         $pesterParams = @{
@@ -121,7 +121,7 @@ function Invoke-OperationValidation {
                             TestName = $tName
                             Quiet = $quiet
                             PassThru = $true
-                        }   
+                        }
                     }
                 } else {
                     $pesterParams = @{
@@ -129,8 +129,8 @@ function Invoke-OperationValidation {
                         TestName = $tName
                         Quiet = $quiet
                         PassThru = $true
-                    }                    
-                }   
+                    }
+                }
 
                 $testResult = Invoke-Pester @pesterParams
                 Add-member -InputObject $testResult -MemberType NoteProperty -Name Path -Value $ti.FilePath

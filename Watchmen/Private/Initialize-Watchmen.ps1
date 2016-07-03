@@ -1,7 +1,7 @@
 function Initialize-Watchmen {
     [cmdletbinding()]
     param()
-    
+
     Write-Verbose 'Initializing Watchmen config'
     Remove-Variable -Name Watchmen -Scope Global -ErrorAction Ignore
     $global:Watchmen = [pscustomobject]@{

@@ -11,7 +11,7 @@ function Invoke-NotifierLogFile {
     )
 
     $o = ($Notifier | Format-Table -Property * -AutoSize | Out-String)
-    Write-Debug -Message "Log file notifier called with options:`n$o" 
+    Write-Debug -Message "Log file notifier called with options:`n$o"
 
     $time = "[$((Get-Date).ToUniversalTime().ToString('u'))]"
     $sev = 'ERROR'

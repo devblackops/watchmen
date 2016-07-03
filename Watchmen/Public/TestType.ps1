@@ -1,4 +1,4 @@
-function TestType {    
+function TestType {
     param(
         [parameter(Mandatory, Position = 0)]
         [ValidateSet('Simple', 'Comprehensive', 'All')]

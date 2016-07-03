@@ -9,7 +9,7 @@ function Invoke-WatchmenTest {
 
         [parameter(ParameterSetName = 'File')]
         [switch]$Recurse,
-        
+
         [parameter(ParameterSetName = 'InputObject', Mandatory, ValueFromPipeline)]
         [pscustomobject[]]$InputObject,
 
@@ -19,36 +19,36 @@ function Invoke-WatchmenTest {
 
         [switch]$DisableNotifiers
     )
-    
+
     begin {
         Write-Debug -Message "Entering: $($PSCmdlet.MyInvocation.MyCommand.Name)"
         $tests = @()
     }
-    
+
     process {
-        
+
         # Get the watchmen tests from file if a path to a test script or folder was passed in
         if ($PSCmdlet.ParameterSetName -eq 'File') {
             foreach ($script in $Path) {
                 $tests += Get-WatchmenTest -Path $script -Recurse:$Recurse
-            }    
+            }
         } else {
             $tests = $InputObject
         }
-        
+
         foreach ($test in $tests) {
 
-            # Resolve the OVF test info and install module if needed            
-            $ovfTestInfo = Get-OvfTestInfo -Test $test                       
-            
+            # Resolve the OVF test info and install module if needed
+            $ovfTestInfo = Get-OvfTestInfo -Test $test
+
             if ($ovfTestInfo) {
 
                 # Optionally filter the tests by name
                 if ($test.Test) {
-                    $filtered = $ovfTestInfo | where Name -like $test.Test    
+                    $filtered = $ovfTestInfo | where Name -like $test.Test
                 }
 
-                # Execute the OVF test 
+                # Execute the OVF test
                 $testResults = $filtered | Invoke-OvfTest -Test $test
 
                 # Call notifiers on any failures unless told not to
@@ -57,10 +57,10 @@ function Invoke-WatchmenTest {
                     if ($failedTests.Count -gt 0) {
                         Invoke-WatchmenNotifier -TestResults $failedTests -WatchmenTest $test
                     }
-                }                
+                }
 
                 # TODO
-                # If we have a Rorschach endpoint defined, send the results to it                
+                # If we have a Rorschach endpoint defined, send the results to it
 
                 if ($PSBoundParameters.ContainsKey('PassThru')) {
                     $testResults
@@ -68,7 +68,7 @@ function Invoke-WatchmenTest {
             }
         }
     }
-    
+
     end {
         Write-Debug -Message "Exiting: $($PSCmdlet.MyInvocation.MyCommand.Name)"
     }

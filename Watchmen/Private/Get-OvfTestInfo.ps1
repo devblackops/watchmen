@@ -9,11 +9,11 @@ function Get-OvfTestInfo {
         ModuleName = $Test.ModuleName
     }
 
-    # Optionally get a test type 
+    # Optionally get a test type
     if ($Test.Type -eq 'Simple' -or $Test.Type -eq 'Comprehensive') {
         $params.TestType = $Test.Type
     }
-    
+
     if ($null -ne $Test.Version) {
         $params.Version = $Test.Version
     }
@@ -24,7 +24,7 @@ function Get-OvfTestInfo {
         Write-Warning -Message "OVF module [$($params.ModuleName)] with version [$($params.Version)] not found in PSModulePath."
         if ($Test.source) {
             $foundModule = Install-OvfModule -Test $Test
-            if ($foundModule) {                        
+            if ($foundModule) {
                 $ovfTestInfo = Get-OperationValidation -ModuleName $Test.ModuleName
             }
         } else {

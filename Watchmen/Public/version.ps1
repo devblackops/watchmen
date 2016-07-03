@@ -1,4 +1,4 @@
-function Version {    
+function Version {
     param(
         [parameter(Mandatory, Position = 0)]
         [string]$Version

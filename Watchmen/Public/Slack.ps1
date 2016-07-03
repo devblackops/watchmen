@@ -4,12 +4,12 @@ function Slack {
         [parameter(Mandatory, Position = 0)]
         [hashtable[]]$Options
     )
-    
+
     begin {
         Write-Debug -Message "Entering: $($PSCmdlet.MyInvocation.MyCommand.Name)"
         Assert-InWatchmen -Command $PSCmdlet.MyInvocation.MyCommand.Name
     }
-    
+
     process {
         $e = [pscustomobject]@{
             PSTypeName = 'Watchmen.Notifier.Slack'

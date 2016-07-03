@@ -12,7 +12,7 @@ function Install-OvfModule {
     } else {
         $foundModule = Find-Module -Name $Test.ModuleName -Repository $Test.Source -ErrorAction SilentlyContinue
     }
-    
+
     if ($foundModule) {
 
         Write-Verbose -Message "Installing module [$($Test.ModuleName)] from [$($Test.Source)]"

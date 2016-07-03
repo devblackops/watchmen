@@ -1,11 +1,11 @@
 function Assert-InWatchmen {
     param ($Command)
 
-    # Verify we aren't calling the command completly outside of a Watchmen file    
+    # Verify we aren't calling the command completly outside of a Watchmen file
     if ($null -eq $global:Watchmen) {
         throw "The command [$Command] may only be used inside a Watchmen configuration file."
     }
-    
+
     # WatchmenOptions
     if ($global:Watchmen.InConfig) {
         if ($global:Watchmen.InNotifies) {

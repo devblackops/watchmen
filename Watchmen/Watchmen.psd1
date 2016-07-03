@@ -51,7 +51,7 @@ PowerShellVersion = '3.0'
 # ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-RequiredModules = @('PSSlack', 
+RequiredModules = @('PSSlack',
                'Posh-SYSLOG')
 
 # Assemblies that must be loaded prior to importing this module
@@ -70,8 +70,8 @@ FormatsToProcess = 'OperationValidation.Format.ps1xml'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Email', 'EventLog', 'LogFile', 'FromSource', 'Get-WatchmenTest', 
-               'Invoke-WatchmenTest', 'Notifies', 'Parameters', 'Rorschach', 'Slack', 
+FunctionsToExport = 'Email', 'EventLog', 'LogFile', 'FromSource', 'Get-WatchmenTest',
+               'Invoke-WatchmenTest', 'Notifies', 'Parameters', 'Rorschach', 'Slack',
                'Syslog', 'Test', 'TestType', 'Version', 'WatchmenOptions', 'WatchmenTest'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -119,7 +119,7 @@ PrivateData = @{
         # ExternalModuleDependencies = ''
 
     } # End of PSData hashtable
-    
+
  } # End of PrivateData hashtable
 
 # HelpInfo URI of this module

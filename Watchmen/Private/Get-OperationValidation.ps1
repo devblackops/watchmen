@@ -4,20 +4,20 @@ function Get-OperationValidation {
     Retrieve the operational tests from modules
 
     .DESCRIPTION
-    Modules which include a Diagnostics directory are inspected for 
+    Modules which include a Diagnostics directory are inspected for
     Pester tests in either the "Simple" or "Comprehensive" directories.
     If files are found in those directories, they will be inspected to determine
-    whether they are Pester tests. If Pester tests are found, the 
+    whether they are Pester tests. If Pester tests are found, the
     test names in those files will be returned.
 
     The module structure required is as follows:
 
     ModuleBase\
         Diagnostics\
-            Simple         # simple tests are held in this location 
+            Simple         # simple tests are held in this location
                             (e.g., ping, serviceendpoint checks)
             Comprehensive  # comprehensive scenario tests should be placed here
-            
+
     .PARAMETER ModuleName
     By default this is * which will retrieve all modules in $env:psmodulepath
     Additional module directories may be added. If you wish to check both
@@ -62,7 +62,7 @@ function Get-OperationValidation {
 
     BEGIN {
 
-        
+
 
         #$testTypes = $type.Tostring().Replace(" ","").split(",")
         function Get-TestName ( $ast ) {
@@ -132,19 +132,19 @@ function Get-OperationValidation {
 
                                 # Get latest version of no specific version specified
                                 if ($PSBoundParameters.ContainsKey('Version')) {
-                                    $versionDirectories = Get-Childitem -path $modDir.FullName -dir | 
+                                    $versionDirectories = Get-Childitem -path $modDir.FullName -dir |
                                         where-object { $_.name -as [version] -and $_.Name -eq $Version }
                                 } else {
-                                    $versionDirectories = Get-Childitem -path $modDir.FullName -dir | 
+                                    $versionDirectories = Get-Childitem -path $modDir.FullName -dir |
                                         where-object { $_.name -as [version] }
                                 }
-                                
+
                                 $potentialDiagnostics = $versionDirectories | where-object {
                                     test-path ($_.fullname + "\Diagnostics")
                                     }
                                 # now select the most recent module path which has diagnostics
-                                $DiagnosticDir = $potentialDiagnostics | 
-                                    sort-object {$_.name -as [version]} | 
+                                $DiagnosticDir = $potentialDiagnostics |
+                                    sort-object {$_.name -as [version]} |
                                     Select-Object -Last 1
                                 if ( $DiagnosticDir ) {
                                     $DiagnosticDir.FullName
@@ -157,19 +157,19 @@ function Get-OperationValidation {
             }
         }
     }
-    
+
     PROCESS {
         Write-Progress -Activity "Inspecting Modules" -Status " "
         if ($PSBoundParameters.ContainsKey('Version')) {
             $moduleCollection = Get-ModuleList -Name $ModuleName -Version $Version
         } else {
             $moduleCollection = Get-ModuleList -Name $ModuleName
-        }        
-        $count = 1; 
+        }
+        $count = 1;
         $moduleCount = @($moduleCollection).Count
         foreach($module in $moduleCollection) {
             Write-Progress -Activity ("Searching for Diagnostics in " + $module) -PercentComplete ($count++/$moduleCount*100) -status " "
-            $diagnosticsDir=$module + "\Diagnostics" 
+            $diagnosticsDir=$module + "\Diagnostics"
             if ( test-path -path $diagnosticsDir ) {
                 foreach($dir in $TestType) {
                     $testDir = "$diagnosticsDir\$dir"

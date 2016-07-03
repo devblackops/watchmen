@@ -14,7 +14,7 @@ $script:CommandFences = @{
     WatchmenOptions = @(
         'Notifies',
         'Rorschach'
-    ) 
+    )
     WatchmenTest = @(
         'FromSource',
         'Notifies',

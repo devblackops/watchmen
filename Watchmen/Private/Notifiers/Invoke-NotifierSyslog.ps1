@@ -18,12 +18,12 @@ function Invoke-NotifierSyslog {
 
         $o = ($Notifier | Format-Table -Property * -AutoSize | Out-String)
         Write-Debug -Message "Syslog notifier called with options:`n$o"
-    
+
         $msg = "$($Results.RawResult.Describe) -> $($Results.RawResult.Context) -> $($Results.RawResult.Name) -> $($Results.RawResult.Result.ToUpper())"
 
         foreach ($endpoint in $Notifier.Endpoint) {
             Send-SyslogMessage -Server $endpoint -Message $msg -Severity 'Critical' -Facility 'logalert'
         }
-        
+
     }
 }
