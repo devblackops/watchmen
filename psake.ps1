@@ -17,7 +17,7 @@ task Init {
     "Build System Details:"
     Get-Item ENV:BH*
 
-    $modules = 'Pester', 'PSDeploy', 'PSScriptAnalyzer', 'platyPS'
+    $modules = 'Pester', 'PSDeploy', 'PSScriptAnalyzer', 'platyPS', 'PSSlack', 'Posh-SYSLOG'
     Install-Module $modules -Confirm:$false
     Import-Module $modules -Verbose:$false -Force
 }
