@@ -22,10 +22,10 @@ An OVF module is a PowerShell module that includes Pester tests in a certain fol
 - ModuleBase\
   - ModuleName.psd1
   - Diagnostics\
-  - Simple\
-    - simple.tests.ps1 *simple tests (e.g., service checks, endpoing checks)*
-  - Comprehensive\
-    - comprehensive.tests.ps1 *comprehensive scenario tests*
+    - Simple\
+      - simple.tests.ps1 *simple tests (e.g., service checks, endpoing checks)*
+    - Comprehensive\
+      - comprehensive.tests.ps1 *comprehensive scenario tests*
 
 #### Example infrastructure tests
 * Service 'W3SVC' is running
