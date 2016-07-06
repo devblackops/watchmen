@@ -28,6 +28,7 @@ $script:CommandFences = @{
         'Email',
         'EventLog',
         'LogFile',
+        'PowerShell',
         'Slack',
         'Syslog'
     )

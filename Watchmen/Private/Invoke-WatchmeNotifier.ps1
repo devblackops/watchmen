@@ -37,10 +37,13 @@ function Invoke-WatchmenNotifier {
                                 'LogFile' {
                                     $results += $notifier | Invoke-NotifierLogFile -Results $testResult
                                 }
+                                'PowerShell' {
+                                    $results += $notifier | Invoke-NotifierPowerShell -Results $testResult
+                                }
                                 'Slack' {
                                     $results += $notifier | Invoke-NotifierSlack -Results $testResult
                                 }
-                            'Syslog' {
+                                'Syslog' {
                                     $results += $notifier | Invoke-NotifierSyslog -Results $testResult
                                 }
                                 default {

@@ -30,6 +30,7 @@ function WatchmenTest {
                 Email = @()
                 EventLog = @()
                 LogFile = @()
+                PowerShell = @()
                 Slack = @()
                 Syslog = @()
             }
@@ -38,8 +39,13 @@ function WatchmenTest {
         # Execute any functions passed in
         . $Script
 
-        # Add any Notifiers that were defined in WatchmenOptions
-        #$global:watchmen.ThisTest.Notifiers += $global:Watchmen.Options.Notifiers
+        # Add any global notifiers to the test
+        foreach ($key in $global:Watchmen.Options.Notifiers.Keys) {
+            $globalNotifier = $global:Watchmen.Options.Notifiers.($key)
+            if ($globalNotifier.Count -gt 0) {
+                $global:Watchmen.ThisTest.Notifiers.($key) += $globalNotifier
+            }
+        }
 
         $t = [pscustomobject]$global:watchmen.ThisTest
         Write-Verbose -Message "Created Watchmen test [$($t.ModuleName)[$($t.Test)]]"

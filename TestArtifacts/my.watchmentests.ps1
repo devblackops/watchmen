@@ -11,18 +11,18 @@ WatchmenOptions {
         }
         logfile 'c:\temp\watchmen.log'
         syslog 'localhost'
+        powershell {
+            Write-Host $args[0]
+        }
     }
 }
 
 # This test should PASS
 WatchmenTest 'OVF.Example1' {
     version 0.1.0
-    #parameters @{
-    #    FreeSystemDriveThreshold = 50000
-    #}
 }
 
-# This test should FAIL
+# This test should FAIL and call (2) additional notifiers
 WatchmenTest 'OVF.Example1' {
     version 0.1.0
     parameters @{
@@ -30,6 +30,7 @@ WatchmenTest 'OVF.Example1' {
     }
     notifies {
         logfile 'c:\temp\watchmen2.log'
+        powershell '.\notify.ps1'
     }
 }
 

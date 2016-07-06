@@ -25,14 +25,6 @@ function Notifies {
             foreach ($notifier in $notifiers) {
                 $global:Watchmen.ThisTest.Notifiers.($Notifier.Type) += $Notifier
             }
-
-            # Add any global notifiers to the test
-            foreach ($key in $global:Watchmen.Options.Notifiers.Keys) {
-                $globalNotifier = $global:Watchmen.Options.Notifiers.($key)
-                if ($globalNotifier.Count -gt 0) {
-                    $global:Watchmen.ThisTest.Notifiers.($key) += $globalNotifier
-                }
-            }
         }
     }
 

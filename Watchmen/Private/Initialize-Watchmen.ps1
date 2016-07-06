@@ -10,6 +10,7 @@ function Initialize-Watchmen {
         InConfig = $false
         InTest = $false
         InNotifies = $false
+        CurrentWatchmenFileRoot = $null
         Options = [pscustomobject]@{
             PSTypeName = 'Watchmen.Config'
             #Notifiers = @()
@@ -17,6 +18,7 @@ function Initialize-Watchmen {
                 Email = @()
                 EventLog = @()
                 LogFile = @()
+                PowerShell = @()
                 Slack = @()
                 Syslog = @()
             }
