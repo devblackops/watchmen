@@ -10,6 +10,7 @@ function Invoke-WatchmenTest {
         [parameter(ParameterSetName = 'File')]
         [switch]$Recurse,
 
+        [ValidateScript({ $_.PSObject.TypeNames[0] -eq 'Watchmen.Test' })]
         [parameter(ParameterSetName = 'InputObject', Mandatory, ValueFromPipeline)]
         [pscustomobject[]]$InputObject,
 
