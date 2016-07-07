@@ -6,7 +6,7 @@ online version:
 
 # EventLog
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Generates an event log object in a 'Notifies' block.
 ## SYNTAX
 
 ```
@@ -14,19 +14,47 @@ EventLog -Options <Hashtable[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Generates an event log object in a 'Notifies' block.
+
+This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'EventLog' function outside of a
+'Notifies' block will throw an error.
+
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+WatchmenTest MyAppOVF {
+    Notifies {
+        EventLog @{
+            eventid = '1'
+            eventtype = 'error'
+        }
+    }
+}
+```
+Add an EventLog notifier to a WatchmenTest block.
+
+### Example 2
+```
+WatchmenOptions {
+    notifies {
+        EventLog @{
+            eventid = '15'
+            eventtype = 'warning'
+        }
+    }
+}
 ```
 
-{{ Add example description here }}
+Add an EventLog notifier to a WatchmenOptions block.
+
 ## PARAMETERS
 
 ### -Options
-{{Fill Options Description}}
+Hashtable of values needed to create an event log entry.
+
+[int]EventId         - REQUIRED - Specifies the event identifier. The maximum allowed value for the EventId parameter is 65535.  
+[string]EventType    - REQUIRED - The event type. Valid values are Error, Warning, Information, SuccessAudit, and FailureAudit.    
 
 ```yaml
 Type: Hashtable[]

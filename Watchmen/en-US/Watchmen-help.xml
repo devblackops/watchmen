@@ -13,7 +13,7 @@
 </maml:para>
 <maml:para>This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'Email' function outside of a 'Notifies' block will throw an error.
 </maml:para>
-<maml:para>The 'Subject' and Message' fields inside the hashtable for this function support string interpolation. The following keywords can be placed inside the Subject or Message strings using the convetion #{&lt;keyword&gt;}. When the Email notifier is executed these placeholders will be replaced with values from the test result:
+<maml:para>The 'Subject' and Message' fields inside the hashtable for this function support string interpolation. The following keywords can be placed inside the Subject or Message strings using the convention #{&lt;keyword&gt;}. When the Email notifier is executed these placeholders will be replaced with values from the test result:
 </maml:para>
 <maml:para>computername     - Computer name test was executed on
 module           - OVF module name
@@ -31,7 +31,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>Email</maml:name>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Options</maml:name>
-<maml:Description><maml:para>Hashtable of values needed to send an SMTP email.
+<maml:Description><maml:para>Hashtable of values needed to send a SMTP email.
 </maml:para>
 <maml:para>[string]FromAddress         - REQUIRED - From address for email
 [string[]]To                - REQUIRED - Array of email addresses to send to
@@ -52,7 +52,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Options</maml:name>
-<maml:Description><maml:para>Hashtable of values needed to send an SMTP email.
+<maml:Description><maml:para>Hashtable of values needed to send a SMTP email.
 </maml:para>
 <maml:para>[string]FromAddress         - REQUIRED - From address for email
 [string[]]To                - REQUIRED - Array of email addresses to send to
@@ -122,25 +122,28 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks><maml:navigationLink><maml:linkText>Bad site</maml:linkText>
-<maml:uri>http://www.asdfasfdasdfasfdasfd.com</maml:uri>
-</maml:navigationLink>
-</command:relatedLinks>
+<command:relatedLinks></command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>EventLog</command:name>
 <command:verb>EventLog</command:verb>
 <command:noun></command:noun>
-<maml:description><maml:para>{{Fill in the Synopsis}}
+<maml:description><maml:para>Generates an event log object in a 'Notifies' block.
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>{{Fill in the Description}}
+<maml:description><maml:para>Generates an event log object in a 'Notifies' block.
+</maml:para>
+<maml:para>This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'EventLog' function outside of a 'Notifies' block will throw an error.
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>EventLog</maml:name>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Options</maml:name>
-<maml:Description><maml:para>{{Fill Options Description}}
+<maml:Description><maml:para>Hashtable of values needed to create an event log entry.
+</maml:para>
+<maml:para>[int]EventId         - REQUIRED - Specifies the event identifier. The maximum allowed value for the EventId parameter is 65535.
+[string]EventType    - REQUIRED - The event type. Valid values are Error, Warning, Information, SuccessAudit, and FailureAudit.
+
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">Hashtable[]</command:parameterValue>
@@ -151,7 +154,11 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Options</maml:name>
-<maml:Description><maml:para>{{Fill Options Description}}
+<maml:Description><maml:para>Hashtable of values needed to create an event log entry.
+</maml:para>
+<maml:para>[int]EventId         - REQUIRED - Specifies the event identifier. The maximum allowed value for the EventId parameter is 65535.
+[string]EventType    - REQUIRED - The event type. Valid values are Error, Warning, Information, SuccessAudit, and FailureAudit.
+
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">Hashtable[]</command:parameterValue>
@@ -179,8 +186,28 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:alert>
 </maml:alertSet>
 <command:examples><command:example><maml:title>Example 1</maml:title>
-<dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
-<dev:remarks><maml:para>{{ Add example description here }}
+<dev:code>WatchmenTest MyAppOVF {
+    Notifies {
+        EventLog @{
+            eventid = '1'
+            eventtype = 'error'
+        }
+    }
+}</dev:code>
+<dev:remarks><maml:para>Add an EventLog notifier to a WatchmenTest block.
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>Example 2</maml:title>
+<dev:code>WatchmenOptions {
+    notifies {
+        EventLog @{
+            eventid = '15'
+            eventtype = 'warning'
+        }
+    }
+}</dev:code>
+<dev:remarks><maml:para>Add an EventLog notifier to a WatchmenOptions block.
 </maml:para>
 </dev:remarks>
 </command:example>
