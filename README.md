@@ -3,14 +3,14 @@
 
 # Watchmen
 
-Infrastructure test runner and action system using
+Infrastructure test runner and notification system using
 [Operation Validation Framework (OVF)](https://github.com/PowerShell/Operation-Validation-Framework) PowerShell modules and Pester.
 
 ## Overview
-Watchmen is a PowerShell module to make executing OVF modules easier using a simple PowerShell-based Domain Specific Language (DSL) and also provides
-the ability to execute a number of actions (notifiers) upon failing infrastructure tests. Watchmen can also dynamically install OVF modules from
-public or private PowerShell repositories like the [PowerShell Gallery](https://www.powershellgallery.com/) should the module not be found on the
-system.
+Watchmen is a PowerShell module to make executing Pester tests contained in OVF modules easier using a simple PowerShell-based Domain Specific
+Language (DSL). It also provides the ability to execute a number of actions (notifiers) upon failing infrastructure tests. Watchmen can also
+dynamically install OVF modules from public or private PowerShell repositories like the [PowerShell Gallery](https://www.powershellgallery.com/)
+should the module not be found on the system.
 
 ## What is OVF?
 The [Operation Validation Framework](https://github.com/PowerShell/Operation-Validation-Framework) is a PowerShell module used to execute
@@ -36,6 +36,11 @@ An OVF module is a PowerShell module that includes Pester tests in a certain fol
 Pester tests packaged into a PowerShell module gain the immediate benefit of being versionable just like any other PowerShell module. They also are
 easily publishable to public or private NuGet-based repositories like the [PowerShell Gallery](https://www.powershellgallery.com/). This facilitates
 high quality test modules that validate common infrastructure to be shared and improved upon by the broader community.
+
+## Example Watchmen File
+The example Watchmen file below will execute Pester tests contained inside the **MyAppOVF** module installed on the location machine. Upon any failing
+tests, Watchmen will then execute a number of notifiers such as sending an email, writing to the eventlog, appending to a log file, executing an
+arbirarty PowerShell script block or script, sending a message to a Slack channel, and send a message to a syslog server.
 
 #### myapp.watchmen.ps1
 ```powershell
@@ -88,6 +93,11 @@ WatchmenTest 'SystemOVF' {
     fromSource 'PSPrivateGallery'
 }
 ```
+
+## Using Watchmen
+A Watchmen file is a PowerShell script that can be read by calling **Get-WatchmenTest**. The object(s) returns represent the OVF tests to execute
+and the associated notifiers to call upon any failing tests. Running **Invoke-WatchmenTest** will execute the tests and call any notifiers as
+appropriate.
 
 Getting watchmen tests
 ```powershell
