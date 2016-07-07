@@ -47,7 +47,7 @@ arbirarty PowerShell script block or script, sending a message to a Slack channe
 # Global notifiers that are executed upon any failing test
 WatchmenOptions {
     notifies {
-        email {
+        email @{
             fromAddress = 'watchmen@mydomain.tld'
             smtpServer = 'smtp.mydomain.tld'
             port = 25
