@@ -5,16 +5,43 @@
 <command:details><command:name>Email</command:name>
 <command:verb>Email</command:verb>
 <command:noun></command:noun>
-<maml:description><maml:para>Generate an email object
+<maml:description><maml:para>Generate an email object in a 'Notifies' block.
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>{{Fill in the Description}}
+<maml:description><maml:para>Generate an email object in a 'Notifies' block.
+</maml:para>
+<maml:para>This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'Email' function outside of a 'Notifies' block will throw an error.
+</maml:para>
+<maml:para>The 'Subject' and Message' fields inside the hashtable for this function support string interpolation. The following keywords can be placed inside the Subject or Message strings using the convetion #{&lt;keyword&gt;}. When the Email notifier is executed these placeholders will be replaced with values from the test result:
+</maml:para>
+<maml:para>computername     - Computer name test was executed on
+module           - OVF module name
+file             - Path to Pester test executed
+descibe          - Name of 'Describe' block in Pester test
+context          - Name of 'Context' block in Pester test
+test             - Name of 'It' block in Pester test
+result           - Result of test. 'Passed' or 'Failed'
+failureMessage   - Failure message from Pester test
+duration         - Duration of Pester test
+
+Example:
+subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>Email</maml:name>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Options</maml:name>
-<maml:Description><maml:para>{{Fill Options Description}}
+<maml:Description><maml:para>Hashtable of values needed to send an SMTP email.
+</maml:para>
+<maml:para>[string]FromAddress         - REQUIRED - From address for email
+[string[]]To                - REQUIRED - Array of email addresses to send to
+[string]SMTPServer          - REQUIRED - SMTP server FQDN or IP address
+[int]Port                   - REQUIRED - SMTP port (usually 25)
+[string]Subject             - OPTIONAL - Subject for email
+[string]Message             - OPTIONAL - Message for email
+[pscredential]Credential    - OPTIONAL - Credential to authenticate to SMTP server with
+[bool]UseSSL                - OPTINOAL - Use SSL when connecting to SMTP server
+
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
@@ -25,7 +52,17 @@
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Options</maml:name>
-<maml:Description><maml:para>{{Fill Options Description}}
+<maml:Description><maml:para>Hashtable of values needed to send an SMTP email.
+</maml:para>
+<maml:para>[string]FromAddress         - REQUIRED - From address for email
+[string[]]To                - REQUIRED - Array of email addresses to send to
+[string]SMTPServer          - REQUIRED - SMTP server FQDN or IP address
+[int]Port                   - REQUIRED - SMTP port (usually 25)
+[string]Subject             - OPTIONAL - Subject for email
+[string]Message             - OPTIONAL - Message for email
+[pscredential]Credential    - OPTIONAL - Credential to authenticate to SMTP server with
+[bool]UseSSL                - OPTINOAL - Use SSL when connecting to SMTP server
+
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
@@ -53,8 +90,34 @@
 </maml:alert>
 </maml:alertSet>
 <command:examples><command:example><maml:title>Example 1</maml:title>
-<dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
-<dev:remarks><maml:para>{{ Add example description here }}
+<dev:code>WatchmenTest MyAppOVF {
+    Notifies {
+        Email @{
+            fromAddress = 'watchmen@mydomain.tld'
+            smtpServer = 'smtp.mydomain.tld'
+            port = 25
+            subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
+            to = 'admin@mydomain.tld'
+        }
+    }
+}</dev:code>
+<dev:remarks><maml:para>Add an Email notifier to a WatchmenTest block.
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>Example 2</maml:title>
+<dev:code>WatchmenOptions {
+    notifies {
+        email @{
+            fromAddress = 'watchmen@mydomain.tld'
+            smtpServer = 'smtp.mydomain.tld'
+            port = 25
+            subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
+            to = 'admin@mydomain.tld'
+        }
+    }
+}</dev:code>
+<dev:remarks><maml:para>Add an Email notifier to a WatchmenOptions block.
 </maml:para>
 </dev:remarks>
 </command:example>
@@ -249,7 +312,7 @@
 </maml:description>
 </command:inputType>
 </command:inputTypes>
-<command:returnValues><command:returnValue><dev:type><maml:name>System.Object</maml:name>
+<command:returnValues><command:returnValue><dev:type><maml:name>Watchmen.Test[]</maml:name>
 </dev:type>
 <maml:description><maml:para>
 </maml:para>
@@ -273,22 +336,25 @@
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Invoke-WatchmenTest</maml:linkText>
+<maml:uri></maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>Invoke-WatchmenTest</command:name>
 <command:verb>Invoke</command:verb>
 <command:noun>WatchmenTest</command:noun>
-<maml:description><maml:para>{{Fill in the Synopsis}}
+<maml:description><maml:para>Execute one or more Watchmen objects representing OVF tests.
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>{{Fill in the Description}}
+<maml:description><maml:para>Execute one or more Watchmen objects representing OVF tests. Upon any failing tests, Watchmen will optionally execute a number of notifier actions such as sending en email, or writing to the event log.
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>Invoke-WatchmenTest</maml:name>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>DisableNotifiers</maml:name>
-<maml:Description><maml:para>{{Fill DisableNotifiers Description}}
+<maml:Description><maml:para>Do not run any notifiers upon failing OVF tests.
 </maml:para>
 </maml:Description>
 <dev:type><maml:name>SwitchParameter</maml:name>
@@ -296,7 +362,7 @@
 <dev:defaultValue>False</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>IncludePesterOutput</maml:name>
-<maml:Description><maml:para>{{Fill IncludePesterOutput Description}}
+<maml:Description><maml:para>Display Pester output of tests contained in OVF modules.
 </maml:para>
 </maml:Description>
 <dev:type><maml:name>SwitchParameter</maml:name>
@@ -304,16 +370,16 @@
 <dev:defaultValue>False</dev:defaultValue>
 </command:parameter>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none"><maml:name>InputObject</maml:name>
-<maml:Description><maml:para>{{Fill InputObject Description}}
+<maml:Description><maml:para>Watchmen object representing tests and notifiers to execute.
 </maml:para>
 </maml:Description>
-<command:parameterValue required="true" variableLength="false">PSObject[]</command:parameterValue>
-<dev:type><maml:name>PSObject[]</maml:name>
+<command:parameterValue required="true" variableLength="false">Watchmen.Test[]</command:parameterValue>
+<dev:type><maml:name>Watchmen.Test[]</maml:name>
 <maml:uri /></dev:type>
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>PassThru</maml:name>
-<maml:Description><maml:para>{{Fill PassThru Description}}
+<maml:Description><maml:para>Return test results after execution.
 </maml:para>
 </maml:Description>
 <dev:type><maml:name>SwitchParameter</maml:name>
@@ -323,7 +389,7 @@
 </command:syntaxItem>
 <command:syntaxItem><maml:name>Invoke-WatchmenTest</maml:name>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>DisableNotifiers</maml:name>
-<maml:Description><maml:para>{{Fill DisableNotifiers Description}}
+<maml:Description><maml:para>Do not run any notifiers upon failing OVF tests.
 </maml:para>
 </maml:Description>
 <dev:type><maml:name>SwitchParameter</maml:name>
@@ -331,7 +397,7 @@
 <dev:defaultValue>False</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>IncludePesterOutput</maml:name>
-<maml:Description><maml:para>{{Fill IncludePesterOutput Description}}
+<maml:Description><maml:para>Display Pester output of tests contained in OVF modules.
 </maml:para>
 </maml:Description>
 <dev:type><maml:name>SwitchParameter</maml:name>
@@ -339,7 +405,7 @@
 <dev:defaultValue>False</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>PassThru</maml:name>
-<maml:Description><maml:para>{{Fill PassThru Description}}
+<maml:Description><maml:para>Return test results after execution.
 </maml:para>
 </maml:Description>
 <dev:type><maml:name>SwitchParameter</maml:name>
@@ -347,7 +413,7 @@
 <dev:defaultValue>False</dev:defaultValue>
 </command:parameter>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none"><maml:name>Path</maml:name>
-<maml:Description><maml:para>{{Fill Path Description}}
+<maml:Description><maml:para>One or more paths to Watchmen files, or folders containing Watchmen files.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
@@ -356,7 +422,7 @@
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Recurse</maml:name>
-<maml:Description><maml:para>{{Fill Recurse Description}}
+<maml:Description><maml:para>Recursively search for Watchmen files inside given path.
 </maml:para>
 </maml:Description>
 <dev:type><maml:name>SwitchParameter</maml:name>
@@ -366,7 +432,7 @@
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>DisableNotifiers</maml:name>
-<maml:Description><maml:para>{{Fill DisableNotifiers Description}}
+<maml:Description><maml:para>Do not run any notifiers upon failing OVF tests.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
@@ -375,7 +441,7 @@
 <dev:defaultValue>False</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>IncludePesterOutput</maml:name>
-<maml:Description><maml:para>{{Fill IncludePesterOutput Description}}
+<maml:Description><maml:para>Display Pester output of tests contained in OVF modules.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
@@ -384,16 +450,16 @@
 <dev:defaultValue>False</dev:defaultValue>
 </command:parameter>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none"><maml:name>InputObject</maml:name>
-<maml:Description><maml:para>{{Fill InputObject Description}}
+<maml:Description><maml:para>Watchmen object representing tests and notifiers to execute.
 </maml:para>
 </maml:Description>
-<command:parameterValue required="true" variableLength="false">PSObject[]</command:parameterValue>
-<dev:type><maml:name>PSObject[]</maml:name>
+<command:parameterValue required="true" variableLength="false">Watchmen.Test[]</command:parameterValue>
+<dev:type><maml:name>Watchmen.Test[]</maml:name>
 <maml:uri /></dev:type>
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>PassThru</maml:name>
-<maml:Description><maml:para>{{Fill PassThru Description}}
+<maml:Description><maml:para>Return test results after execution.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
@@ -402,7 +468,7 @@
 <dev:defaultValue>False</dev:defaultValue>
 </command:parameter>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none"><maml:name>Path</maml:name>
-<maml:Description><maml:para>{{Fill Path Description}}
+<maml:Description><maml:para>One or more paths to Watchmen files, or folders containing Watchmen files.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
@@ -411,7 +477,7 @@
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Recurse</maml:name>
-<maml:Description><maml:para>{{Fill Recurse Description}}
+<maml:Description><maml:para>Recursively search for Watchmen files inside given path.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
@@ -439,13 +505,35 @@
 </maml:alert>
 </maml:alertSet>
 <command:examples><command:example><maml:title>Example 1</maml:title>
-<dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
-<dev:remarks><maml:para>{{ Add example description here }}
+<dev:code>PS C:\&gt; Invoke-WatchmenTest -Path c:\watchmen\my.watchmen.ps1</dev:code>
+<dev:remarks><maml:para>Invoke All OVF tests defined in Watchmen file c:\watchmen\my.watchmen.ps1
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>Example 2</maml:title>
+<dev:code>$tests = Get-WatchmenTest -Path c:\watchmen\my.watchmen.ps1
+$tests | Invoke-WatchmenTest -Verbose</dev:code>
+<dev:remarks><maml:para>Read in Watchmen objects and pass via the pipeline to Invoke-WatchmenTest with verbose output.
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>Example 3</maml:title>
+<dev:code>$results = Get-WatchmenTest -Path c:\watchmen\my.watchmen.ps1 | Invoke-WatchmenTest -Verbose -IncludePesterOutpull -PassTru</dev:code>
+<dev:remarks><maml:para>Include Pester output and return test results
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>Example 4</maml:title>
+<dev:code>Invoke-WatchmenTest -Path c:\watchmen -Recurse -Verbose -IncludePesterOutput -DisableNotifiers</dev:code>
+<dev:remarks><maml:para>Recursively read Watchmen files in c:\watchmen, execute the tests, but do not run any notifier actions.
 </maml:para>
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Get-WatchmenTest</maml:linkText>
+<maml:uri></maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>LogFile</command:name>

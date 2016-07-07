@@ -23,6 +23,7 @@ PS C:\> $tests = Get-WatchmenTest -Path c:\watchmen\my.watchmen.ps1
 ```
 
 Reads in the Watchmen file c:\watchmen\my.watchmen.ps1
+
 ### Example 2
 ```
 PS C:\> $allTests = Get-WatchmenTest -Path c:\watchmen -Recurse
@@ -73,9 +74,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### Watchmen.Test[]
 
 ## NOTES
 
 ## RELATED LINKS
 
+[Invoke-WatchmenTest]()

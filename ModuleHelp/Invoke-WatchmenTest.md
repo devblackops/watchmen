@@ -6,7 +6,7 @@ online version:
 
 # Invoke-WatchmenTest
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Execute one or more Watchmen objects representing OVF tests.
 ## SYNTAX
 
 ### File (Default)
@@ -22,19 +22,44 @@ Invoke-WatchmenTest -InputObject <PSObject[]> [-IncludePesterOutput] [-PassThru]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Execute one or more Watchmen objects representing OVF tests. Upon any failing tests, Watchmen will optionally execute a number of notifier actions
+such as sending en email, or writing to the event log.
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Invoke-WatchmenTest -Path c:\watchmen\my.watchmen.ps1
 ```
 
-{{ Add example description here }}
+Invoke All OVF tests defined in Watchmen file c:\watchmen\my.watchmen.ps1
+
+### Example 2
+```
+$tests = Get-WatchmenTest -Path c:\watchmen\my.watchmen.ps1
+$tests | Invoke-WatchmenTest -Verbose
+
+```
+
+Read in Watchmen objects and pass via the pipeline to Invoke-WatchmenTest with verbose output.
+
+### Example 3
+```
+$results = Get-WatchmenTest -Path c:\watchmen\my.watchmen.ps1 | Invoke-WatchmenTest -Verbose -IncludePesterOutpull -PassTru
+```
+
+Include Pester output and return test results
+
+### Example 4
+```
+Invoke-WatchmenTest -Path c:\watchmen -Recurse -Verbose -IncludePesterOutput -DisableNotifiers
+```
+
+Recursively read Watchmen files in c:\watchmen, execute the tests, but do not run any notifier actions.
+
 ## PARAMETERS
 
 ### -DisableNotifiers
-{{Fill DisableNotifiers Description}}
+Do not run any notifiers upon failing OVF tests.
 
 ```yaml
 Type: SwitchParameter
@@ -49,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludePesterOutput
-{{Fill IncludePesterOutput Description}}
+Display Pester output of tests contained in OVF modules.
 
 ```yaml
 Type: SwitchParameter
@@ -64,10 +89,10 @@ Accept wildcard characters: False
 ```
 
 ### -InputObject
-{{Fill InputObject Description}}
+Watchmen object representing tests and notifiers to execute.
 
 ```yaml
-Type: PSObject[]
+Type: Watchmen.Test[]
 Parameter Sets: InputObject
 Aliases: 
 
@@ -79,7 +104,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{Fill PassThru Description}}
+Return test results after execution.
 
 ```yaml
 Type: SwitchParameter
@@ -94,7 +119,7 @@ Accept wildcard characters: False
 ```
 
 ### -Path
-{{Fill Path Description}}
+One or more paths to Watchmen files, or folders containing Watchmen files.
 
 ```yaml
 Type: String[]
@@ -109,7 +134,7 @@ Accept wildcard characters: False
 ```
 
 ### -Recurse
-{{Fill Recurse Description}}
+Recursively search for Watchmen files inside given path.
 
 ```yaml
 Type: SwitchParameter
@@ -137,3 +162,4 @@ System.Management.Automation.PSObject[]
 
 ## RELATED LINKS
 
+[Get-WatchmenTest]()
