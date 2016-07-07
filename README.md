@@ -95,7 +95,7 @@ WatchmenTest 'SystemOVF' {
 ```
 
 ## Using Watchmen
-A Watchmen file is a PowerShell script that can be read by calling **Get-WatchmenTest**. The object(s) returns represent the OVF tests to execute
+A Watchmen file is a PowerShell script that can be read by calling **Get-WatchmenTest**. The object(s) returned represent the OVF tests to execute
 and the associated notifiers to call upon any failing tests. Running **Invoke-WatchmenTest** will execute the tests and call any notifiers as
 appropriate.
 
