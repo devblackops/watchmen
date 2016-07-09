@@ -27,11 +27,11 @@ WatchmenTest 'OVF.Example1' {
     version 0.1.0
     parameters @{
         FreeSystemDriveThreshold = 50000
-    }
-    notifies {
-        logfile 'c:\temp\watchmen2.log'
-        powershell '.\notify.ps1'
-    }
+    }        
+    # notifies {
+    #     logfile 'c:\temp\watchmen2.log'
+    #     powershell '.\notify.ps1'
+    # }
 }
 
 # Run tests with defaults for everything

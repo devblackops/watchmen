@@ -55,11 +55,19 @@ function Invoke-WatchmenTest {
                 $testResults = $filtered | Invoke-OvfTest -Test $test
                 $finalResults += $testResults
 
-                if (@($testResults | Where Result -eq 'Failed').Count -gt 0) {
-                    foreach ($failedTest in $testResults | Where Result -eq 'Failed') {
-                        Write-Warning -Message "  Failed: $($failedTest.Name)" 
+                foreach ($result in $testResults) {
+                    if ($result.Result -eq 'Failed') {
+                        Write-Warning -Message "Failed: $($result.Name)"
+                    } else {
+                        Write-Verbose -Message "Passed: $($result.Name)"
                     }
                 }
+
+                #if (@($testResults | Where Result -eq 'Failed').Count -gt 0) {
+                #    foreach ($failedTest in $testResults | Where Result -eq 'Failed') {
+                #        Write-Warning -Message "Failed: $($failedTest.Name)" 
+                #    }
+                #}
 
                 # Call notifiers on any failures unless told not to
                 if (-not $PSBoundParameters.ContainsKey('DisableNotifiers')) {
