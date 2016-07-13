@@ -40,7 +40,7 @@ high quality test modules that validate common infrastructure to be shared and i
 ## Example Watchmen File
 The example Watchmen file below will execute Pester tests contained inside the **MyAppOVF** module installed on the location machine. Upon any failing
 tests, Watchmen will then execute a number of notifiers such as sending an email, writing to the eventlog, appending to a log file, executing an
-arbirarty PowerShell script block or script, sending a message to a Slack channel, and send a message to a syslog server.
+arbitrary PowerShell script block or script, sending a message to a Slack channel, and send a message to a syslog server.
 
 #### myapp.watchmen.ps1
 ```powershell
@@ -58,7 +58,7 @@ WatchmenOptions {
             eventid = '1'
             eventtype = 'error'
         }
-        filesystem '\\fileserver01.mydomain.tld\monitoringshare\#{computername}.log'
+        logfile '\\fileserver01.mydomain.tld\monitoringshare\#{computername}.log'
         powershell {
             Write-Host "Something bad happended! $args[0]"
         }
@@ -83,7 +83,7 @@ WatchmenTest 'MyAppOVF' {
         FreeSystemDriveThreshold = 40000
     }
     notifies {                      # Notifiers to execute for this test in addition to ones defined in 'WatchmenOptions'
-        filesystem '\\fileserver01.mydomain.tld\monitoringshare\#{computername}.log'
+        logfile '\\fileserver01.mydomain.tld\monitoringshare\#{computername}.log'
     }
 }
 
