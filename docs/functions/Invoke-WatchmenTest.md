@@ -1,7 +1,7 @@
 ﻿---
 external help file: Watchmen-help.xml
-schema: 2.0.0
 online version: 
+schema: 2.0.0
 ---
 
 # Invoke-WatchmenTest
@@ -32,30 +32,25 @@ PS C:\> Invoke-WatchmenTest -Path c:\watchmen\my.watchmen.ps1
 ```
 
 Invoke All OVF tests defined in Watchmen file c:\watchmen\my.watchmen.ps1
-
 ### Example 2
 ```
 $tests = Get-WatchmenTest -Path c:\watchmen\my.watchmen.ps1
 $tests | Invoke-WatchmenTest -Verbose
-
 ```
 
 Read in Watchmen objects and pass via the pipeline to Invoke-WatchmenTest with verbose output.
-
 ### Example 3
 ```
 $results = Get-WatchmenTest -Path c:\watchmen\my.watchmen.ps1 | Invoke-WatchmenTest -Verbose -IncludePesterOutpull -PassTru
 ```
 
 Include Pester output and return test results
-
 ### Example 4
 ```
 Invoke-WatchmenTest -Path c:\watchmen -Recurse -Verbose -IncludePesterOutput -DisableNotifiers
 ```
 
 Recursively read Watchmen files in c:\watchmen, execute the tests, but do not run any notifier actions.
-
 ## PARAMETERS
 
 ### -DisableNotifiers
@@ -92,7 +87,7 @@ Accept wildcard characters: False
 Watchmen object representing tests and notifiers to execute.
 
 ```yaml
-Type: Watchmen.Test[]
+Type: PSObject[]
 Parameter Sets: InputObject
 Aliases: 
 

@@ -1,16 +1,16 @@
 ﻿---
 external help file: Watchmen-help.xml
-schema: 2.0.0
 online version: 
+schema: 2.0.0
 ---
 
-# Syslog
+# LogFile
 ## SYNOPSIS
 {{Fill in the Synopsis}}
 ## SYNTAX
 
 ```
-Syslog [-Endpoints] <String[]> [<CommonParameters>]
+LogFile [-Path] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,8 +25,8 @@ PS C:\> {{ Add example code here }}
 {{ Add example description here }}
 ## PARAMETERS
 
-### -Endpoints
-{{Fill Endpoints Description}}
+### -Path
+{{Fill Path Description}}
 
 ```yaml
 Type: String[]

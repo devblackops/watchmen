@@ -1,16 +1,16 @@
 ﻿---
 external help file: Watchmen-help.xml
-schema: 2.0.0
 online version: 
+schema: 2.0.0
 ---
 
-# LogFile
+# Rorschach
 ## SYNOPSIS
 {{Fill in the Synopsis}}
 ## SYNTAX
 
 ```
-LogFile [-Path] <String[]> [<CommonParameters>]
+Rorschach [-Settings] <Hashtable[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,11 +25,11 @@ PS C:\> {{ Add example code here }}
 {{ Add example description here }}
 ## PARAMETERS
 
-### -Path
-{{Fill Path Description}}
+### -Settings
+{{Fill Settings Description}}
 
 ```yaml
-Type: String[]
+Type: Hashtable[]
 Parameter Sets: (All)
 Aliases: 
 

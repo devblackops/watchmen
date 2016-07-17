@@ -1,7 +1,7 @@
 ﻿---
 external help file: Watchmen-help.xml
+online version: 
 schema: 2.0.0
-online version:
 ---
 
 # Email
@@ -35,7 +35,6 @@ duration         - Duration of Pester test
    
 Example:  
     subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
-
 ## EXAMPLES
 
 ### Example 1
@@ -52,8 +51,8 @@ WatchmenTest MyAppOVF {
     }
 }
 ```
-Add an Email notifier to a WatchmenTest block.
 
+Add an Email notifier to a WatchmenTest block.
 ### Example 2
 ```
 WatchmenOptions {
@@ -70,7 +69,6 @@ WatchmenOptions {
 ```
 
 Add an Email notifier to a WatchmenOptions block.
-
 ## PARAMETERS
 
 ### -Options
@@ -88,11 +86,11 @@ Hashtable of values needed to send a SMTP email.
 ```yaml
 Type: Hashtable
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 0
-Default value:
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -110,3 +108,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+

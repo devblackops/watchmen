@@ -1,16 +1,16 @@
 ﻿---
 external help file: Watchmen-help.xml
-schema: 2.0.0
 online version: 
+schema: 2.0.0
 ---
 
-# WatchmenOptions
+# FromSource
 ## SYNOPSIS
 {{Fill in the Synopsis}}
 ## SYNTAX
 
 ```
-WatchmenOptions [[-Script] <ScriptBlock>] [<CommonParameters>]
+FromSource [-Source] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,15 +25,15 @@ PS C:\> {{ Add example code here }}
 {{ Add example description here }}
 ## PARAMETERS
 
-### -Script
-{{Fill Script Description}}
+### -Source
+{{Fill Source Description}}
 
 ```yaml
-Type: ScriptBlock
+Type: String
 Parameter Sets: (All)
 Aliases: 
 
-Required: False
+Required: True
 Position: 0
 Default value: 
 Accept pipeline input: False

@@ -1,16 +1,16 @@
 ﻿---
 external help file: Watchmen-help.xml
-schema: 2.0.0
 online version: 
+schema: 2.0.0
 ---
 
-# Test
+# Version
 ## SYNOPSIS
 {{Fill in the Synopsis}}
 ## SYNTAX
 
 ```
-Test [[-Test] <String>] [<CommonParameters>]
+Version [-Version] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,15 +25,15 @@ PS C:\> {{ Add example code here }}
 {{ Add example description here }}
 ## PARAMETERS
 
-### -Test
-{{Fill Test Description}}
+### -Version
+{{Fill Version Description}}
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: 
 
-Required: False
+Required: True
 Position: 0
 Default value: 
 Accept pipeline input: False

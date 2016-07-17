@@ -1,16 +1,16 @@
 ﻿---
 external help file: Watchmen-help.xml
-schema: 2.0.0
 online version: 
+schema: 2.0.0
 ---
 
-# Parameters
+# Slack
 ## SYNOPSIS
 {{Fill in the Synopsis}}
 ## SYNTAX
 
 ```
-Parameters [-Parameters] <Hashtable> [<CommonParameters>]
+Slack -Options <Hashtable[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,16 +25,16 @@ PS C:\> {{ Add example code here }}
 {{ Add example description here }}
 ## PARAMETERS
 
-### -Parameters
-{{Fill Parameters Description}}
+### -Options
+{{Fill Options Description}}
 
 ```yaml
-Type: Hashtable
+Type: Hashtable[]
 Parameter Sets: (All)
 Aliases: 
 
 Required: True
-Position: 0
+Position: Named
 Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False

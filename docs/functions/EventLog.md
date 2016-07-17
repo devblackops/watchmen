@@ -1,7 +1,7 @@
 ﻿---
 external help file: Watchmen-help.xml
-schema: 2.0.0
 online version: 
+schema: 2.0.0
 ---
 
 # EventLog
@@ -18,7 +18,6 @@ Generates an event log object in a 'Notifies' block.
 
 This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'EventLog' function outside of a
 'Notifies' block will throw an error.
-
 ## EXAMPLES
 
 ### Example 1
@@ -32,8 +31,8 @@ WatchmenTest MyAppOVF {
     }
 }
 ```
-Add an EventLog notifier to a WatchmenTest block.
 
+Add an EventLog notifier to a WatchmenTest block.
 ### Example 2
 ```
 WatchmenOptions {
@@ -47,7 +46,6 @@ WatchmenOptions {
 ```
 
 Add an EventLog notifier to a WatchmenOptions block.
-
 ## PARAMETERS
 
 ### -Options

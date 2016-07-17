@@ -1,22 +1,16 @@
 ﻿---
 external help file: Watchmen-help.xml
-schema: 2.0.0
 online version: 
+schema: 2.0.0
 ---
 
-# WatchmenTest
+# WatchmenOptions
 ## SYNOPSIS
 {{Fill in the Synopsis}}
 ## SYNTAX
 
-### NoName (Default)
 ```
-WatchmenTest [-Script] <ScriptBlock> [<CommonParameters>]
-```
-
-### Name
-```
-WatchmenTest [[-Name] <String>] [-Script] <ScriptBlock> [<CommonParameters>]
+WatchmenOptions [[-Script] <ScriptBlock>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,21 +25,6 @@ PS C:\> {{ Add example code here }}
 {{ Add example description here }}
 ## PARAMETERS
 
-### -Name
-{{Fill Name Description}}
-
-```yaml
-Type: String
-Parameter Sets: Name
-Aliases: 
-
-Required: False
-Position: 0
-Default value: 
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Script
 {{Fill Script Description}}
 
@@ -54,7 +33,7 @@ Type: ScriptBlock
 Parameter Sets: (All)
 Aliases: 
 
-Required: True
+Required: False
 Position: 0
 Default value: 
 Accept pipeline input: False
