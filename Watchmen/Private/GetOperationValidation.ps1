@@ -1,4 +1,4 @@
-function Get-OperationValidation {
+function GetOperationValidation {
     <#
     .SYNOPSIS
     Retrieve the operational tests from modules
@@ -118,7 +118,7 @@ function Get-OperationValidation {
 
                                     # Did we specify a specific version to find?
                                     if ($PSBoundParameters.ContainsKey('Version')) {
-                                        $manifestFile = Get-ChildItem -Path $modDir.FullName -Filter '*.psd1' | Select-Object -First 1
+                                        $manifestFile = Get-ChildItem -Path $modDir.FullName -Filter "$modDir.psd1" | Select-Object -First 1
                                         $manifest = Test-ModuleManifest -Path $manifestFile.FullName
                                         if ($manifest.Version -eq $Version) {
                                             $modDir.FullName

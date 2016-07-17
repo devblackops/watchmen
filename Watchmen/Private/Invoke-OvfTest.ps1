@@ -12,21 +12,20 @@ function Invoke-OvfTest {
 
     process {
         foreach ($ovfTest in $OvfTestInfo) {
+            Write-Host -Object "`n"
             Write-Verbose -Message "Running OVF test [$($Test.ModuleName)][$($ovfTest.Name)]"
             $params = @{
                 TestInfo = $ovfTest
                 IncludePesterOutput = $IncludePesterOutput
-                Verbose = $false
+                #Verbose = $false
             }
 
             if ($ovfTest.ScriptParameters) {
-                if ($Test.Parameters) {
-                    Write-Debug "Overriding OVF test with parameters:"
-                    Write-Debug ($Test.Parameters | fl * | out-string)
+                if ($Test.Parameters.Keys.Count -gt 0) {                    
                     $params.Overrides = $Test.Parameters
                 }
             }
-            return (Invoke-OperationValidation @params)
+            return (InvokeOperationValidation @params)
         }
     }
 

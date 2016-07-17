@@ -1,4 +1,6 @@
 ﻿---
+external help file: Watchmen-help.xml
+online version: 
 schema: 2.0.0
 ---
 

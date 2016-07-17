@@ -5,11 +5,12 @@ function New-OperationValidationFailure {
     )
 
     $o = [pscustomobject]@{
+        PSTypeName = 'OperationValidationFailure'
         StackTrace = $StackTrace
         FailureMessage = $FailureMessage
     }
-    $o.psobject.Typenames.Insert(0,"OperationValidationFailure")
+    #$o.psobject.Typenames.Insert(0,"OperationValidationFailure")
     $ToString = { return $this.StackTrace }
-    Add-Member -inputobject $o -membertype ScriptMethod -Name ToString -Value $toString -Force
+    Add-Member -Inputobject $o -MemberType ScriptMethod -Name ToString -Value $toString -Force
     $o
 }

@@ -1,5 +1,3 @@
-#requires -modules poshspec
-
 Import-Module poshspec -Verbose:$false -ErrorAction Stop
 
 describe 'Services' {

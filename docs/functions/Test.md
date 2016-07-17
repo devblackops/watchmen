@@ -1,16 +1,16 @@
 ﻿---
 external help file: Watchmen-help.xml
-schema: 2.0.0
 online version: 
+schema: 2.0.0
 ---
 
-# LogFile
+# Test
 ## SYNOPSIS
 {{Fill in the Synopsis}}
 ## SYNTAX
 
 ```
-LogFile [-Path] <String[]> [<CommonParameters>]
+Test [[-Test] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,15 +25,15 @@ PS C:\> {{ Add example code here }}
 {{ Add example description here }}
 ## PARAMETERS
 
-### -Path
-{{Fill Path Description}}
+### -Test
+{{Fill Test Description}}
 
 ```yaml
-Type: String[]
+Type: String
 Parameter Sets: (All)
 Aliases: 
 
-Required: True
+Required: False
 Position: 0
 Default value: 
 Accept pipeline input: False

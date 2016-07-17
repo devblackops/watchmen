@@ -19,7 +19,7 @@ function New-OperationValidationInfo {
         ModuleName = $modulename
         ScriptParameters = $Parameters
     }
-    $o.psobject.Typenames.Insert(0,"OperationValidationInfo")
+    #$o.psobject.Typenames.Insert(0,"OperationValidationInfo")
     $ToString = { return ("{0} ({1}): {2}" -f $this.testFile, $this.Type, ($this.TestCases -join ",")) }
     Add-Member -inputobject $o -membertype ScriptMethod -Name ToString -Value $toString -Force
     $o

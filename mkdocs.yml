@@ -3,3 +3,6 @@ repo_url: https://github.com/devblackops/watchmen
 theme: readthedocs
 pages:
   - Home: index.md
+  - Functions:
+    - Get-WatchmenTest: Get-WatchmenTest.md
+    - Invoke-WatchmenTest: Invoke-WatchmenTest.md
