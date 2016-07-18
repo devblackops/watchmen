@@ -10,7 +10,7 @@ properties {
     $psVersion = $PSVersionTable.PSVersion.Major
 }
 
-task default -depends Init, Analyze
+task default -depends Test
 
 task Init {
     "`nSTATUS: Testing with PowerShell $psVersion"
@@ -41,11 +41,12 @@ task Pester -Depends Init {
 }
 
 task UpdateHelpMarkdown -Depends Init {
-    Update-MarkdownHelp -Path "$projectRoot\ModuleHelp\*" -Encoding ([System.Text.Encoding]::UTF8)
+    Import-Module -Name $sut -Force
+    Update-MarkdownHelp -Path "$projectRoot\docs\functions" -Encoding ([System.Text.Encoding]::UTF8)
 }
 
 task GenerateHelp -Depends Init {
-    New-ExternalHelp -OutputPath "$sut\en-US" -Path "$projectRoot\ModuleHelp\*" -Force -Encoding ([System.Text.Encoding]::UTF8)
+    New-ExternalHelp -OutputPath "$sut\en-US" -Path "$projectRoot\docs\functions" -Force -Encoding ([System.Text.Encoding]::UTF8)
 }
 
 task ExportFunctions {
