@@ -6,7 +6,7 @@ schema: 2.0.0
 
 # FromSource
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Specifies the PowerShell repository source to retreive module from.
 ## SYNTAX
 
 ```
@@ -14,19 +14,31 @@ FromSource [-Source] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Specifies the PowerShell repository source to retreive module from. This repository must already be registered on the system.
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+WatchmenTest 'MyAppOVF' {
+    fromSource 'PSGallery'
+}
 ```
 
-{{ Add example description here }}
+Tells Watchmen to download and install the 'MyAppOVF' module from the public PowerShell Gallery.
+
+### Example 2
+```
+WatchmenTest 'MyOVFModule' {
+    fromSource 'PrivateRepository
+}
+```
+
+Tells Watchmen to download and install the 'MyAppOVF' module from a private repository called 'PrivateRepository'.
+
 ## PARAMETERS
 
 ### -Source
-{{Fill Source Description}}
+The PowerShell reposotiry name to search for the module in.
 
 ```yaml
 Type: String

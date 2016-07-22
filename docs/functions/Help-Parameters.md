@@ -4,32 +4,38 @@ online version:
 schema: 2.0.0
 ---
 
-# Notifies
+# Parameters
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Specifies one or more parameters to pass into a Pester test.
 ## SYNTAX
 
 ```
-Notifies [-Script] <ScriptBlock> [<CommonParameters>]
+Parameters [-Parameters] <Hashtable> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Specifies one or more parameters in the form of a hashtable to pass into a Pester test. These parameters must match script parameters defined in the
+Pester test.
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+WatchmenTest 'MyAppOVF' {
+    Parameters {
+        FreeSpaceThreshold = 40000
+    }
+}
 ```
 
-{{ Add example description here }}
+Defines a Watchmen test to execute the OVF module 'MyAppOVF' and pass the parameter 'FreeSpaceThreshold' to the Pester test inside the OVF module.
+
 ## PARAMETERS
 
-### -Script
-{{Fill Script Description}}
+### -Parameters
+Hashtable of parameters to pass into Pester test.
 
 ```yaml
-Type: ScriptBlock
+Type: Hashtable
 Parameter Sets: (All)
 Aliases: 
 

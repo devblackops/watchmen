@@ -4,32 +4,51 @@ online version:
 schema: 2.0.0
 ---
 
-# Parameters
+# LogFile
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Specifies a LogFile notifier.
 ## SYNTAX
 
 ```
-Parameters [-Parameters] <Hashtable> [<CommonParameters>]
+LogFile [-Path] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Specifies a LogFile notifier. This command accepts one parameter which is the path to a log file to either create or append to.
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+WatchmenTest MyAppOVF {
+    Notifies {
+        LogFile '\\fileserver01\watchmen\watchmen.log'
+    }
+}
 ```
 
-{{ Add example description here }}
+Adds a LogFile notifier to a WatchmenTest block.
+
+### Example2
+```
+WatchmenOptions {
+    Notifies {
+        LogFile @{
+            '\\fileserver01\watchmen\watchmen.log',
+            'c:\temp\watchmen.log'
+        }
+    }
+}
+```
+
+Adds a LogFile notifier to a WatchmenOptions block.
+
 ## PARAMETERS
 
-### -Parameters
-{{Fill Parameters Description}}
+### -Path
+One or more file paths to append test result to. If the file(s) do not exist, they will be created.
 
 ```yaml
-Type: Hashtable
+Type: String[]
 Parameter Sets: (All)
 Aliases: 
 
