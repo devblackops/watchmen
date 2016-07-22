@@ -33,6 +33,13 @@ task Analyze -Depends Init {
 }
 
 task Pester -Depends Init {
+   
+    if(-not $ENV:BHProjectPath) {
+        Set-BuildEnvironment -Path $PSScriptRoot\..
+    }
+    Remove-Module $ENV:BHProjectName -ErrorAction SilentlyContinue
+    Import-Module (Join-Path $ENV:BHProjectPath $ENV:BHProjectName) -Force
+
     $testResults = Invoke-Pester -Path $tests -PassThru
     if ($testResults.FailedCount -gt 0) {
         $testResults | Format-List
