@@ -4,5 +4,5 @@ theme: readthedocs
 pages:
   - Home: index.md
   - Functions:
-    - Get-WatchmenTest: function/Get-WatchmenTest.md
+    - Get-WatchmenTest: functions/Get-WatchmenTest.md
     - Invoke-WatchmenTest: functions/Invoke-WatchmenTest.md
