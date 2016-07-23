@@ -8,19 +8,20 @@ pages:
     - Invoke-WatchmenTest: functions/Invoke-WatchmenTest.md
     - Resources:
       - WatchmenOptions: functions/Help-WatchmenOptions.md
-        - Notifies: functions/Help-Notifies.md
-          - Notifies options: 
-            - Email: functions/Help-Email.md
-            - EventLog: functions/Help-EventLog.md
-            - LogFile: functions/Help-LogFile.md
-            - PowerShell: functions/Help-PowerShell.md
-            - Slack: functions/Help-Slack.md
-            - Syslog: functions/Help-Syslog.md          
+      - WatchmenOptions_properties:
+          - Notifies: functions/Help-Notifies.md
+            - Notifies_properties: 
+              - Email: functions/Help-Email.md
+              - EventLog: functions/Help-EventLog.md
+              - LogFile: functions/Help-LogFile.md
+              - PowerShell: functions/Help-PowerShell.md
+              - Slack: functions/Help-Slack.md
+              - Syslog: functions/Help-Syslog.md          
       - WatchmenTest: functions/Help-WatchmenTest.md
         - Properties:
           - FromSource: functions/Help-FromSource.md
           - Notifies: functions/Help-Notifies.md
-          - Notifies options:
+          - Notifies_properties:
             - Email: functions/Help-Email.md
             - EventLog: functions/Help-EventLog.md
             - LogFile: functions/Help-LogFile.md
