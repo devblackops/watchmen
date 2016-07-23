@@ -6,3 +6,29 @@ pages:
   - Functions:
     - Get-WatchmenTest: functions/Get-WatchmenTest.md
     - Invoke-WatchmenTest: functions/Invoke-WatchmenTest.md
+    - Resources:
+      - WatchmenOptions: functions/Help-WatchmenOptions.md
+        - Notifies: functions/Help-Notifies.md
+          - Notifies options: 
+            - Email: functions/Help-Email.md
+            - EventLog: functions/Help-EventLog.md
+            - LogFile: functions/Help-LogFile.md
+            - PowerShell: functions/Help-PowerShell.md
+            - Slack: functions/Help-Slack.md
+            - Syslog: functions/Help-Syslog.md          
+      - WatchmenTest: functions/Help-WatchmenTest.md
+        - Properties:
+          - FromSource: functions/Help-FromSource.md
+          - Notifies: functions/Help-Notifies.md
+          - Notifies options:
+            - Email: functions/Help-Email.md
+            - EventLog: functions/Help-EventLog.md
+            - LogFile: functions/Help-LogFile.md
+            - PowerShell: functions/Help-PowerShell.md
+            - Slack: functions/Help-Slack.md
+            - Syslog: functions/Help-Syslog.md
+          - Parameters: functions/Help-Parameters.md
+          - Test: functions/Help-Test.md
+          - TestType: functions/Help-TestType.md
+          - Version: functions/Help-Version.md
+        
