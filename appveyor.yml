@@ -8,6 +8,10 @@ os: WMF 5
 skip_commits:
   message: /updated readme.*|update readme.*s/
 
+environment:
+  PSGalleryApiKey:
+    secure: LwSHxTwnDG7eUFOPZSAfy5Wj0Zi5hUc7CB290hC3DcnmVkvK5y76h6miZJUJCBBw
+
 build: false
 
 #Kick off the CI/CD pipeline
