@@ -48,6 +48,7 @@ function Invoke-WatchmenTest {
 
                 # Optionally filter the tests by name
                 if ($test.Test) {
+                    Write-Debug "Filtering tests for [$($Test.Test)]"
                     $filtered = $ovfTestInfo | where Name -like $test.Test
                 }
 
