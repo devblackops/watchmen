@@ -72,7 +72,7 @@ FormatsToProcess = 'OperationValidation.Format.ps1xml'
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = 'Email', 'EventLog', 'FromSource', 'Get-WatchmenTest', 
                'Invoke-WatchmenTest', 'LogFile', 'Notifies', 'Parameters', 'PowerShell', 
-               'Rorschach', 'Slack', 'Syslog', 'Test', 'TestType', 'Version', 
+               'Slack', 'Syslog', 'Test', 'TestType', 'Version', 
                'WatchmenOptions', 'WatchmenTest'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
