@@ -62,14 +62,15 @@ WatchmenOptions {
         powershell {
             Write-Host "Something bad happended! $args[0]"
         }
-        powershell '\notifier.ps1'
+        powershell '\notifier.ps1'        
         slack @{
-            Title = 'Watchmen Bot'
             Token = '<webhookurl>'
-            Channel = '#watchmen'
+            Channel = '#Watchmen'
+            AuthorName = $env:COMPUTERNAME
+            PreText = 'Everything is on :fire:'
             IconEmoji = ':fire:'
         }
-        syslog 'syslog.mydomain.tld'       
+        syslog 'syslog.mydomain.tld'
     }
 }
 
