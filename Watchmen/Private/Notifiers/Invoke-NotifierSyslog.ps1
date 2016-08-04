@@ -21,7 +21,7 @@ function Invoke-NotifierSyslog {
 
         $msg = "$($Results.RawResult.Describe) -> $($Results.RawResult.Context) -> $($Results.RawResult.Name) -> $($Results.RawResult.Result.ToUpper())"
 
-        foreach ($endpoint in $Notifier.Endpoint) {
+        foreach ($endpoint in $Notifier.Endpoints) {
             Send-SyslogMessage -Server $endpoint -Message $msg -Severity 'Critical' -Facility 'logalert'
         }
 

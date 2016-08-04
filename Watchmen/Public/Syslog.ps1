@@ -14,7 +14,7 @@ function Syslog {
         $e = [pscustomobject]@{
             PSTypeName = 'Watchmen.Notifier.Syslog'
             Type = 'Syslog' 
-            Endpoint = @()
+            Endpoints = $Endpoints
             Enabled = $true
         }
 
