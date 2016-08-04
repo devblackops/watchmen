@@ -29,7 +29,12 @@ function Get-OvfTestInfo {
                 $ovfTestInfo = GetOperationValidation -ModuleName $Test.ModuleName
             }
         } else {
-            Write-Error -Message "Unable to find OVF module [$($Test.ModuleName)] and no PowerShell repository has been specific to download it from."
+            if ($null -ne $Test.Version) {
+                Write-Error -Message "Unable to find OVF module [$($Test.ModuleName)] version [$($Test.Version)] and no PowerShell repository has been specified to download it from."
+            } else {
+                Write-Error -Message "Unable to find OVF module [$($Test.ModuleName)] and no PowerShell repository has been specified to download it from."
+            }
+            
         }
     }
     return $ovfTestInfo
