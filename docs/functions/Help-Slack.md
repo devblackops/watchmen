@@ -6,7 +6,8 @@ schema: 2.0.0
 
 # Slack
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Specifies an EventLog notifier.
+
 ## SYNTAX
 
 ```
@@ -14,19 +15,57 @@ Slack -Options <Hashtable[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Specifies an Slack notifier.
+
+This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'Slack' function outside of a
+'Notifies' block will throw an error.
+
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+WatchmenOptions {
+    slack @{
+        Token = 'asdfqwerty12345'
+        Channel = '#Watchmen_Alerts'
+        AuthorName = $env:COMPUTERNAME
+        PreText = 'Everything is on :fire:'
+        IconEmoji = ':fire:'
+    }
+}
 ```
 
-{{ Add example description here }}
+Adds a Slack notifier to a WatchmenOptions block. The hashtable specified includes all the required parameters to send a Slack message using
+the PSSlack module.
+
+### Example 2
+
+```
+WatchmenTest {
+    slack @{
+        Token = 'asdfqwerty12345'
+        Channel = '#Watchmen_Alerts'
+        AuthorName = $env:COMPUTERNAME
+        PreText = 'Everything is on :fire:'
+        IconUrl = 'http://myicons.mydomain.tld/icon02.png'
+    }
+}
+```
+
+Adds a Slack notifier to a WatchmenTest block. The hashtable specified includes all the required parameters to send a Slack message using
+the PSSlack module.
+
 ## PARAMETERS
 
 ### -Options
-{{Fill Options Description}}
+Hash table of required parameters to send a Slack message usin the PSSlack module.
+
+[string]Token       - REQUIRED - Webhook URL to send message to  
+[string]Channel     - REQUIRED - Message for email  
+[string]AuthorName  - REQUIRED - Name message should appear from  
+[string]PreText     - OPTIONAL - Message to display ahead of message  
+[string]IconUrl     - OPTIONAL - URL of icon to display alongside message    
+[string]IconEmoji   - OPTIONAL - Emoji to display alongside message  
 
 ```yaml
 Type: Hashtable[]

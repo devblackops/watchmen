@@ -6,7 +6,8 @@ schema: 2.0.0
 
 # Version
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Specifies the version of the OVF module to execute tests from.
+
 ## SYNTAX
 
 ```
@@ -14,19 +15,24 @@ Version [-Version] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Specifies the version of the OVF module to execute tests from. Since OVF tests are normal PowerShell modules, multiple versions of the module are
+allowed to be installed on the system. If this parameter is not specified, the latest version of the module will be used.
+
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+WatchmenTest 'MyAppOVF' {
+    Version '1.2.3'
+}
 ```
 
-{{ Add example description here }}
+Teslls Watchmen to execute tests from version 1.2.3 of the 'MyAppOVF' module.
+
 ## PARAMETERS
 
 ### -Version
-{{Fill Version Description}}
+Version of module to execute tests from. If not specified, the latest installed version of the module will be used.
 
 ```yaml
 Type: String

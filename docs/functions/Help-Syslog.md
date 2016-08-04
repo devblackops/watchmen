@@ -6,7 +6,7 @@ schema: 2.0.0
 
 # Syslog
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Specifies a Syslog notifier.
 ## SYNTAX
 
 ```
@@ -14,19 +14,39 @@ Syslog [-Endpoints] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Specifies a Syslog notifier. This command accepts one parameter which is the IP address or FQDN of a syslog endpoint to send messages to.
+
+This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'Syslog' function outside of a
+'Notifies' block will throw an error.
+
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+WatchmenTest MyAppOVF {
+    Notifies {
+        syslog 'localhost'
+    }
+}
 ```
 
-{{ Add example description here }}
+Adds a Syslog notifier to a WatchmenTest block.
+
+### Example2
+```
+WatchmenOptions {
+    Notifies {
+        syslog '192.168.100.100'
+    }
+}
+```
+
+Adds a Syslog notifier to a WatchmenOptions block.
+
 ## PARAMETERS
 
 ### -Endpoints
-{{Fill Endpoints Description}}
+One or more IP addresses/FQDNs of syslog endpoints to send messages to.
 
 ```yaml
 Type: String[]

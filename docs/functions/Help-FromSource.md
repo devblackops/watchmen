@@ -38,7 +38,7 @@ Tells Watchmen to download and install the 'MyAppOVF' module from a private repo
 ## PARAMETERS
 
 ### -Source
-The PowerShell reposotiry name to search for the module in.
+The PowerShell repository name to search for the module in.
 
 ```yaml
 Type: String

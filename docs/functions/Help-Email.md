@@ -1,12 +1,12 @@
 ﻿---
 external help file: Watchmen-help.xml
-online version: 
+online version: https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-Email.md
 schema: 2.0.0
 ---
 
 # Email
 ## SYNOPSIS
-Generate an email object in a 'Notifies' block.
+Specifies an Email notifier.
 ## SYNTAX
 
 ```
@@ -14,13 +14,13 @@ Email [-Options] <Hashtable> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Generate an email object in a 'Notifies' block.
+Specifies an Email notifier.
 
 This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'Email' function outside of a
 'Notifies' block will throw an error.
 
 The 'Subject' and Message' fields inside the hashtable for this function support string interpolation. The following keywords can be placed inside
-the Subject or Message strings using the convention #{<keyword>}. When the Email notifier is executed these placeholders will be replaced with values
+the Subject or Message strings using the convention #{keyword}. When the Email notifier is executed these placeholders will be replaced with values
 from the test result:
 
 computername     - Computer name test was executed on  

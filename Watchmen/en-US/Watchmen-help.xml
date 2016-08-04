@@ -99,15 +99,15 @@
 <command:details><command:name>Email</command:name>
 <command:verb>Email</command:verb>
 <command:noun></command:noun>
-<maml:description><maml:para>Generate an email object in a 'Notifies' block.
+<maml:description><maml:para>Specifies an Email notifier.
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>Generate an email object in a 'Notifies' block.
+<maml:description><maml:para>Specifies an Email notifier.
 </maml:para>
 <maml:para>This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'Email' function outside of a 'Notifies' block will throw an error.
 </maml:para>
-<maml:para>The 'Subject' and Message' fields inside the hashtable for this function support string interpolation. The following keywords can be placed inside the Subject or Message strings using the convention #{&lt;keyword&gt;}. When the Email notifier is executed these placeholders will be replaced with values from the test result:
+<maml:para>The 'Subject' and Message' fields inside the hashtable for this function support string interpolation. The following keywords can be placed inside the Subject or Message strings using the convention #{keyword}. When the Email notifier is executed these placeholders will be replaced with values from the test result:
 </maml:para>
 <maml:para>computername     - Computer name test was executed on
 module           - OVF module name
@@ -216,17 +216,20 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-Email.md</maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>EventLog</command:name>
 <command:verb>EventLog</command:verb>
 <command:noun></command:noun>
-<maml:description><maml:para>Generates an event log object in a 'Notifies' block.
+<maml:description><maml:para>Specifies an EventLog notifier.
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>Generates an event log object in a 'Notifies' block.
+<maml:description><maml:para>Specifies an EventLog notifier.
 </maml:para>
 <maml:para>This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'EventLog' function outside of a 'Notifies' block will throw an error.
 </maml:para>
@@ -321,7 +324,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>FromSource</maml:name>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Source</maml:name>
-<maml:Description><maml:para>The PowerShell reposotiry name to search for the module in.
+<maml:Description><maml:para>The PowerShell repository name to search for the module in.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -332,7 +335,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Source</maml:name>
-<maml:Description><maml:para>The PowerShell reposotiry name to search for the module in.
+<maml:Description><maml:para>The PowerShell repository name to search for the module in.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -387,6 +390,8 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:description>
 </command:details>
 <maml:description><maml:para>Specifies a LogFile notifier. This command accepts one parameter which is the path to a log file to either create or append to.
+</maml:para>
+<maml:para>This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'EventLog' function outside of a 'Notifies' block will throw an error.
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>LogFile</maml:name>
@@ -608,16 +613,26 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:details><command:name>PowerShell</command:name>
 <command:verb>PowerShell</command:verb>
 <command:noun></command:noun>
-<maml:description><maml:para>{{Fill in the Synopsis}}
+<maml:description><maml:para>Specifies an PowerShell notifier.
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>{{Fill in the Description}}
+<maml:description><maml:para>Specifies an PowerShell notifier.
+</maml:para>
+<maml:para>This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'PowerShell' function outside of a 'Notifies' block will throw an error.
+</maml:para>
+<maml:para>The PowerShell notifier accepts either a inline script block to execute, or a path to a PowerShell script file.
+</maml:para>
+<maml:para>When Watchmen execute the inline script block or script file, the OVF test results object will be passed in. When executing an inline script block, this object will be available as $args[0]. When executing a script file the object will be passed in as an unnamed parameter.
+</maml:para>
+<maml:para>The following properties are available in the OVF test result object:
+</maml:para>
+<maml:para>Error                       - StackTrace message of failing Pester test FileName                    - Path to Pester test script withing the OVF module Module                      - PowerShell module of the OVF test Name                        - Name of the OVF test executed RawResult     Context                 - Name of context block container test     Describe                - Name of describe block containing test     ErrorRecord             - Error record of failing test     FailureMessage          - Pester failure message     Name                    - Name of 'It' test     ParameterizedSuiteName  - Test case name     Parameters              - Parameters used in test case     Passed                  - Passor fail status of test. Values are [True] or [False]     Result                  - Pass or fail status of test. Values are [Passed] or [Failed]     StackTrace              - StackTrace message of failing Pester test     Time                    - Time Pester test took to execute Result                      - Pass or fail status of test. Values are [Passed] or [Failed] ShortName                   - File name of Pester test
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>PowerShell</maml:name>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Path</maml:name>
-<maml:Description><maml:para>{{Fill Path Description}}
+<maml:Description><maml:para>Path to a PowerShell script to execute upon any failing tests.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -628,7 +643,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </command:syntaxItem>
 <command:syntaxItem><maml:name>PowerShell</maml:name>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>ScriptBlock</maml:name>
-<maml:Description><maml:para>{{Fill ScriptBlock Description}}
+<maml:Description><maml:para>Script block to execute upon any failing tests.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">ScriptBlock</command:parameterValue>
@@ -639,7 +654,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Path</maml:name>
-<maml:Description><maml:para>{{Fill Path Description}}
+<maml:Description><maml:para>Path to a PowerShell script to execute upon any failing tests.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -648,7 +663,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>ScriptBlock</maml:name>
-<maml:Description><maml:para>{{Fill ScriptBlock Description}}
+<maml:Description><maml:para>Script block to execute upon any failing tests.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">ScriptBlock</command:parameterValue>
@@ -676,68 +691,20 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:alert>
 </maml:alertSet>
 <command:examples><command:example><maml:title>Example 1</maml:title>
-<dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
-<dev:remarks><maml:para>{{ Add example description here }}
+<dev:code>WatchmenOptions {
+    powershell {
+        Write-Host "Something bad happended! Test [$($args[0]) failed with error [$($args[0].Error)]"
+    }
+}</dev:code>
+<dev:remarks><maml:para>Adds a PowerShell notifier to a WatchmenOptions block. This PowerShell script block will display a message using values contains withing test result object.
 </maml:para>
 </dev:remarks>
 </command:example>
-</command:examples>
-<command:relatedLinks></command:relatedLinks>
-</command:command>
-<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-<command:details><command:name>Rorschach</command:name>
-<command:verb>Rorschach</command:verb>
-<command:noun></command:noun>
-<maml:description><maml:para>{{Fill in the Synopsis}}
-</maml:para>
-</maml:description>
-</command:details>
-<maml:description><maml:para>{{Fill in the Description}}
-</maml:para>
-</maml:description>
-<command:syntax><command:syntaxItem><maml:name>Rorschach</maml:name>
-<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Settings</maml:name>
-<maml:Description><maml:para>{{Fill Settings Description}}
-</maml:para>
-</maml:Description>
-<command:parameterValue required="true" variableLength="false">Hashtable[]</command:parameterValue>
-<dev:type><maml:name>Hashtable[]</maml:name>
-<maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
-</command:parameter>
-</command:syntaxItem>
-</command:syntax>
-<command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Settings</maml:name>
-<maml:Description><maml:para>{{Fill Settings Description}}
-</maml:para>
-</maml:Description>
-<command:parameterValue required="true" variableLength="false">Hashtable[]</command:parameterValue>
-<dev:type><maml:name>Hashtable[]</maml:name>
-<maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
-</command:parameter>
-</command:parameters>
-<command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
-</dev:type>
-<maml:description><maml:para>
-</maml:para>
-</maml:description>
-</command:inputType>
-</command:inputTypes>
-<command:returnValues><command:returnValue><dev:type><maml:name>System.Object</maml:name>
-</dev:type>
-<maml:description><maml:para>
-</maml:para>
-</maml:description>
-</command:returnValue>
-</command:returnValues>
-<maml:alertSet><maml:alert><maml:para>
-</maml:para>
-</maml:alert>
-</maml:alertSet>
-<command:examples><command:example><maml:title>Example 1</maml:title>
-<dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
-<dev:remarks><maml:para>{{ Add example description here }}
+<command:example><maml:title>Example 2</maml:title>
+<dev:code>WatchmenTest {
+    powershell '\notifier.ps1'
+}</dev:code>
+<dev:remarks><maml:para>Adds a PowerShell notifier to an individual Watchmen test. This PowerShell notifier will execute the 'notifier.ps1' script.
 </maml:para>
 </dev:remarks>
 </command:example>
@@ -748,16 +715,26 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:details><command:name>Slack</command:name>
 <command:verb>Slack</command:verb>
 <command:noun></command:noun>
-<maml:description><maml:para>{{Fill in the Synopsis}}
+<maml:description><maml:para>Specifies an EventLog notifier.
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>{{Fill in the Description}}
+<maml:description><maml:para>Specifies an Slack notifier.
+</maml:para>
+<maml:para>This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'Slack' function outside of a 'Notifies' block will throw an error.
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>Slack</maml:name>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Options</maml:name>
-<maml:Description><maml:para>{{Fill Options Description}}
+<maml:Description><maml:para>Hash table of required parameters to send a Slack message usin the PSSlack module.
+</maml:para>
+<maml:para>[string]Token       - REQUIRED - Webhook URL to send message to
+[string]Channel     - REQUIRED - Message for email
+[string]AuthorName  - REQUIRED - Name message should appear from
+[string]PreText     - OPTIONAL - Message to display ahead of message
+[string]IconUrl     - OPTIONAL - URL of icon to display alongside message
+[string]IconEmoji   - OPTIONAL - Emoji to display alongside message
+
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">Hashtable[]</command:parameterValue>
@@ -768,7 +745,15 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Options</maml:name>
-<maml:Description><maml:para>{{Fill Options Description}}
+<maml:Description><maml:para>Hash table of required parameters to send a Slack message usin the PSSlack module.
+</maml:para>
+<maml:para>[string]Token       - REQUIRED - Webhook URL to send message to
+[string]Channel     - REQUIRED - Message for email
+[string]AuthorName  - REQUIRED - Name message should appear from
+[string]PreText     - OPTIONAL - Message to display ahead of message
+[string]IconUrl     - OPTIONAL - URL of icon to display alongside message
+[string]IconEmoji   - OPTIONAL - Emoji to display alongside message
+
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">Hashtable[]</command:parameterValue>
@@ -796,8 +781,30 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:alert>
 </maml:alertSet>
 <command:examples><command:example><maml:title>Example 1</maml:title>
-<dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
-<dev:remarks><maml:para>{{ Add example description here }}
+<dev:code>WatchmenOptions {
+    slack @{
+        Token = 'asdfqwerty12345'
+        Channel = '#Watchmen_Alerts'
+        AuthorName = $env:COMPUTERNAME
+        PreText = 'Everything is on :fire:'
+        IconEmoji = ':fire:'
+    }
+}</dev:code>
+<dev:remarks><maml:para>Adds a Slack notifier to a WatchmenOptions block. The hashtable specified includes all the required parameters to send a Slack message using the PSSlack module.
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>Example 2</maml:title>
+<dev:code>WatchmenTest {
+    slack @{
+        Token = 'asdfqwerty12345'
+        Channel = '#Watchmen_Alerts'
+        AuthorName = $env:COMPUTERNAME
+        PreText = 'Everything is on :fire:'
+        IconUrl = 'http://myicons.mydomain.tld/icon02.png'
+    }
+}</dev:code>
+<dev:remarks><maml:para>Adds a Slack notifier to a WatchmenTest block. The hashtable specified includes all the required parameters to send a Slack message using the PSSlack module.
 </maml:para>
 </dev:remarks>
 </command:example>
@@ -808,16 +815,18 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:details><command:name>Syslog</command:name>
 <command:verb>Syslog</command:verb>
 <command:noun></command:noun>
-<maml:description><maml:para>{{Fill in the Synopsis}}
+<maml:description><maml:para>Specifies a Syslog notifier.
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>{{Fill in the Description}}
+<maml:description><maml:para>Specifies a Syslog notifier. This command accepts one parameter which is the IP address or FQDN of a syslog endpoint to send messages to.
+</maml:para>
+<maml:para>This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'Syslog' function outside of a 'Notifies' block will throw an error.
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>Syslog</maml:name>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Endpoints</maml:name>
-<maml:Description><maml:para>{{Fill Endpoints Description}}
+<maml:Description><maml:para>One or more IP addresses/FQDNs of syslog endpoints to send messages to.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
@@ -828,7 +837,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Endpoints</maml:name>
-<maml:Description><maml:para>{{Fill Endpoints Description}}
+<maml:Description><maml:para>One or more IP addresses/FQDNs of syslog endpoints to send messages to.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
@@ -856,8 +865,22 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:alert>
 </maml:alertSet>
 <command:examples><command:example><maml:title>Example 1</maml:title>
-<dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
-<dev:remarks><maml:para>{{ Add example description here }}
+<dev:code>WatchmenTest MyAppOVF {
+    Notifies {
+        syslog 'localhost'
+    }
+}</dev:code>
+<dev:remarks><maml:para>Adds a Syslog notifier to a WatchmenTest block.
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>Example2</maml:title>
+<dev:code>WatchmenOptions {
+    Notifies {
+        syslog '192.168.100.100'
+    }
+}</dev:code>
+<dev:remarks><maml:para>Adds a Syslog notifier to a WatchmenOptions block.
 </maml:para>
 </dev:remarks>
 </command:example>
@@ -868,16 +891,16 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:details><command:name>Test</command:name>
 <command:verb>Test</command:verb>
 <command:noun></command:noun>
-<maml:description><maml:para>{{Fill in the Synopsis}}
+<maml:description><maml:para>Specifies the 'Describe' block in a Pester test to execute.
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>{{Fill in the Description}}
+<maml:description><maml:para>Specifies the 'Describe' block in a Pester test to execute. Pester / OVF tests can include multiple 'Describe' blocks to logically seperate tests. This parameter allows you to only execute the designated 'Describe' block name.
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>Test</maml:name>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Test</maml:name>
-<maml:Description><maml:para>{{Fill Test Description}}
+<maml:Description><maml:para>Name of the 'Describe' block in the Pester test.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -888,7 +911,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Test</maml:name>
-<maml:Description><maml:para>{{Fill Test Description}}
+<maml:Description><maml:para>Name of the 'Describe' block in the Pester test.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -916,8 +939,10 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:alert>
 </maml:alertSet>
 <command:examples><command:example><maml:title>Example 1</maml:title>
-<dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
-<dev:remarks><maml:para>{{ Add example description here }}
+<dev:code>WatchmenTest 'MyAppOVF' {
+    Test 'Services'
+}</dev:code>
+<dev:remarks><maml:para>Tells Watchmen to only execute tests within the 'Describe' block 'Services' inside the OVF module 'MyAppOVF.'
 </maml:para>
 </dev:remarks>
 </command:example>
@@ -928,16 +953,16 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:details><command:name>TestType</command:name>
 <command:verb>TestType</command:verb>
 <command:noun></command:noun>
-<maml:description><maml:para>{{Fill in the Synopsis}}
+<maml:description><maml:para>Specifies the OVF test type to execute. This may be 'Simple', 'Comprehensive', or 'All'.
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>{{Fill in the Description}}
+<maml:description><maml:para>Specifies the OVF test type to execute. This may be 'Simple', 'Comprehensive', or 'All'. 'All' is the default if not specified.
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>TestType</maml:name>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Type</maml:name>
-<maml:Description><maml:para>{{Fill Type Description}}
+<maml:Description><maml:para>OVF Test type to execute.
 </maml:para>
 </maml:Description>
 <command:parameterValueGroup><command:parameterValue required="false" variableLength="false">Simple</command:parameterValue>
@@ -952,7 +977,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Type</maml:name>
-<maml:Description><maml:para>{{Fill Type Description}}
+<maml:Description><maml:para>OVF Test type to execute.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -980,8 +1005,18 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:alert>
 </maml:alertSet>
 <command:examples><command:example><maml:title>Example 1</maml:title>
-<dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
-<dev:remarks><maml:para>{{ Add example description here }}
+<dev:code>WatchmenTest 'MyAppOVF' {
+    TestType 'Simple'
+}</dev:code>
+<dev:remarks><maml:para>Teslls Watchmen to only execute 'Simple' tests within the 'MyAppOVF' module.
+</maml:para>
+</dev:remarks>
+</command:example>
+<command:example><maml:title>Example 2</maml:title>
+<dev:code>WatchmenTest 'MyAppOVF' {
+    TestType 'Comprehensive'
+}</dev:code>
+<dev:remarks><maml:para>Teslls Watchmen to only execute 'Comprehensive' tests within the 'MyAppOVF' module.
 </maml:para>
 </dev:remarks>
 </command:example>
@@ -992,16 +1027,16 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:details><command:name>Version</command:name>
 <command:verb>Version</command:verb>
 <command:noun></command:noun>
-<maml:description><maml:para>{{Fill in the Synopsis}}
+<maml:description><maml:para>Specifies the version of the OVF module to execute tests from.
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>{{Fill in the Description}}
+<maml:description><maml:para>Specifies the version of the OVF module to execute tests from. Since OVF tests are normal PowerShell modules, multiple versions of the module are allowed to be installed on the system. If this parameter is not specified, the latest version of the module will be used.
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>Version</maml:name>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Version</maml:name>
-<maml:Description><maml:para>{{Fill Version Description}}
+<maml:Description><maml:para>Version of module to execute tests from. If not specified, the latest installed version of the module will be used.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -1012,7 +1047,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Version</maml:name>
-<maml:Description><maml:para>{{Fill Version Description}}
+<maml:Description><maml:para>Version of module to execute tests from. If not specified, the latest installed version of the module will be used.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -1040,8 +1075,10 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:alert>
 </maml:alertSet>
 <command:examples><command:example><maml:title>Example 1</maml:title>
-<dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
-<dev:remarks><maml:para>{{ Add example description here }}
+<dev:code>WatchmenTest 'MyAppOVF' {
+    Version '1.2.3'
+}</dev:code>
+<dev:remarks><maml:para>Teslls Watchmen to execute tests from version 1.2.3 of the 'MyAppOVF' module.
 </maml:para>
 </dev:remarks>
 </command:example>

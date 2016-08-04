@@ -15,6 +15,10 @@ LogFile [-Path] <String[]> [<CommonParameters>]
 
 ## DESCRIPTION
 Specifies a LogFile notifier. This command accepts one parameter which is the path to a log file to either create or append to.
+
+This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'EventLog' function outside of a
+'Notifies' block will throw an error.
+
 ## EXAMPLES
 
 ### Example 1

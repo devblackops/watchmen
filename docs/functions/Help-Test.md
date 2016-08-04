@@ -6,7 +6,8 @@ schema: 2.0.0
 
 # Test
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Specifies the 'Describe' block in a Pester test to execute.
+
 ## SYNTAX
 
 ```
@@ -14,19 +15,24 @@ Test [[-Test] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Specifies the 'Describe' block in a Pester test to execute. Pester / OVF tests can include multiple 'Describe' blocks to logically seperate
+tests. This parameter allows you to only execute the designated 'Describe' block name.
+
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+WatchmenTest 'MyAppOVF' {
+    Test 'Services'
+}
 ```
 
-{{ Add example description here }}
+Tells Watchmen to only execute tests within the 'Describe' block 'Services' inside the OVF module 'MyAppOVF.'
+
 ## PARAMETERS
 
 ### -Test
-{{Fill Test Description}}
+Name of the 'Describe' block in the Pester test.
 
 ```yaml
 Type: String

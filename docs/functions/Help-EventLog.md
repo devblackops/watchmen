@@ -6,7 +6,7 @@ schema: 2.0.0
 
 # EventLog
 ## SYNOPSIS
-Generates an event log object in a 'Notifies' block.
+Specifies an EventLog notifier.
 ## SYNTAX
 
 ```
@@ -14,10 +14,11 @@ EventLog -Options <Hashtable[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Generates an event log object in a 'Notifies' block.
+Specifies an EventLog notifier.
 
 This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'EventLog' function outside of a
 'Notifies' block will throw an error.
+
 ## EXAMPLES
 
 ### Example 1

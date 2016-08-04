@@ -6,7 +6,8 @@ schema: 2.0.0
 
 # TestType
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Specifies the OVF test type to execute. This may be 'Simple', 'Comprehensive', or 'All'.
+
 ## SYNTAX
 
 ```
@@ -14,19 +15,32 @@ TestType [-Type] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Specifies the OVF test type to execute. This may be 'Simple', 'Comprehensive', or 'All'. 'All' is the default if not specified.
+
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+WatchmenTest 'MyAppOVF' {
+    TestType 'Simple'
+}
 ```
 
-{{ Add example description here }}
+Teslls Watchmen to only execute 'Simple' tests within the 'MyAppOVF' module.
+
+### Example 2
+```
+WatchmenTest 'MyAppOVF' {
+    TestType 'Comprehensive'
+}
+```
+
+Teslls Watchmen to only execute 'Comprehensive' tests within the 'MyAppOVF' module.
+
 ## PARAMETERS
 
 ### -Type
-{{Fill Type Description}}
+OVF Test type to execute.
 
 ```yaml
 Type: String
