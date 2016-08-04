@@ -2,34 +2,35 @@ site_name: Watchmen Docs
 repo_url: https://github.com/devblackops/watchmen
 theme: readthedocs
 pages:
-  - Home: index.md
+  - Home: index.md  
   - Functions:
     - Get-WatchmenTest: functions/Get-WatchmenTest.md
     - Invoke-WatchmenTest: functions/Invoke-WatchmenTest.md
-    - Resources:
-      - WatchmenOptions: functions/Help-WatchmenOptions.md
-      - WatchmenOptions_properties:
-        - Notifies: functions/Help-Notifies.md
-        - Notifies_properties: 
-          - Email: functions/Help-Email.md
-          - EventLog: functions/Help-EventLog.md
-          - LogFile: functions/Help-LogFile.md
-          - PowerShell: functions/Help-PowerShell.md
-          - Slack: functions/Help-Slack.md
-          - Syslog: functions/Help-Syslog.md          
-      - WatchmenTest: functions/Help-WatchmenTest.md
-      - WatchmenTest_properties:
-        - FromSource: functions/Help-FromSource.md
-        - Notifies: functions/Help-Notifies.md
-        - Notifies_properties:
-          - Email: functions/Help-Email.md
-          - EventLog: functions/Help-EventLog.md
-          - LogFile: functions/Help-LogFile.md
-          - PowerShell: functions/Help-PowerShell.md
-          - Slack: functions/Help-Slack.md
-          - Syslog: functions/Help-Syslog.md
-        - Parameters: functions/Help-Parameters.md
-        - Test: functions/Help-Test.md
-        - TestType: functions/Help-TestType.md
-        - Version: functions/Help-Version.md
+  - Concepts: concepts.md
+  - Resources:
+    - WatchmenOptions: functions/Help-WatchmenOptions.md
+    - WatchmenOptions_properties:
+      - Notifies: functions/Help-Notifies.md
+      - Notifies_properties: 
+        - Email: functions/Help-Email.md
+        - EventLog: functions/Help-EventLog.md
+        - LogFile: functions/Help-LogFile.md
+        - PowerShell: functions/Help-PowerShell.md
+        - Slack: functions/Help-Slack.md
+        - Syslog: functions/Help-Syslog.md          
+    - WatchmenTest: functions/Help-WatchmenTest.md
+    - WatchmenTest_properties:
+      - FromSource: functions/Help-FromSource.md
+      - Notifies: functions/Help-Notifies.md
+      - Notifies_properties:
+        - Email: functions/Help-Email.md
+        - EventLog: functions/Help-EventLog.md
+        - LogFile: functions/Help-LogFile.md
+        - PowerShell: functions/Help-PowerShell.md
+        - Slack: functions/Help-Slack.md
+        - Syslog: functions/Help-Syslog.md
+      - Parameters: functions/Help-Parameters.md
+      - Test: functions/Help-Test.md
+      - TestType: functions/Help-TestType.md
+      - Version: functions/Help-Version.md
         
