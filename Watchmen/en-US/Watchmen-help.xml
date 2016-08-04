@@ -90,7 +90,10 @@
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks><maml:navigationLink><maml:linkText>Invoke-WatchmenTest</maml:linkText>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Get-WatchmenTest.md</maml:uri>
+</maml:navigationLink>
+<maml:navigationLink><maml:linkText>Invoke-WatchmenTest</maml:linkText>
 <maml:uri></maml:uri>
 </maml:navigationLink>
 </command:relatedLinks>
@@ -309,7 +312,10 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-EventLog.md</maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>FromSource</command:name>
@@ -379,7 +385,10 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-FromSource.md</maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>LogFile</command:name>
@@ -458,7 +467,10 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-LogFile.md</maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>Notifies</command:name>
@@ -543,7 +555,10 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-Notifies.md</maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>Parameters</command:name>
@@ -607,7 +622,10 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-Parameters.md</maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>PowerShell</command:name>
@@ -709,7 +727,10 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-PowerShell.md</maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>Slack</command:name>
@@ -809,7 +830,10 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-Slack.md</maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>Syslog</command:name>
@@ -885,7 +909,10 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-Syslog.md</maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>Test</command:name>
@@ -947,7 +974,10 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-Test.md</maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>TestType</command:name>
@@ -1021,7 +1051,10 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-TestType.md</maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>Version</command:name>
@@ -1083,7 +1116,10 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-Version.md</maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>WatchmenOptions</command:name>
@@ -1143,7 +1179,10 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-WatchmenOptions.md</maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>WatchmenTest</command:name>
@@ -1221,7 +1260,10 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks></command:relatedLinks>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-WatchmenTest.md</maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>Invoke-WatchmenTest</command:name>
@@ -1412,7 +1454,10 @@ $tests | Invoke-WatchmenTest -Verbose</dev:code>
 </dev:remarks>
 </command:example>
 </command:examples>
-<command:relatedLinks><maml:navigationLink><maml:linkText>Get-WatchmenTest</maml:linkText>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Invoke-WatchmenTest.md</maml:uri>
+</maml:navigationLink>
+<maml:navigationLink><maml:linkText>Get-WatchmenTest</maml:linkText>
 <maml:uri></maml:uri>
 </maml:navigationLink>
 </command:relatedLinks>
