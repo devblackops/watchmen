@@ -8,12 +8,11 @@ Foreach($import in @($Public + $Private)) {
 
 Initialize-Watchmen
 
-# The allowed commands within the scope of 'OvfSetup', 'OvfTest', and 'Notifies'
+# The allowed commands within the scope of 'WatchmenOptions', 'WatchmenTest', and 'Notifies'
 # If the commands are called outside of their respective scopes and error will be thrown
 $script:CommandFences = @{
     WatchmenOptions = @(
-        'Notifies',
-        'Rorschach'
+        'Notifies'
     )
     WatchmenTest = @(
         'FromSource',
