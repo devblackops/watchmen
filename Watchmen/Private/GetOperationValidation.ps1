@@ -187,8 +187,10 @@ function GetOperationValidation {
                             Write-Debug -Message "`n$($parameters.Keys | Out-String)"
                         }
 
-                        $testName = Get-TestFromScript -scriptPath $file.FullName
-                        New-OperationValidationInfo -FilePath $file.Fullname -File $file.Name -Type $dir -Name $testName -ModuleName $Module -Parameters $parameters
+                        $testNames = @(Get-TestFromScript -scriptPath $file.FullName)
+                        foreach ($testName in $testNames) {
+                            New-OperationValidationInfo -FilePath $file.Fullname -File $file.Name -Type $dir -Name $testName -ModuleName $Module -Parameters $parameters
+                        }                        
                     }
                 }
             }
