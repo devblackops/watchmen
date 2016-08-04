@@ -26,7 +26,7 @@ WatchmenTest 'MyAppOVF' {
 }
 ```
 
-Teslls Watchmen to only execute 'Simple' tests within the 'MyAppOVF' module.
+Tells Watchmen to only execute 'Simple' tests within the 'MyAppOVF' module.
 
 ### Example 2
 ```
@@ -35,7 +35,7 @@ WatchmenTest 'MyAppOVF' {
 }
 ```
 
-Teslls Watchmen to only execute 'Comprehensive' tests within the 'MyAppOVF' module.
+Tells Watchmen to only execute 'Comprehensive' tests within the 'MyAppOVF' module.
 
 ## PARAMETERS
 

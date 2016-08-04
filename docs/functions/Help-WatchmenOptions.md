@@ -6,7 +6,8 @@ schema: 2.0.0
 
 # WatchmenOptions
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Specifies a global set of options that subsequent Watchmen tests will inherit from.
+
 ## SYNTAX
 
 ```
@@ -14,19 +15,50 @@ WatchmenOptions [[-Script] <ScriptBlock>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Specifies a global set of options that subsequent Watchmen tests will inherit from. Specifing notifiers within the WatchmenOptions block allows
+all subsequent Watchmen tests to use those notifies in addition to any defined directly on the Watchmen test.
+
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+WatchmenOptions {
+    notifies {
+        email @{
+            fromAddress = 'watchmen@mydomain.tld'
+            smtpServer = 'smtp.mydomain.tld'
+            port = 25
+            subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
+            to = 'admin@mydomain.tld'            
+        }
+        eventlog @{
+            eventid = '1'
+            eventtype = 'error'
+        }
+        logfile '//fileserver01.mydomain.tld/monitoringshare/#{computername}.log'
+        powershell {
+            Write-Host "Something bad happended! $args[0]"
+        }
+        powershell '\notifier.ps1'        
+        slack @{
+            Token = 'webhookurl'
+            Channel = '#Watchmen'
+            AuthorName = $env:COMPUTERNAME
+            PreText = 'Everything is on :fire:'
+            IconEmoji = ':fire:'
+        }
+        syslog 'syslog.mydomain.tld'
+    }
+}
 ```
 
-{{ Add example description here }}
+This defines a set of notifiers that will be executed upon any failing Watching tests. All Watchmen tests will execute notifiers specified in
+WatchmenOptions in addition to any specified directly on the Watchmen test.
+
 ## PARAMETERS
 
 ### -Script
-{{Fill Script Description}}
+ScriptBlock containing a single command 'Notifies' with the desired notifier commands to execute.
 
 ```yaml
 Type: ScriptBlock

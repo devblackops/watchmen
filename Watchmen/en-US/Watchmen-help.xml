@@ -1038,7 +1038,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <dev:code>WatchmenTest 'MyAppOVF' {
     TestType 'Simple'
 }</dev:code>
-<dev:remarks><maml:para>Teslls Watchmen to only execute 'Simple' tests within the 'MyAppOVF' module.
+<dev:remarks><maml:para>Tells Watchmen to only execute 'Simple' tests within the 'MyAppOVF' module.
 </maml:para>
 </dev:remarks>
 </command:example>
@@ -1046,7 +1046,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <dev:code>WatchmenTest 'MyAppOVF' {
     TestType 'Comprehensive'
 }</dev:code>
-<dev:remarks><maml:para>Teslls Watchmen to only execute 'Comprehensive' tests within the 'MyAppOVF' module.
+<dev:remarks><maml:para>Tells Watchmen to only execute 'Comprehensive' tests within the 'MyAppOVF' module.
 </maml:para>
 </dev:remarks>
 </command:example>
@@ -1125,16 +1125,16 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:details><command:name>WatchmenOptions</command:name>
 <command:verb>WatchmenOptions</command:verb>
 <command:noun></command:noun>
-<maml:description><maml:para>{{Fill in the Synopsis}}
+<maml:description><maml:para>Specifies a global set of options that subsequent Watchmen tests will inherit from.
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>{{Fill in the Description}}
+<maml:description><maml:para>Specifies a global set of options that subsequent Watchmen tests will inherit from. Specifing notifiers within the WatchmenOptions block allows all subsequent Watchmen tests to use those notifies in addition to any defined directly on the Watchmen test.
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>WatchmenOptions</maml:name>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Script</maml:name>
-<maml:Description><maml:para>{{Fill Script Description}}
+<maml:Description><maml:para>ScriptBlock containing a single command 'Notifies' with the desired notifier commands to execute.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">ScriptBlock</command:parameterValue>
@@ -1145,7 +1145,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Script</maml:name>
-<maml:Description><maml:para>{{Fill Script Description}}
+<maml:Description><maml:para>ScriptBlock containing a single command 'Notifies' with the desired notifier commands to execute.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">ScriptBlock</command:parameterValue>
@@ -1173,8 +1173,35 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:alert>
 </maml:alertSet>
 <command:examples><command:example><maml:title>Example 1</maml:title>
-<dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
-<dev:remarks><maml:para>{{ Add example description here }}
+<dev:code>WatchmenOptions {
+    notifies {
+        email @{
+            fromAddress = 'watchmen@mydomain.tld'
+            smtpServer = 'smtp.mydomain.tld'
+            port = 25
+            subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
+            to = 'admin@mydomain.tld'            
+        }
+        eventlog @{
+            eventid = '1'
+            eventtype = 'error'
+        }
+        logfile '//fileserver01.mydomain.tld/monitoringshare/#{computername}.log'
+        powershell {
+            Write-Host "Something bad happended! $args[0]"
+        }
+        powershell '\notifier.ps1'        
+        slack @{
+            Token = 'webhookurl'
+            Channel = '#Watchmen'
+            AuthorName = $env:COMPUTERNAME
+            PreText = 'Everything is on :fire:'
+            IconEmoji = ':fire:'
+        }
+        syslog 'syslog.mydomain.tld'
+    }
+}</dev:code>
+<dev:remarks><maml:para>This defines a set of notifiers that will be executed upon any failing Watching tests. All Watchmen tests will execute notifiers specified in WatchmenOptions in addition to any specified directly on the Watchmen test.
 </maml:para>
 </dev:remarks>
 </command:example>
@@ -1188,16 +1215,16 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:details><command:name>WatchmenTest</command:name>
 <command:verb>WatchmenTest</command:verb>
 <command:noun></command:noun>
-<maml:description><maml:para>{{Fill in the Synopsis}}
+<maml:description><maml:para>Specifies an OVF module to execute Pester tests from.
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>{{Fill in the Description}}
+<maml:description><maml:para>Specifies an OVF module to execute Pester tests from. Optional properties are specified to execute a specific OVF module version, test name or type, override parameters from Pester tests, and to execute notifiers upon any failing tests.
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>WatchmenTest</maml:name>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Name</maml:name>
-<maml:Description><maml:para>{{Fill Name Description}}
+<maml:Description><maml:para>OVF module name to execute Pester tests from
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -1206,7 +1233,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Script</maml:name>
-<maml:Description><maml:para>{{Fill Script Description}}
+<maml:Description><maml:para>Scriptblock containing commands to define the specific OVF module and/or test(s) to execute and under what conditions.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">ScriptBlock</command:parameterValue>
@@ -1217,7 +1244,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Name</maml:name>
-<maml:Description><maml:para>{{Fill Name Description}}
+<maml:Description><maml:para>OVF module name to execute Pester tests from
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -1226,7 +1253,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Script</maml:name>
-<maml:Description><maml:para>{{Fill Script Description}}
+<maml:Description><maml:para>Scriptblock containing commands to define the specific OVF module and/or test(s) to execute and under what conditions.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">ScriptBlock</command:parameterValue>
@@ -1254,8 +1281,19 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:alert>
 </maml:alertSet>
 <command:examples><command:example><maml:title>Example 1</maml:title>
-<dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
-<dev:remarks><maml:para>{{ Add example description here }}
+<dev:code>WatchmenTest 'MyAppOVF' {
+    version 1.0.0 
+    type 'Simple'
+    test 'Storage.Capacity'
+    fromSource 'PSGallery'
+    parameters {
+        FreeSystemDriveThreshold = 40000
+    }
+    notifies {
+        logfile '//fileserver01.mydomain.tld/monitoringshare/#{computername}.log'
+    }
+}</dev:code>
+<dev:remarks><maml:para>Execute Pester tests from version 1.0.0 of module 'MyAppOVF.' Also only run the 'Simple' test type named 'Storage.Capacity.' If the specified module and/or version is not installed on the system, then download the module from the 'PSGallery' PowerShell repository. When the test is executed, insert the parameter 'FreeSystemDriveThreshold' into the Pester test to override any default value for that parameter. Upon a failing test, execute the 'Logfile' notifier and write an entry to the log file located on a file share.
 </maml:para>
 </dev:remarks>
 </command:example>

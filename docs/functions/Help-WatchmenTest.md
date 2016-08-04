@@ -6,7 +6,8 @@ schema: 2.0.0
 
 # WatchmenTest
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Specifies an OVF module to execute Pester tests from.
+
 ## SYNTAX
 
 ### NoName (Default)
@@ -20,19 +21,36 @@ WatchmenTest [[-Name] <String>] [-Script] <ScriptBlock> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Specifies an OVF module to execute Pester tests from. Optional properties are specified to execute a specific OVF module version, test name or type,
+override parameters from Pester tests, and to execute notifiers upon any failing tests.
+
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+WatchmenTest 'MyAppOVF' {
+    version 1.0.0 
+    type 'Simple'
+    test 'Storage.Capacity'
+    fromSource 'PSGallery'
+    parameters {
+        FreeSystemDriveThreshold = 40000
+    }
+    notifies {
+        logfile '//fileserver01.mydomain.tld/monitoringshare/#{computername}.log'
+    }
+}
 ```
 
-{{ Add example description here }}
+Execute Pester tests from version 1.0.0 of module 'MyAppOVF.' Also only run the 'Simple' test type named 'Storage.Capacity.' If the specified
+module and/or version is not installed on the system, then download the module from the 'PSGallery' PowerShell repository. When the test is executed,
+insert the parameter 'FreeSystemDriveThreshold' into the Pester test to override any default value for that parameter. Upon a failing test, execute
+the 'Logfile' notifier and write an entry to the log file located on a file share.
+
 ## PARAMETERS
 
 ### -Name
-{{Fill Name Description}}
+OVF module name to execute Pester tests from
 
 ```yaml
 Type: String
@@ -47,7 +65,7 @@ Accept wildcard characters: False
 ```
 
 ### -Script
-{{Fill Script Description}}
+Scriptblock containing commands to define the specific OVF module and/or test(s) to execute and under what conditions.
 
 ```yaml
 Type: ScriptBlock
