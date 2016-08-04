@@ -52,21 +52,25 @@ Duration: $($results.RawResult.Time.ToString())
             @{title = 'Duration'; value = $results.RawResult.Time.ToString(); short = $true }
         )
 
+        if ($null -ne $Notifier.PreText -and $Notifier.PreText -ne [string]::Empty) {
+            $pretext = $Notifier.PreText
+        } else {
+            $pretext = 'Failed Watchmen Test'
+        }
+
         $params = @{
-            Color = ([System.Drawing.Color]::Red)
-            Title = "$($Notifer.IconEmoji) $($env:COMPUTERNAME) - $($results.Result.ToUpper()) - $($results.RawResult.Name)"
-            #Title = "Test details:"
-            TitleLink = $Notifier.TitleLink
+            Color = [System.Drawing.Color]::Red
+            Title = "$($Notifier.IconEmoji) $($results.Result.ToUpper()) - $($results.RawResult.Name)"
             Fields = $fields
-            PreText = "Failed Watchmen Test"
+            PreText = $pretext
             AuthorName = $Notifier.AuthorName
             Fallback = $text
         }
         $att = New-SlackMessageAttachment @params
         if ($Notifier.IconEmoji -ne [string]::Empty) {
-            $msg = $att | New-SlackMessage -Channel $Notifer.Channel -IconEmoji $Notifier.IconEmoji
+            $msg = $att | New-SlackMessage -Channel $Notifier.Channel -IconEmoji $Notifier.IconEmoji
         } else {
-            $msg = $att | New-SlackMessage -Channel $Notifer.Channel -IconUrl $Notifier.IconUrl
+            $msg = $att | New-SlackMessage -Channel $Notifier.Channel -IconUrl $Notifier.IconUrl
         }
         $msg | Send-SlackMessage -Uri $Notifier.Token | Out-Null
     }

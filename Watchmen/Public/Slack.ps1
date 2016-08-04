@@ -14,11 +14,12 @@ function Slack {
         $e = [pscustomobject]@{
             PSTypeName = 'Watchmen.Notifier.Slack'
             Type = 'Slack'
-            Name = $Options.Title
-            Title = $Options.Title
-            TitleLink = $Options.TitleLink
-            Author = $Options.Author
-            AuthorIcon = $Options.AuthorIcon
+            #Name = $Options.Title
+            #Title = $Options.Title
+            #TitleLink = $Options.TitleLink
+            AuthorName = $Options.AuthorName
+            #AuthorIcon = $Options.AuthorIcon
+            PreText = $Options.PreText
             Token = $Options.Token
             Channel = $Options.Channel
             IconUrl =$Options.IconUrl
