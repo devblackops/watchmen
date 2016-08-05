@@ -1147,7 +1147,7 @@ ShortName                   - File name of Pester test
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>Specifies a global set of options that subsequent Watchmen tests will inherit from. Specifing notifiers within the WatchmenOptions block allows all subsequent Watchmen tests to use those notifies in addition to any defined directly on the Watchmen test.
+<maml:description><maml:para>Specifies a global set of options that subsequent Watchmen tests will inherit from. Specifing notifiers within the WatchmenOptions block allows all subsequent Watchmen tests to use those notifiers in addition to any defined directly on the Watchmen test.
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>WatchmenOptions</maml:name>

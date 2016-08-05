@@ -16,7 +16,7 @@ WatchmenOptions [[-Script] <ScriptBlock>] [<CommonParameters>]
 
 ## DESCRIPTION
 Specifies a global set of options that subsequent Watchmen tests will inherit from. Specifing notifiers within the WatchmenOptions block allows
-all subsequent Watchmen tests to use those notifies in addition to any defined directly on the Watchmen test.
+all subsequent Watchmen tests to use those notifiers in addition to any defined directly on the Watchmen test.
 
 ## EXAMPLES
 
