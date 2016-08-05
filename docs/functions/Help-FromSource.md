@@ -6,7 +6,7 @@ schema: 2.0.0
 
 # FromSource
 ## SYNOPSIS
-Specifies the PowerShell repository source to retreive module from.
+Specifies the PowerShell repository source to retrieve module from.
 ## SYNTAX
 
 ```
@@ -14,7 +14,7 @@ FromSource [-Source] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Specifies the PowerShell repository source to retreive module from. This repository must already be registered on the system.
+Specifies the PowerShell repository source to retrieve module from. This repository must already be registered on the system.
 ## EXAMPLES
 
 ### Example 1

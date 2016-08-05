@@ -321,11 +321,11 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:details><command:name>FromSource</command:name>
 <command:verb>FromSource</command:verb>
 <command:noun></command:noun>
-<maml:description><maml:para>Specifies the PowerShell repository source to retreive module from.
+<maml:description><maml:para>Specifies the PowerShell repository source to retrieve module from.
 </maml:para>
 </maml:description>
 </command:details>
-<maml:description><maml:para>Specifies the PowerShell repository source to retreive module from. This repository must already be registered on the system.
+<maml:description><maml:para>Specifies the PowerShell repository source to retrieve module from. This repository must already be registered on the system.
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>FromSource</maml:name>
