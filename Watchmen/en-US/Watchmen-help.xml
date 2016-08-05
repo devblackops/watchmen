@@ -765,7 +765,7 @@ ShortName                   - File name of Pester test
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>Slack</maml:name>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Options</maml:name>
-<maml:Description><maml:para>Hash table of required parameters to send a Slack message usin the PSSlack module.
+<maml:Description><maml:para>Hash table of required parameters to send a Slack message using the PSSlack module.
 </maml:para>
 <maml:para>[string]Token       - REQUIRED - Webhook URL to send message to
 [string]Channel     - REQUIRED - Message for email
@@ -784,7 +784,7 @@ ShortName                   - File name of Pester test
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Options</maml:name>
-<maml:Description><maml:para>Hash table of required parameters to send a Slack message usin the PSSlack module.
+<maml:Description><maml:para>Hash table of required parameters to send a Slack message using the PSSlack module.
 </maml:para>
 <maml:para>[string]Token       - REQUIRED - Webhook URL to send message to
 [string]Channel     - REQUIRED - Message for email

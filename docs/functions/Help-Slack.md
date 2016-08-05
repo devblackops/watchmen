@@ -58,7 +58,7 @@ the PSSlack module.
 ## PARAMETERS
 
 ### -Options
-Hash table of required parameters to send a Slack message usin the PSSlack module.
+Hash table of required parameters to send a Slack message using the PSSlack module.
 
 [string]Token       - REQUIRED - Webhook URL to send message to  
 [string]Channel     - REQUIRED - Message for email  
