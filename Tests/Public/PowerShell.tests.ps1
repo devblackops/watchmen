@@ -1,7 +1,7 @@
 
-$ProjectRoot = $ENV:BHProjectPath
-
 InModuleScope Watchmen {
+
+    $projectRoot = $ENV:BHProjectPath
 
     describe 'PowerShell' {
 
@@ -16,7 +16,7 @@ InModuleScope Watchmen {
         }
 
         it 'Returns a [Watchmen.Notifier.PowerShell] object using the Script parameter set' {
-            $o = PowerShell -Path "notify.ps1"
+            $o = PowerShell -Path "$projectRoot\TestArtifacts\notify.ps1"
             $o.PSObject.TypeNames -contains 'Watchmen.Notifier.PowerShell' | should be $true
         }
 
