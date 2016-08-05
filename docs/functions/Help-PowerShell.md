@@ -33,24 +33,24 @@ this object will be available as $args[0]. When executing a script file the obje
 
 The following properties are available in the OVF test result object:
 
-Error                       - StackTrace message of failing Pester test
-FileName                    - Path to Pester test script withing the OVF module
-Module                      - PowerShell module of the OVF test
-Name                        - Name of the OVF test executed
-RawResult
-    Context                 - Name of context block container test
-    Describe                - Name of describe block containing test
-    ErrorRecord             - Error record of failing test
-    FailureMessage          - Pester failure message
-    Name                    - Name of 'It' test
-    ParameterizedSuiteName  - Test case name
-    Parameters              - Parameters used in test case
-    Passed                  - Passor fail status of test. Values are [True] or [False]
-    Result                  - Pass or fail status of test. Values are [Passed] or [Failed]
-    StackTrace              - StackTrace message of failing Pester test
-    Time                    - Time Pester test took to execute
-Result                      - Pass or fail status of test. Values are [Passed] or [Failed]
-ShortName                   - File name of Pester test
+Error                       - StackTrace message of failing Pester test  
+FileName                    - Path to Pester test script withing the OVF module  
+Module                      - PowerShell module of the OVF test  
+Name                        - Name of the OVF test executed  
+RawResult  
+    Context                 - Name of context block container test  
+    Describe                - Name of describe block containing test  
+    ErrorRecord             - Error record of failing test  
+    FailureMessage          - Pester failure message  
+    Name                    - Name of 'It' test  
+    ParameterizedSuiteName  - Test case name  
+    Parameters              - Parameters used in test case  
+    Passed                  - Passor fail status of test. Values are [True] or [False]  
+    Result                  - Pass or fail status of test. Values are [Passed] or [Failed]  
+    StackTrace              - StackTrace message of failing Pester test  
+    Time                    - Time Pester test took to execute  
+Result                      - Pass or fail status of test. Values are [Passed] or [Failed]  
+ShortName                   - File name of Pester test  
 
 
 ## EXAMPLES
