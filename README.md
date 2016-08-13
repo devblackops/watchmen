@@ -1,7 +1,9 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/vci22inhjp3wn13n?svg=true)](https://ci.appveyor.com/project/devblackops/watchmen)
 [![Documentation Status](https://readthedocs.org/projects/watchmen/badge/?version=latest)](http://watchmen.readthedocs.io/en/latest/?badge=latest)
 
-# Watchmen
+<p align="center">
+  <img src="https://github.com/devblackops/watchmen/raw/master/Media/logo.png" alt="Watchmen logo"/>
+</p>
 
 Infrastructure test runner and notification system using
 [Operation Validation Framework (OVF)](https://github.com/PowerShell/Operation-Validation-Framework) PowerShell modules and Pester.
