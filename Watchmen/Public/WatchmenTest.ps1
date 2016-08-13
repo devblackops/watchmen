@@ -17,7 +17,6 @@ function WatchmenTest {
     }
 
     process {
-
         $global:Watchmen.ThisTest = @{
             PSTypeName = 'Watchmen.Test'
             ModuleName = $Name
@@ -54,10 +53,6 @@ function WatchmenTest {
     }
 
     end {
-        # Increment TestSet ID so our tests will be placed in a new set
-        #$global:Watchmen.CurrentTestSetId += 1
-        #Write-Verbose -Message "Next Watchmen Test set ID is $($global:Watchmen.CurrentTestSetId)"
-
         # Mark that we have exited the 'WatchmenTest' block
         $global:Watchmen.InTest = $false
 
