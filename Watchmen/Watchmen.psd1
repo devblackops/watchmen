@@ -12,7 +12,7 @@
 RootModule = 'Watchmen.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.2.0'
+ModuleVersion = '1.0.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -108,7 +108,7 @@ PrivateData = @{
         ProjectUri = 'https://github.com/devblackops/watchmen'
 
         # A URL to an icon representing this module.
-        # IconUri = ''
+        IconUri = 'https://raw.githubusercontent.com/devblackops/watchmen/master/Media/logo.png'
 
         # ReleaseNotes of this module
         # ReleaseNotes = ''
