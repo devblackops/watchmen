@@ -26,6 +26,8 @@ function Invoke-WatchmenTest {
         $tests = @()
 
         $finalResults = @()
+
+        Write-Verbose -Message '[DisableNotifiers] set. No notifiers will be executed.'
     }
 
     process {
@@ -49,7 +51,7 @@ function Invoke-WatchmenTest {
                 # Optionally filter the tests by name
                 if ($test.Test) {
                     Write-Debug "Filtering tests for [$($Test.Test)]"
-                    $filtered = $ovfTestInfo | where Name -like $test.Test
+                    $filtered = $ovfTestInfo | Where-Object Name -like $test.Test
                 }
 
                 # Execute the OVF test
@@ -64,18 +66,11 @@ function Invoke-WatchmenTest {
                     }
                 }
 
-                #if (@($testResults | Where Result -eq 'Failed').Count -gt 0) {
-                #    foreach ($failedTest in $testResults | Where Result -eq 'Failed') {
-                #        Write-Warning -Message "Failed: $($failedTest.Name)" 
-                #    }
-                #}
-
-                # Call notifiers on any failures unless told not to
-                if (-not $PSBoundParameters.ContainsKey('DisableNotifiers')) {
-                    $failedTests = @($testResults | ? {'Failed' -in $_.Result})
-                    if ($failedTests.Count -gt 0) {
-                        Invoke-WatchmenNotifier -TestResults $failedTests -WatchmenTest $test
-                    }
+                # Call notifiers on unless told not to
+                if (-not $PSBoundParameters.ContainsKey('DisableNotifiers')) {                    
+                    Invoke-WatchmenNotifier -TestResults $testResults -WatchmenTest $test                
+                } else {
+                    Write-Verbose ''
                 }
 
                 # TODO
@@ -89,8 +84,8 @@ function Invoke-WatchmenTest {
     }
 
     end {
-        $pass = @($finalResults | Where Result -eq 'Passed').Count
-        $fail = @($finalResults | Where Result -eq 'Failed').Count
+        $pass = @($finalResults | Where-Object Result -eq 'Passed').Count
+        $fail = @($finalResults | Where-Object Result -eq 'Failed').Count
         Write-Verbose -Message "Test results: Passed [$Pass] -- Failed [$fail]"
         Write-Debug -Message "Exiting: $($PSCmdlet.MyInvocation.MyCommand.Name)"
     }

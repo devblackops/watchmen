@@ -2,7 +2,10 @@ function Slack {
     [cmdletbinding()]
     param(
         [parameter(Mandatory, Position = 0)]
-        [hashtable[]]$Options
+        [hashtable[]]$Options,
+
+        [ValidateSet('Always', 'OnSuccess', 'OnFailure')]
+        [string]$When = $global:Watchmen.Options.NotifierConditions.WatchmenTest
     )
 
     begin {
@@ -25,6 +28,7 @@ function Slack {
             IconUrl =$Options.IconUrl
             IconEmoji = $Options.IconEmoji
             Enabled = $true
+            NotifierCondition = $When
         }
 
         return $e

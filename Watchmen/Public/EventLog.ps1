@@ -2,7 +2,10 @@ function EventLog {
     [cmdletbinding()]
     param(
         [parameter(Mandatory, Position = 0)]
-        [hashtable[]]$Options
+        [hashtable[]]$Options,
+
+        [ValidateSet('Always', 'OnSuccess', 'OnFailure')]
+        [string]$When = $global:Watchmen.Options.NotifierConditions.WatchmenTest
     )
 
     begin {
@@ -18,6 +21,7 @@ function EventLog {
             EventType = $Options.EventType
             EventId = $Options.EventId
             Enabled = $true
+            NotifierCondition = $When
         }
 
         return $e

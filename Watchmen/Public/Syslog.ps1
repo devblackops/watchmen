@@ -2,7 +2,10 @@ function Syslog {
     [cmdletbinding()]
     param(
         [parameter(Mandatory, Position = 0)]
-        [string[]]$Endpoints
+        [string[]]$Endpoints,
+
+        [ValidateSet('Always', 'OnSuccess', 'OnFailure')]
+        [string]$When = $global:Watchmen.Options.NotifierConditions.WatchmenTest
     )
 
     begin {
@@ -16,6 +19,7 @@ function Syslog {
             Type = 'Syslog' 
             Endpoints = $Endpoints
             Enabled = $true
+            NotifierCondition = $When
         }
 
         return $e

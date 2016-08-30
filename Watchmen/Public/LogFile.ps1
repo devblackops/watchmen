@@ -2,7 +2,10 @@ function LogFile {
     [cmdletbinding()]
     param(
         [parameter(Mandatory, Position = 0)]
-        [string[]]$Path
+        [string[]]$Path,
+
+        [ValidateSet('Always', 'OnSuccess', 'OnFailure')]
+        [string]$When = $global:Watchmen.Options.NotifierConditions.WatchmenTest
     )
 
     begin {
@@ -17,6 +20,7 @@ function LogFile {
             Name = $Path
             Path = $Path
             Enabled = $true
+            NotifierCondition = $When
         }
 
         return $e

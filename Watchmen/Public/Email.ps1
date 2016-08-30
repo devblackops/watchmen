@@ -2,7 +2,10 @@ function Email {
     [cmdletbinding()]
     param(
         [parameter(Mandatory, Position = 0)]
-        [hashtable]$Options
+        [hashtable]$Options,
+
+        [ValidateSet('Always', 'OnSuccess', 'OnFailure')]
+        [string]$When = $global:Watchmen.Options.NotifierConditions.WatchmenTest
     )
 
     begin {
@@ -11,6 +14,8 @@ function Email {
     }
 
     process {
+        $global:Watchmen.ThisTest.Notifiers.EmailCondition = $When
+
         $e = [pscustomobject]@{
             PSTypeName = 'Watchmen.Notifier.Email'
             Type = 'Email'
