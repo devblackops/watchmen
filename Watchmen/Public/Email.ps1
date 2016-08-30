@@ -14,8 +14,6 @@ function Email {
     }
 
     process {
-        $global:Watchmen.ThisTest.Notifiers.EmailCondition = $When
-
         $e = [pscustomobject]@{
             PSTypeName = 'Watchmen.Notifier.Email'
             Type = 'Email'
@@ -29,6 +27,7 @@ function Email {
             UseSSL = $Options.UseSSL
             To = $Options.To
             Enabled = $true
+            NotifierCondition = $When
         }
 
         return $e
