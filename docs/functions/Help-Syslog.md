@@ -58,12 +58,13 @@ Accept wildcard characters: False
 ```
 
 ### -When
-{{Fill When Description}}
+Specifies when notifier should be executed.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: 
+Accepted values: Always, OnSuccess, OnFailure
 
 Required: False
 Position: Named

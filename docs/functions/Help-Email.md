@@ -86,7 +86,8 @@ Hashtable of values needed to send a SMTP email.
 ```yaml
 Type: Hashtable
 Parameter Sets: (All)
-Aliases: 
+Aliases:
+Accepted values: Always, OnSuccess, OnFailure 
 
 Required: True
 Position: 0
@@ -96,12 +97,13 @@ Accept wildcard characters: False
 ```
 
 ### -When
-{{Fill When Description}}
+Specifies when notifier should be executed.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: 
+Accepted values: Always, OnSuccess, OnFailure
 
 Required: False
 Position: Named

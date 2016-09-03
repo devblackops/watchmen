@@ -141,15 +141,23 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 
 </maml:para>
 </maml:Description>
+<command:parameterValueGroup><command:parameterValue required="false" variableLength="false">Always</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnSuccess</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnFailure</command:parameterValue>
+</command:parameterValueGroup>
 <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
 <dev:type><maml:name>Hashtable</maml:name>
 <maml:uri /></dev:type>
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
-<maml:Description><maml:para>{{Fill When Description}}
+<maml:Description><maml:para>Specifies when notifier should be executed.
 </maml:para>
 </maml:Description>
+<command:parameterValueGroup><command:parameterValue required="false" variableLength="false">Always</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnSuccess</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnFailure</command:parameterValue>
+</command:parameterValueGroup>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
@@ -177,7 +185,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
-<maml:Description><maml:para>{{Fill When Description}}
+<maml:Description><maml:para>Specifies when notifier should be executed.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -270,9 +278,13 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
-<maml:Description><maml:para>{{Fill When Description}}
+<maml:Description><maml:para>Specifies when notifier should be executed.
 </maml:para>
 </maml:Description>
+<command:parameterValueGroup><command:parameterValue required="false" variableLength="false">Always</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnSuccess</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnFailure</command:parameterValue>
+</command:parameterValueGroup>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
@@ -294,7 +306,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
-<maml:Description><maml:para>{{Fill When Description}}
+<maml:Description><maml:para>Specifies when notifier should be executed.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -450,9 +462,13 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
-<maml:Description><maml:para>{{Fill When Description}}
+<maml:Description><maml:para>Specifies when notifier should be executed.
 </maml:para>
 </maml:Description>
+<command:parameterValueGroup><command:parameterValue required="false" variableLength="false">Always</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnSuccess</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnFailure</command:parameterValue>
+</command:parameterValueGroup>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
@@ -470,7 +486,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
-<maml:Description><maml:para>{{Fill When Description}}
+<maml:Description><maml:para>Specifies when notifier should be executed.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -749,9 +765,13 @@ ShortName                   - File name of Pester test
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
-<maml:Description><maml:para>{{Fill When Description}}
+<maml:Description><maml:para>Specifies when notifier should be executed.
 </maml:para>
 </maml:Description>
+<command:parameterValueGroup><command:parameterValue required="false" variableLength="false">Always</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnSuccess</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnFailure</command:parameterValue>
+</command:parameterValueGroup>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
@@ -769,9 +789,13 @@ ShortName                   - File name of Pester test
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
-<maml:Description><maml:para>{{Fill When Description}}
+<maml:Description><maml:para>Specifies when notifier should be executed.
 </maml:para>
 </maml:Description>
+<command:parameterValueGroup><command:parameterValue required="false" variableLength="false">Always</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnSuccess</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnFailure</command:parameterValue>
+</command:parameterValueGroup>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
@@ -798,7 +822,7 @@ ShortName                   - File name of Pester test
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
-<maml:Description><maml:para>{{Fill When Description}}
+<maml:Description><maml:para>Specifies when notifier should be executed.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -881,9 +905,13 @@ ShortName                   - File name of Pester test
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
-<maml:Description><maml:para>{{Fill When Description}}
+<maml:Description><maml:para>Specifies when notifier should be executed.
 </maml:para>
 </maml:Description>
+<command:parameterValueGroup><command:parameterValue required="false" variableLength="false">Always</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnSuccess</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnFailure</command:parameterValue>
+</command:parameterValueGroup>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
@@ -909,7 +937,7 @@ ShortName                   - File name of Pester test
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
-<maml:Description><maml:para>{{Fill When Description}}
+<maml:Description><maml:para>Specifies when notifier should be executed.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -994,9 +1022,13 @@ ShortName                   - File name of Pester test
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
-<maml:Description><maml:para>{{Fill When Description}}
+<maml:Description><maml:para>Specifies when notifier should be executed.
 </maml:para>
 </maml:Description>
+<command:parameterValueGroup><command:parameterValue required="false" variableLength="false">Always</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnSuccess</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnFailure</command:parameterValue>
+</command:parameterValueGroup>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
@@ -1014,7 +1046,7 @@ ShortName                   - File name of Pester test
 <dev:defaultValue></dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
-<maml:Description><maml:para>{{Fill When Description}}
+<maml:Description><maml:para>Specifies when notifier should be executed.
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
