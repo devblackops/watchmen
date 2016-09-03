@@ -1,6 +1,6 @@
 ﻿---
 external help file: Watchmen-help.xml
-online version: https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-Parameters.md 
+online version: https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-Parameters.md
 schema: 2.0.0
 ---
 
@@ -28,7 +28,6 @@ WatchmenTest 'MyAppOVF' {
 ```
 
 Defines a Watchmen test to execute the OVF module 'MyAppOVF' and pass the parameter 'FreeSpaceThreshold' to the Pester test inside the OVF module.
-
 ## PARAMETERS
 
 ### -Parameters

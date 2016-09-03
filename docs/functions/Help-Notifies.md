@@ -10,7 +10,7 @@ Specifies one or more notifiers to be executed upon any failing tests.
 ## SYNTAX
 
 ```
-Notifies [-Script] <ScriptBlock> [<CommonParameters>]
+Notifies [-Script] <ScriptBlock> [-When <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -48,7 +48,6 @@ WatchmenOptions {
 ```
 
 Specifies various notifiers to be executed upon any failing tests.
-
 ## PARAMETERS
 
 ### -Script
@@ -61,6 +60,21 @@ Aliases:
 
 Required: True
 Position: 0
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -When
+{{Fill When Description}}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
 Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False

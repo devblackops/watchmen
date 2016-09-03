@@ -7,7 +7,6 @@ schema: 2.0.0
 # TestType
 ## SYNOPSIS
 Specifies the OVF test type to execute. This may be 'Simple', 'Comprehensive', or 'All'.
-
 ## SYNTAX
 
 ```
@@ -16,7 +15,6 @@ TestType [-Type] <String> [<CommonParameters>]
 
 ## DESCRIPTION
 Specifies the OVF test type to execute. This may be 'Simple', 'Comprehensive', or 'All'. 'All' is the default if not specified.
-
 ## EXAMPLES
 
 ### Example 1
@@ -27,7 +25,6 @@ WatchmenTest 'MyAppOVF' {
 ```
 
 Tells Watchmen to only execute 'Simple' tests within the 'MyAppOVF' module.
-
 ### Example 2
 ```
 WatchmenTest 'MyAppOVF' {
@@ -36,7 +33,6 @@ WatchmenTest 'MyAppOVF' {
 ```
 
 Tells Watchmen to only execute 'Comprehensive' tests within the 'MyAppOVF' module.
-
 ## PARAMETERS
 
 ### -Type

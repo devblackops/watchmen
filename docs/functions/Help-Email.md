@@ -10,7 +10,7 @@ Specifies an Email notifier.
 ## SYNTAX
 
 ```
-Email [-Options] <Hashtable> [<CommonParameters>]
+Email [-Options] <Hashtable> [-When <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -90,6 +90,21 @@ Aliases:
 
 Required: True
 Position: 0
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -When
+{{Fill When Description}}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: Named
 Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False

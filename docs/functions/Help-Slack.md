@@ -7,11 +7,10 @@ schema: 2.0.0
 # Slack
 ## SYNOPSIS
 Specifies an EventLog notifier.
-
 ## SYNTAX
 
 ```
-Slack -Options <Hashtable[]> [<CommonParameters>]
+Slack -Options <Hashtable[]> [-When <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -19,7 +18,6 @@ Specifies an Slack notifier.
 
 This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'Slack' function outside of a
 'Notifies' block will throw an error.
-
 ## EXAMPLES
 
 ### Example 1
@@ -37,9 +35,7 @@ WatchmenOptions {
 
 Adds a Slack notifier to a WatchmenOptions block. The hashtable specified includes all the required parameters to send a Slack message using
 the PSSlack module.
-
 ### Example 2
-
 ```
 WatchmenTest {
     slack @{
@@ -54,7 +50,6 @@ WatchmenTest {
 
 Adds a Slack notifier to a WatchmenTest block. The hashtable specified includes all the required parameters to send a Slack message using
 the PSSlack module.
-
 ## PARAMETERS
 
 ### -Options
@@ -73,6 +68,21 @@ Parameter Sets: (All)
 Aliases: 
 
 Required: True
+Position: Named
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -When
+{{Fill When Description}}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
 Position: Named
 Default value: 
 Accept pipeline input: False

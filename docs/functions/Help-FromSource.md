@@ -25,7 +25,6 @@ WatchmenTest 'MyAppOVF' {
 ```
 
 Tells Watchmen to download and install the 'MyAppOVF' module from the public PowerShell Gallery.
-
 ### Example 2
 ```
 WatchmenTest 'MyOVFModule' {
@@ -34,7 +33,6 @@ WatchmenTest 'MyOVFModule' {
 ```
 
 Tells Watchmen to download and install the 'MyAppOVF' module from a private repository called 'PrivateRepository'.
-
 ## PARAMETERS
 
 ### -Source
