@@ -57,10 +57,10 @@ task GenerateHelp -Depends Init {
 }
 
 task ExportFunctions {
-    $files = Get-ChildItem -Path $sut\Public | Select -ExpandProperty Name
+    $files = Get-ChildItem -Path $sut\Public | Select-Object -ExpandProperty Name
     $functions = @()
-    $files | % {
-        $functions += $_.Split('.')[0]
+    foreach ($file in $files) {
+        $functions += $file.Split('.')[0]
     }
     Update-ModuleManifest -Path $sut\Watchmen.psd1 -FunctionsToExport $functions
 }
