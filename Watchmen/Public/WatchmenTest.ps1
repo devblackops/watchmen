@@ -13,14 +13,14 @@ function WatchmenTest {
         Write-Debug -Message "Entering: $($PSCmdlet.MyInvocation.MyCommand.Name)"
 
         # Mark that we are inside an 'WatchmenTest' block and subsequent commands are allowed
-        $global:Watchmen.InTest = $true
+        $script:Watchmen.InTest = $true
 
         # Set the default value for the notifier conditions to what ever has been set in WatchmenOptions
         # If nothing was specified there, this value will be 'OnFailure'
-        $defaultNotifierCondition = $global:Watchmen.Options.NotifierConditions.WatchmenOptions
-        $global:Watchmen.Options.NotifierConditions.WatchmenTest = $defaultNotifierCondition
+        $defaultNotifierCondition = $script:Watchmen.Options.NotifierConditions.WatchmenOptions
+        $script:Watchmen.Options.NotifierConditions.WatchmenTest = $defaultNotifierCondition
 
-        $global:Watchmen.ThisTest = @{
+        $script:Watchmen.ThisTest = @{
             PSTypeName = 'Watchmen.Test'
             ModuleName = $Name
             parameters = @{}
@@ -45,14 +45,14 @@ function WatchmenTest {
         . $Script
 
         # Add any global notifiers to the test
-        foreach ($key in $global:Watchmen.Options.Notifiers.Keys) {
-            $globalNotifier = $global:Watchmen.Options.Notifiers.($key)
+        foreach ($key in $script:Watchmen.Options.Notifiers.Keys) {
+            $globalNotifier = $script:Watchmen.Options.Notifiers.($key)
             if ($globalNotifier.Count -gt 0) {
-                $global:Watchmen.ThisTest.Notifiers.($key) += $globalNotifier
+                $script:Watchmen.ThisTest.Notifiers.($key) += $globalNotifier
             }
         }
 
-        $t = [pscustomobject]$global:watchmen.ThisTest
+        $t = [pscustomobject]$script:watchmen.ThisTest
         Write-Verbose -Message "Created Watchmen test [$($t.ModuleName)[$($t.Test)]]"
 
         return $t
@@ -60,7 +60,7 @@ function WatchmenTest {
 
     end {
         # Mark that we have exited the 'WatchmenTest' block
-        $global:Watchmen.InTest = $false
+        $script:Watchmen.InTest = $false
 
         Write-Debug -Message "Exiting: $($PSCmdlet.MyInvocation.MyCommand.Name)"
     }

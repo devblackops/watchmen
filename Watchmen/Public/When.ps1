@@ -11,14 +11,14 @@ function When {
     }
 
     process {
-        if ($global:watchmen.InConfig) {
-            $global:watchmen.Options.NotifierConditions.WatchmenOptions = $Condition
-            $global:watchmen.Options.NotifierConditions.WatchmenTest = $Condition
+        if ($script:watchmen.InConfig) {
+            $script:watchmen.Options.NotifierConditions.WatchmenOptions = $Condition
+            $script:watchmen.Options.NotifierConditions.WatchmenTest = $Condition
 
             Write-Verbose "WatchmenOptions default notifier condition set to $Condition"
 
-        } elseIf ($global:watchmen.InTest) {
-            $global:watchmen.Options.NotifierConditions.WatchmenTest = $Condition
+        } elseIf ($script:watchmen.InTest) {
+            $script:watchmen.Options.NotifierConditions.WatchmenTest = $Condition
 
             Write-Verbose "WatchmenTest default notifier condition set to $Condition"
         }        

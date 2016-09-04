@@ -5,7 +5,7 @@ function Syslog {
         [string[]]$Endpoints,
 
         [ValidateSet('Always', 'OnSuccess', 'OnFailure')]
-        [string]$When = $global:Watchmen.Options.NotifierConditions.WatchmenTest
+        [string]$When = $script:Watchmen.Options.NotifierConditions.WatchmenTest
     )
 
     begin {

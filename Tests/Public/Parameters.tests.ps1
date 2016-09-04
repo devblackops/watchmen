@@ -6,13 +6,13 @@ InModuleScope Watchmen {
         Mock -CommandName Assert-InWatchmen -MockWith {}
 
         it 'Creates a [Parameters] entry in the Watchmen variable' {
-            $global:watchmen = @{
+            $script:watchmen = @{
                 ThisTest = @{
                     Parameters = $null
                 }
             }
             Parameters @{ foo = 'bar' }
-            $global:watchmen.ThisTest.Parameters.foo | should be 'bar'
+            $script:watchmen.ThisTest.Parameters.foo | should be 'bar'
         }
     }
 }

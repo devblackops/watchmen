@@ -8,7 +8,7 @@ InModuleScope Watchmen {
             Mock -CommandName Assert-InWatchmen -MockWith {}
 
             BeforeEach {
-                $global:watchmen = @{
+                $script:watchmen = @{
                     InConfig = $true
                     InTest = $false
                     Options = @{
@@ -22,20 +22,20 @@ InModuleScope Watchmen {
 
             it 'Sets the default notifier condition to [OnFailure]' {
                 When 'OnFailure'
-                $global:Watchmen.Options.NotifierConditions.WatchmenOptions | should be 'Onfailure'
-                $global:Watchmen.Options.NotifierConditions.WatchmenTest | should be 'Onfailure'
+                $script:Watchmen.Options.NotifierConditions.WatchmenOptions | should be 'Onfailure'
+                $script:Watchmen.Options.NotifierConditions.WatchmenTest | should be 'Onfailure'
             }
 
             it 'Sets the default notifier condition to [OnSuccess]' {
                 When 'OnSuccess'
-                $global:Watchmen.Options.NotifierConditions.WatchmenOptions | should be 'OnSuccess'
-                $global:Watchmen.Options.NotifierConditions.WatchmenTest | should be 'OnSuccess'
+                $script:Watchmen.Options.NotifierConditions.WatchmenOptions | should be 'OnSuccess'
+                $script:Watchmen.Options.NotifierConditions.WatchmenTest | should be 'OnSuccess'
             }
 
             it 'Sets the default notifier condition to [Always]' {
                 When 'Always'
-                $global:Watchmen.Options.NotifierConditions.WatchmenOptions | should be 'Always'
-                $global:Watchmen.Options.NotifierConditions.WatchmenTest | should be 'Always'
+                $script:Watchmen.Options.NotifierConditions.WatchmenOptions | should be 'Always'
+                $script:Watchmen.Options.NotifierConditions.WatchmenTest | should be 'Always'
             }
         }
 
@@ -44,7 +44,7 @@ InModuleScope Watchmen {
             Mock -CommandName Assert-InWatchmen -MockWith {}
 
             BeforeEach {
-                $global:watchmen = @{
+                $script:watchmen = @{
                     InConfig = $false
                     InTest = $true
                     Options = @{
@@ -58,17 +58,17 @@ InModuleScope Watchmen {
 
             it 'Sets the default notifier condition to [OnFailure]' {
                 When 'OnFailure'
-                $global:Watchmen.Options.NotifierConditions.WatchmenTest | should be 'Onfailure'
+                $script:Watchmen.Options.NotifierConditions.WatchmenTest | should be 'Onfailure'
             }
 
             it 'Sets the default notifier condition to [OnSuccess]' {
                 When 'OnSuccess'
-                $global:Watchmen.Options.NotifierConditions.WatchmenTest | should be 'OnSuccess'
+                $script:Watchmen.Options.NotifierConditions.WatchmenTest | should be 'OnSuccess'
             }
 
             it 'Sets the default notifier condition to [Always]' {
                 When 'Always'
-                $global:Watchmen.Options.NotifierConditions.WatchmenTest | should be 'Always'
+                $script:Watchmen.Options.NotifierConditions.WatchmenTest | should be 'Always'
             }
         }
     }

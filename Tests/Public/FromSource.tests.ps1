@@ -6,13 +6,13 @@ InModuleScope Watchmen {
         Mock -CommandName Assert-InWatchmen -MockWith {}
 
         it 'Creates a [FromSource] entry in the Watchmen variable' {
-            $global:watchmen = @{
+            $script:watchmen = @{
                 ThisTest = @{
                     Source = $null
                 }
             }
             FromSource 'PSGallery'
-            $global:watchmen.ThisTest.Source | should be 'PSGallery'
+            $script:watchmen.ThisTest.Source | should be 'PSGallery'
         }
     }
 }

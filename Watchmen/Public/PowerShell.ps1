@@ -10,7 +10,7 @@ function PowerShell {
 
         [parameter(Position = 1)]
         [ValidateSet('Always', 'OnSuccess', 'OnFailure')]
-        [string]$When = $global:Watchmen.Options.NotifierConditions.WatchmenTest
+        [string]$When = $script:Watchmen.Options.NotifierConditions.WatchmenTest
     )
 
     begin {
@@ -37,7 +37,7 @@ function PowerShell {
             if ([System.IO.Path]::IsPathRooted($path)) {
                 $file = Get-Item -Path $resolvedPath
             } else {
-                $file = Get-Item -Path (Join-Path -Path $Global:Watchmen.CurrentWatchmenFileRoot -ChildPath $Path)
+                $file = Get-Item -Path (Join-Path -Path $script:Watchmen.CurrentWatchmenFileRoot -ChildPath $Path)
             }
 
             if (-not $file.PSIsContainer) {
