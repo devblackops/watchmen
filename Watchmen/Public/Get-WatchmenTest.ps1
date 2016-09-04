@@ -19,10 +19,10 @@ function Get-WatchmenTest {
                 $item = Get-Item -Path (Resolve-Path $loc)
                 if ($item.PSIsContainer) {
                     $files = Get-ChildItem -Path $item -Filter '*.watchmen.ps1' -Recurse:$Recurse
-                    $global:watchmen.CurrentWatchmenFileRoot = $item.FullName
+                    $script:watchmen.CurrentWatchmenFileRoot = $item.FullName
                 } else {
                     $files = $item
-                    $global:watchmen.CurrentWatchmenFileRoot = $item.Directory
+                    $script:watchmen.CurrentWatchmenFileRoot = $item.Directory
                 }
 
                 $tests = @()
@@ -32,7 +32,7 @@ function Get-WatchmenTest {
                     $fileTests += . $file.FullName
 
                     $tests += $fileTests
-                    $global:watchmen.TestSets += $fileTests
+                    $script:watchmen.TestSets += $fileTests
                 }
 
                 $tests

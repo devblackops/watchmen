@@ -2,13 +2,13 @@ function Assert-InWatchmen {
     param ($Command)
 
     # Verify we aren't calling the command completly outside of a Watchmen file
-    if ($null -eq $global:Watchmen) {
+    if ($null -eq $script:Watchmen) {
         throw "The command [$Command] may only be used inside a Watchmen configuration file."
     }
 
     # WatchmenOptions
-    if ($global:Watchmen.InConfig) {
-        if ($global:Watchmen.InNotifies) {
+    if ($script:Watchmen.InConfig) {
+        if ($script:Watchmen.InNotifies) {
             if ($command -notin $script:CommandFences.Notifies) {
                 throw "The Watchmen command [$Command] may only be used inside a Notifies block."
             }
@@ -20,9 +20,9 @@ function Assert-InWatchmen {
     }
 
     # WatchmenTest
-    if ($global:WatchMen.InTest) {
+    if ($script:WatchMen.InTest) {
 
-        if ($global:Watchmen.InNotifies) {
+        if ($script:Watchmen.InNotifies) {
             if ($command -notin $script:CommandFences.Notifies) {
                 throw "The Watchmen command [$Command] may only be used inside a Notifies block."
             }
@@ -34,7 +34,7 @@ function Assert-InWatchmen {
     }
 
     # Notifies
-    if ($global:WatchMen.InNotifies) {
+    if ($script:WatchMen.InNotifies) {
         if ($command -notin $script:CommandFences.Notifies) {
             throw "The Watchmen command [$Command] may only be used inside a Notifies block."
         }

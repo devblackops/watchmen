@@ -5,7 +5,7 @@ function Slack {
         [hashtable[]]$Options,
 
         [ValidateSet('Always', 'OnSuccess', 'OnFailure')]
-        [string]$When = $global:Watchmen.Options.NotifierConditions.WatchmenTest
+        [string]$When = $script:Watchmen.Options.NotifierConditions.WatchmenTest
     )
 
     begin {

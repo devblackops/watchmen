@@ -7,7 +7,7 @@ function Initialize-Watchmen {
 
     $defaultNotifierCondition = 'OnFailure'
 
-    $global:Watchmen = [pscustomobject]@{
+    $script:Watchmen = [pscustomobject]@{
         PSTypeName = 'Watchmen.State'
         CurrentTestSetId = 0
         InConfig = $false
@@ -46,5 +46,5 @@ function Initialize-Watchmen {
         )
     }
 
-    Write-Verbose "NotifierConditions initialized:`n$($global:watchmen.options.notifierconditions | ft | out-string)"
+    Write-Verbose "NotifierConditions initialized:`n$($script:watchmen.Options.NotifierConditions | Format-Table -Property * | Out-String)"
 }
