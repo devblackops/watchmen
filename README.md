@@ -10,7 +10,7 @@ Infrastructure test runner and notification system using
 
 ## Overview
 Watchmen is a PowerShell module to make executing Pester tests contained in OVF modules easier using a simple PowerShell-based Domain Specific
-Language (DSL). It also provides the ability to execute a number of actions (notifiers) upon failing infrastructure tests. Watchmen can also
+Language (DSL). It also provides the ability to execute a number of actions (notifiers) upon failing (or successful) infrastructure tests. Watchmen can also
 dynamically install OVF modules from public or private PowerShell repositories like the [PowerShell Gallery](https://www.powershellgallery.com/)
 should the module not be found on the system.
 
@@ -41,14 +41,15 @@ high quality test modules that validate common infrastructure to be shared and i
 
 ## Example Watchmen File
 The example Watchmen file below will execute Pester tests contained inside the **MyAppOVF** module installed on the location machine. Upon any failing
-tests, Watchmen will then execute a number of notifiers such as sending an email, writing to the eventlog, appending to a log file, executing an
-arbitrary PowerShell script block or script, sending a message to a Slack channel, and send a message to a syslog server.
+(or optionally successful) tests, Watchmen will then execute a number of notifiers such as sending an email, writing to the eventlog, appending to a
+log file, executing an arbitrary PowerShell script block or script, sending a message to a Slack channel, and send a message to a syslog server.
 
 #### myapp.watchmen.ps1
 ```powershell
 # Global notifiers that are executed upon any failing test
 WatchmenOptions {
     notifies {
+        When 'OnFailure'
         email @{
             fromAddress = 'watchmen@mydomain.tld'
             smtpServer = 'smtp.mydomain.tld'
@@ -57,9 +58,13 @@ WatchmenOptions {
             to = 'admin@mydomain.tld'            
         }
         eventlog @{
-            eventid = '1'
+            eventid = 1
             eventtype = 'error'
         }
+        eventlog @{
+            eventid = 100
+            eventtype = 'information'
+        } -when 'onsuccess'
         logfile '\\fileserver01.mydomain.tld\monitoringshare\#{computername}.log'
         powershell {
             Write-Host "Something bad happended! $args[0]"
@@ -72,7 +77,7 @@ WatchmenOptions {
             PreText = 'Everything is on :fire:'
             IconEmoji = ':fire:'
         }
-        syslog 'syslog.mydomain.tld'
+        syslog 'syslog.mydomain.tld' -when 'always'
     }
 }
 
@@ -86,7 +91,7 @@ WatchmenTest 'MyAppOVF' {
         FreeSystemDriveThreshold = 40000
     }
     notifies {                      # Notifiers to execute for this test in addition to ones defined in 'WatchmenOptions'
-        logfile '\\fileserver01.mydomain.tld\monitoringshare\#{computername}.log'
+        logfile '\\fileserver01.mydomain.tld\monitoringshare\#{computername}.log' -when 'always'
     }
 }
 

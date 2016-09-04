@@ -12,7 +12,7 @@
 RootModule = 'Watchmen.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0'
+ModuleVersion = '1.1.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -51,8 +51,7 @@ PowerShellVersion = '3.0'
 # ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-RequiredModules = @('PSSlack', 
-               'Posh-SYSLOG')
+RequiredModules = @('PSSlack', 'Posh-SYSLOG')
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()
@@ -111,7 +110,15 @@ PrivateData = @{
         IconUri = 'https://raw.githubusercontent.com/devblackops/watchmen/master/Media/logo.png'
 
         # ReleaseNotes of this module
-        # ReleaseNotes = ''
+        ReleaseNotes = '
+## 1.1.0 (2016-09-03)
+
+* Allow notifiers to be optionally executed upon successful tests.
+
+## 1.0.0 (2016-08-12)
+
+* Initial release
+'
 
         # External dependent modules of this module
         # ExternalModuleDependencies = ''
@@ -127,4 +134,3 @@ PrivateData = @{
 # DefaultCommandPrefix = ''
 
 }
-

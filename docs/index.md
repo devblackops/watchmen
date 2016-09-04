@@ -52,13 +52,17 @@ WatchmenOptions {
             to = 'admin@mydomain.tld'            
         }
         eventlog @{
-            eventid = '1'
+            eventid = 1
             eventtype = 'error'
         }
+        eventLog @{
+            eventId = 100
+            eventType = 'Information'
+        } -When 'Always'
         logfile '\\fileserver01.mydomain.tld\monitoringshare\#{computername}.log'
         powershell {
             Write-Host "Something bad happended! $args[0]"
-        }
+        } -When 'OnFailure'
         powershell '\notifier.ps1'
         slack @{
             Title = 'Watchmen Bot'
@@ -80,7 +84,7 @@ WatchmenTest 'MyAppOVF' {
         FreeSystemDriveThreshold = 40000
     }
     notifies {                      # Notifiers to execute for this test in addition to ones defined in 'WatchmenOptions'
-        logfile '\\fileserver01.mydomain.tld\monitoringshare\#{computername}.log'
+        logfile '\\fileserver01.mydomain.tld\monitoringshare\#{computername}.log' -When 'Always'
     }
 }
 
