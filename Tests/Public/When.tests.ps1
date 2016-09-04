@@ -70,6 +70,6 @@ InModuleScope Watchmen {
                 When 'Always'
                 $global:Watchmen.Options.NotifierConditions.WatchmenTest | should be 'Always'
             }
-        }        
+        }
     }
 }
