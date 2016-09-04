@@ -23,6 +23,7 @@ $script:CommandFences = @{
         'Version'
     )
     Notifies = @(
+        'When',
         'Notifies',
         'Email',
         'EventLog',

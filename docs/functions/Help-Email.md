@@ -10,7 +10,7 @@ Specifies an Email notifier.
 ## SYNTAX
 
 ```
-Email [-Options] <Hashtable> [<CommonParameters>]
+Email [-Options] <Hashtable> [-When <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -86,10 +86,27 @@ Hashtable of values needed to send a SMTP email.
 ```yaml
 Type: Hashtable
 Parameter Sets: (All)
-Aliases: 
+Aliases:
+Accepted values: Always, OnSuccess, OnFailure 
 
 Required: True
 Position: 0
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -When
+Specifies when notifier should be executed.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: Always, OnSuccess, OnFailure
+
+Required: False
+Position: Named
 Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False

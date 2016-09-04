@@ -2,7 +2,10 @@ function Email {
     [cmdletbinding()]
     param(
         [parameter(Mandatory, Position = 0)]
-        [hashtable]$Options
+        [hashtable]$Options,
+
+        [ValidateSet('Always', 'OnSuccess', 'OnFailure')]
+        [string]$When = $global:Watchmen.Options.NotifierConditions.WatchmenTest
     )
 
     begin {
@@ -24,6 +27,7 @@ function Email {
             UseSSL = $Options.UseSSL
             To = $Options.To
             Enabled = $true
+            NotifierCondition = $When
         }
 
         return $e

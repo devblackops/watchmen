@@ -14,9 +14,12 @@ function WatchmenTest {
 
         # Mark that we are inside an 'WatchmenTest' block and subsequent commands are allowed
         $global:Watchmen.InTest = $true
-    }
 
-    process {
+        # Set the default value for the notifier conditions to what ever has been set in WatchmenOptions
+        # If nothing was specified there, this value will be 'OnFailure'
+        $defaultNotifierCondition = $global:Watchmen.Options.NotifierConditions.WatchmenOptions
+        $global:Watchmen.Options.NotifierConditions.WatchmenTest = $defaultNotifierCondition
+
         $global:Watchmen.ThisTest = @{
             PSTypeName = 'Watchmen.Test'
             ModuleName = $Name
@@ -25,7 +28,7 @@ function WatchmenTest {
             Test = '*'
             Type = 'all'
             Version = $null
-            Notifiers = @{
+            Notifiers = [ordered]@{
                 Email = @()
                 EventLog = @()
                 LogFile = @()
@@ -34,6 +37,9 @@ function WatchmenTest {
                 Syslog = @()
             }
         }
+    }
+
+    process {        
 
         # Execute any functions passed in
         . $Script

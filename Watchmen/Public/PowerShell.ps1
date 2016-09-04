@@ -6,7 +6,11 @@ function PowerShell {
 
         #[ValidateScript({Test-Path $_})]
         [parameter(Mandatory, Position = 0, ParameterSetName = 'script')]
-        [string]$Path
+        [string]$Path,
+
+        [parameter(Position = 1)]
+        [ValidateSet('Always', 'OnSuccess', 'OnFailure')]
+        [string]$When = $global:Watchmen.Options.NotifierConditions.WatchmenTest
     )
 
     begin {
@@ -21,6 +25,7 @@ function PowerShell {
             ScriptBlock = $null
             ScriptPath = $null
             Enabled = $true
+            NotifierCondition = $When
         }
 
         if ($PSCmdlet.ParameterSetName -eq 'ScriptBlock') {

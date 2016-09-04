@@ -10,7 +10,7 @@ Specifies an EventLog notifier.
 ## SYNTAX
 
 ```
-EventLog -Options <Hashtable[]> [<CommonParameters>]
+EventLog -Options <Hashtable[]> [-When <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -18,7 +18,6 @@ Specifies an EventLog notifier.
 
 This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'EventLog' function outside of a
 'Notifies' block will throw an error.
-
 ## EXAMPLES
 
 ### Example 1
@@ -61,6 +60,22 @@ Parameter Sets: (All)
 Aliases: 
 
 Required: True
+Position: Named
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -When
+Specifies when notifier should be executed.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: Always, OnSuccess, OnFailure
+
+Required: False
 Position: Named
 Default value: 
 Accept pipeline input: False

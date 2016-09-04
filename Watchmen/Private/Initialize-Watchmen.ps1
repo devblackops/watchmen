@@ -4,6 +4,9 @@ function Initialize-Watchmen {
 
     Write-Verbose 'Initializing Watchmen config'
     Remove-Variable -Name Watchmen -Scope Global -ErrorAction Ignore
+
+    $defaultNotifierCondition = 'OnFailure'
+
     $global:Watchmen = [pscustomobject]@{
         PSTypeName = 'Watchmen.State'
         CurrentTestSetId = 0
@@ -13,8 +16,11 @@ function Initialize-Watchmen {
         CurrentWatchmenFileRoot = $null
         Options = [pscustomobject]@{
             PSTypeName = 'Watchmen.Config'
-            #Notifiers = @()
-            Notifiers = @{
+            NotifierConditions = @{
+                WatchmenOptions = $defaultNotifierCondition
+                WatchmenTest = $defaultNotifierCondition
+            }
+            Notifiers = [ordered]@{
                 Email = @()
                 EventLog = @()
                 LogFile = @()
@@ -26,7 +32,7 @@ function Initialize-Watchmen {
                 Endpoint = $null
                 Credential = $null
             }
-            NotifierOptions = @{}
+            #NotifierOptions = @{}
         }
         ThisTest = $null
         TestSets = @(
@@ -39,4 +45,6 @@ function Initialize-Watchmen {
              }
         )
     }
+
+    Write-Verbose "NotifierConditions initialized:`n$($global:watchmen.options.notifierconditions | ft | out-string)"
 }
