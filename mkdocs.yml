@@ -12,6 +12,7 @@ pages:
     - WatchmenOptions_properties:
       - Notifies: functions/Help-Notifies.md
       - Notifies_properties: 
+        - When: functions/Help-When.md
         - Email: functions/Help-Email.md
         - EventLog: functions/Help-EventLog.md
         - LogFile: functions/Help-LogFile.md
@@ -23,6 +24,7 @@ pages:
       - FromSource: functions/Help-FromSource.md
       - Notifies: functions/Help-Notifies.md
       - Notifies_properties:
+        - When: functions/Help-When.md
         - Email: functions/Help-Email.md
         - EventLog: functions/Help-EventLog.md
         - LogFile: functions/Help-LogFile.md
