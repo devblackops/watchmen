@@ -64,7 +64,7 @@ function Invoke-NotifierInfluxDB {
 
             Write-Debug -Message "    $metric"
 
-            $url = "$($Notifier.Url)/write?db=$($Notifier.Database)"
+            $url = "$($Notifier.Url):$($Notifier.Port)/write?db=$($Notifier.Database)"
             if ($Notifier.RetentionPolicy -ne [string]::Empty) {
                 $url += "&rp=$($Notifier.RetentionPolicy)"
             }
