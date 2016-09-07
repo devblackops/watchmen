@@ -29,7 +29,7 @@ function InfluxDB {
             UserAgent = 'Watchmen'
             Enabled = $true
             SkipSSLVerification = $false
-            NotifierCondition = $When            
+            NotifierCondition = $When
         }
 
         $reservedTags = @('context', 'describe', 'filename', 'module', 'test')
@@ -37,8 +37,8 @@ function InfluxDB {
         # Optional settings
         if ($Options.Port) { $i.Port = $Options.Port }
         if ($Options.MeasurementName) { $i.MeasurementName = $Options.MeasurementName }
-        if ($Options.Tags) {            
-            foreach ($tag in $Options.Tags.Keys) {                
+        if ($Options.Tags) {
+            foreach ($tag in $Options.Tags.Keys) {
                 if ($reservedTags -contains $tag) {
                     Throw "Tag [$tag] has already been specified. Cannot overwrite reserved tags [context, describe, filename, module, test]"
                 } else {
@@ -51,7 +51,7 @@ function InfluxDB {
         if ($Options.Timeout) { $i.Timeout = $Options.Timeout }
         if ($Options.Credential) { $i.Credential = $Options.Credential }
         if ($Options.SkipSSLVerification) { $i.SkipSSLVerification = $Options.SkipSSLVerification }
-        
+
         write-verbose ($i | fl * | out-string)
 
         return $i
