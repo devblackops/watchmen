@@ -32,6 +32,8 @@ function Invoke-NotifierInfluxDB {
                 filename = Escape($Results.ShortName)
                 module = Escape($Results.Module)
                 test = Escape($Results.RawResult.Name)
+                host = ($env:computerName).ToLower()
+                fqdn = ([System.Net.Dns]::GetHostByName(($env:computerName)) | Select-Object -ExpandProperty hostname).ToLower()
             }
             # Add any additional tags that may have been specified on the notifier
             if ($Notifier.Tags.Keys.Count -gt 0) {
@@ -51,7 +53,7 @@ function Invoke-NotifierInfluxDB {
             $durationMS = $Results.RawResult.Time.TotalMilliseconds
 
             # Unix time
-            $time = [int][double]::Parse((Get-Date -UFormat %s))
+            $time = [int][double]::Parse($(Get-Date -date (Get-Date).ToUniversalTime()-uformat %s))
 
             # Create metric string
             $metric = $Notifier.MeasurementName
@@ -60,13 +62,13 @@ function Invoke-NotifierInfluxDB {
             }
             $metric += " durationMS=$durationMS,value=$value $time"
 
-            Write-Verbose -Message "    $metric"
+            Write-Debug -Message "    $metric"
 
             $url = "$($Notifier.Url)/write?db=$($Notifier.Database)"
             if ($Notifier.RetentionPolicy -ne [string]::Empty) {
                 $url += "&rp=$($Notifier.RetentionPolicy)"
             }
-            Write-Verbose $url
+            $url += '&precision=s'
             $params = @{
                 Uri = $url
                 Method = 'Post'
@@ -74,11 +76,12 @@ function Invoke-NotifierInfluxDB {
                 UseBasicParsing = $true
                 Timeout = $Notifier.Timeout
                 UserAgent = $Notifier.UserAgent
+                Verbose = $false
             }
             if ($Notifier.Credential) {
                 $params.Credential = $Notifier.Credential
             }
-            Invoke-RestMethod @params
+            Invoke-RestMethod @params | Out-Null
         }
     }
 
