@@ -1,5 +1,5 @@
 
-## Unreleased ()
+## 1.2.0 (2016-09-08)
 
 * Add InfluxDB notifier type.
 * Fix bug where only the first notifier would be called if the OVF module included more than one test.
