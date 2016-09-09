@@ -32,7 +32,7 @@ function Invoke-WatchmenNotifier {
                                  ($notifier.NotifierCondition -eq 'OnSuccess' -and $testResult.Result -eq 'Passed') -or
                                  ($notifier.NotifierCondition -eq 'OnFailure' -and $testResult.Result -eq 'Failed')) {
 
-                                Write-Verbose -Message "  Calling notifier [$($notifier.type)]"
+                                Write-Verbose -Message "  Calling notifier [$($notifier.type)]"                               
 
                                 switch ($notifier.type) {
                                     'Email' {
@@ -40,6 +40,9 @@ function Invoke-WatchmenNotifier {
                                     }
                                     'EventLog' {
                                         $results += $notifier | Invoke-NotifierEventLog -Results $testResult
+                                    }
+                                    'InfluxDB' {
+                                        $results += $notifier | Invoke-NotifierInfluxDB -Results $testResult
                                     }
                                     'LogFile' {
                                         $results += $notifier | Invoke-NotifierLogFile -Results $testResult
@@ -64,7 +67,7 @@ function Invoke-WatchmenNotifier {
                     }
                 }
             }
-            return $results
+            $results
         }
     }
 

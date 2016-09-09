@@ -23,6 +23,7 @@ function Initialize-Watchmen {
             Notifiers = [ordered]@{
                 Email = @()
                 EventLog = @()
+                InfluxDB = @()
                 LogFile = @()
                 PowerShell = @()
                 Slack = @()
