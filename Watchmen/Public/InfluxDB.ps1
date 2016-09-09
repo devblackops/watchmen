@@ -50,9 +50,7 @@ function InfluxDB {
         if ($Options.WriteConsistency) { $i.WriteConsistency = $Options.WriteConsistency }
         if ($Options.Timeout) { $i.Timeout = $Options.Timeout }
         if ($Options.Credential) { $i.Credential = $Options.Credential }
-        if ($Options.SkipSSLVerification) { $i.SkipSSLVerification = $Options.SkipSSLVerification }
-
-        write-verbose ($i | fl * | out-string)
+        if ($Options.SkipSSLVerification) { $i.SkipSSLVerification = $Options.SkipSSLVerification }       
 
         return $i
     }
