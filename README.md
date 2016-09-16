@@ -14,6 +14,8 @@ Language (DSL). It also provides the ability to execute a number of actions (not
 can also dynamically install OVF modules from public or private PowerShell repositories like the [PowerShell Gallery](https://www.powershellgallery.com/)
 should the module not be found on the system.
 
+> More information about creating Watchmen files and executing notifiers can be found at [http://watchmen.readthedocs.io/en/latest/](http://watchmen.readthedocs.io/en/latest/)
+
 ## What is OVF?
 The [Operation Validation Framework](https://github.com/PowerShell/Operation-Validation-Framework) is a PowerShell module used to execute
 [Pester](https://github.com/pester/Pester) tests that validate the operation of a **system** rather than test the behavior of code. This could mean
