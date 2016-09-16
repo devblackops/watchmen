@@ -10,8 +10,8 @@ Infrastructure test runner and notification system using
 
 ## Overview
 Watchmen is a PowerShell module to make executing Pester tests contained in OVF modules easier using a simple PowerShell-based Domain Specific
-Language (DSL). It also provides the ability to execute a number of actions (notifiers) upon failing (or successful) infrastructure tests. Watchmen can also
-dynamically install OVF modules from public or private PowerShell repositories like the [PowerShell Gallery](https://www.powershellgallery.com/)
+Language (DSL). It also provides the ability to execute a number of actions (notifiers) upon failing (or successful) infrastructure tests. Watchmen
+can also dynamically install OVF modules from public or private PowerShell repositories like the [PowerShell Gallery](https://www.powershellgallery.com/)
 should the module not be found on the system.
 
 ## What is OVF?
@@ -69,7 +69,7 @@ WatchmenOptions {
         powershell {
             Write-Host "Something bad happended! $args[0]"
         }
-        powershell '\notifier.ps1'        
+        powershell '\notifier.ps1'
         slack @{
             Token = '<webhookurl>'
             Channel = '#Watchmen'
