@@ -55,7 +55,7 @@ WatchmenOptions {
             smtpServer = 'smtp.mydomain.tld'
             port = 25
             subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
-            to = 'admin@mydomain.tld'            
+            to = 'admin@mydomain.tld'
         }
         eventlog @{
             eventid = 1
@@ -84,7 +84,7 @@ WatchmenOptions {
 # Execute the 'Storage.Capacity' tests in version 1.0.0 of the 'MyAppOVF' module
 WatchmenTest 'MyAppOVF' {
     version 1.0.0                   # Execute tests from a specific version of the module. Default is latest 
-    type 'Simple'                   # Valid values 'simple', 'comprehensive', 'all'. Default is 'all'
+    testType 'Simple'               # Valid values 'simple', 'comprehensive', 'all'. Default is 'all'
     test 'Storage.Capacity'         # Name of test to execute. Default is '*'
     fromSource 'PSGallery'          # Name of PowerShell repository to install module from if not found on system.
     parameters {                    # Parameters that are passed into the Pester script to change the behaviour of the test.
