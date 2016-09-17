@@ -16,6 +16,22 @@ should the module not be found on the system.
 
 > More information about creating Watchmen files and executing notifiers can be found at [http://watchmen.readthedocs.io/en/latest/](http://watchmen.readthedocs.io/en/latest/)
 
+## Installation
+The easiest and prefered way to install Watchmen is via the [PowerShell Gallery](https://www.powershellgallery.com/). To use the PowerShell Gallery,
+you must be on Windows 10, have PowerShell 5, or PowerShell 3 or 4 with the [PowerShellGet](http://go.microsoft.com/fwlink/?LinkID=746217&clcid=0x409)
+module. See the [PowerShell Gallery Getting Started](https://www.powershellgallery.com/GettingStarted?section=Get%20Started) page for more information.
+Run the following command to install Watchmen and the two dependent modules [PSSlack](https://github.com/RamblingCookieMonster/PSSlack) and
+[Posh-SYSLOG](https://github.com/poshsecurity/Posh-SYSLOG).
+
+```powershell
+Install-Module -Name Watchmen -Repository PSGallery
+```
+
+As an alternative, you can clone this repository the a location on your system and copy the subfolder `Watchmen` to
+`C:\Program Files\WindowsPowerShell\Modules\`. If you downloaded the repository as a ZIP file, extract it, and copy the subfolder `Watchmen` to
+`C:\Program Files\WindowsPowerShell\Modules\`. If you copied Watchmen to the `Modules` folder manually, you must ensure both the depended modules
+[PSSlack](https://github.com/RamblingCookieMonster/PSSlack) and [Posh-SYSLOG](https://github.com/poshsecurity/Posh-SYSLOG) are installed there as well.
+
 ## What is OVF?
 The [Operation Validation Framework](https://github.com/PowerShell/Operation-Validation-Framework) is a PowerShell module used to execute
 [Pester](https://github.com/pester/Pester) tests that validate the operation of a **system** rather than test the behavior of code. This could mean
