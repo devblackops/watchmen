@@ -27,7 +27,9 @@ function Invoke-WatchmenTest {
 
         $finalResults = @()
 
-        Write-Verbose -Message '[DisableNotifiers] set. No notifiers will be executed.'
+        if ($PSBoundParameters.ContainsKey('DisableNotifiers')) {
+            Write-Verbose -Message '[DisableNotifiers] set. No notifiers will be executed.' 
+        }
     }
 
     process {
