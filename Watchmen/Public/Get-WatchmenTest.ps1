@@ -39,12 +39,10 @@ function Get-WatchmenTest {
             }
         } catch {
             throw $_
-            # Remove-Variable -Name Watchmen -Scope Global -ErrorAction Ignore
         }
     }
 
     end {
-        #Remove-Variable -Name Watchmen -Scope Global -ErrorAction Ignore
         Write-Debug -Message "Exiting: $($PSCmdlet.MyInvocation.MyCommand.Name)"
     }
 }
