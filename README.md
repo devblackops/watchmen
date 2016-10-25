@@ -10,9 +10,27 @@ Infrastructure test runner and notification system using
 
 ## Overview
 Watchmen is a PowerShell module to make executing Pester tests contained in OVF modules easier using a simple PowerShell-based Domain Specific
-Language (DSL). It also provides the ability to execute a number of actions (notifiers) upon failing (or successful) infrastructure tests. Watchmen can also
-dynamically install OVF modules from public or private PowerShell repositories like the [PowerShell Gallery](https://www.powershellgallery.com/)
+Language (DSL). It also provides the ability to execute a number of actions (notifiers) upon failing (or successful) infrastructure tests. Watchmen
+can also dynamically install OVF modules from public or private PowerShell repositories like the [PowerShell Gallery](https://www.powershellgallery.com/)
 should the module not be found on the system.
+
+> More information about creating Watchmen files and executing notifiers can be found at [http://watchmen.readthedocs.io/en/latest/](http://watchmen.readthedocs.io/en/latest/)
+
+## Installation
+The easiest and prefered way to install Watchmen is via the [PowerShell Gallery](https://www.powershellgallery.com/). To use the PowerShell Gallery,
+you must be on Windows 10, have PowerShell 5, or PowerShell 3 or 4 with the [PowerShellGet](http://go.microsoft.com/fwlink/?LinkID=746217&clcid=0x409)
+module. See the [PowerShell Gallery Getting Started](https://www.powershellgallery.com/GettingStarted?section=Get%20Started) page for more information.
+Run the following command to install Watchmen and the two dependent modules [PSSlack](https://github.com/RamblingCookieMonster/PSSlack) and
+[Posh-SYSLOG](https://github.com/poshsecurity/Posh-SYSLOG).
+
+```powershell
+Install-Module -Name Watchmen -Repository PSGallery
+```
+
+As an alternative, you can clone this repository the a location on your system and copy the subfolder `Watchmen` to
+`C:\Program Files\WindowsPowerShell\Modules\`. If you downloaded the repository as a ZIP file, extract it, and copy the subfolder `Watchmen` to
+`C:\Program Files\WindowsPowerShell\Modules\`. If you copied Watchmen to the `Modules` folder manually, you must ensure both the depended modules
+[PSSlack](https://github.com/RamblingCookieMonster/PSSlack) and [Posh-SYSLOG](https://github.com/poshsecurity/Posh-SYSLOG) are installed there as well.
 
 ## What is OVF?
 The [Operation Validation Framework](https://github.com/PowerShell/Operation-Validation-Framework) is a PowerShell module used to execute
@@ -55,7 +73,7 @@ WatchmenOptions {
             smtpServer = 'smtp.mydomain.tld'
             port = 25
             subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
-            to = 'admin@mydomain.tld'            
+            to = 'admin@mydomain.tld'
         }
         eventlog @{
             eventid = 1
@@ -69,7 +87,7 @@ WatchmenOptions {
         powershell {
             Write-Host "Something bad happended! $args[0]"
         }
-        powershell '\notifier.ps1'        
+        powershell '\notifier.ps1'
         slack @{
             Token = '<webhookurl>'
             Channel = '#Watchmen'
@@ -84,7 +102,7 @@ WatchmenOptions {
 # Execute the 'Storage.Capacity' tests in version 1.0.0 of the 'MyAppOVF' module
 WatchmenTest 'MyAppOVF' {
     version 1.0.0                   # Execute tests from a specific version of the module. Default is latest 
-    type 'Simple'                   # Valid values 'simple', 'comprehensive', 'all'. Default is 'all'
+    testType 'Simple'               # Valid values 'simple', 'comprehensive', 'all'. Default is 'all'
     test 'Storage.Capacity'         # Name of test to execute. Default is '*'
     fromSource 'PSGallery'          # Name of PowerShell repository to install module from if not found on system.
     parameters {                    # Parameters that are passed into the Pester script to change the behaviour of the test.

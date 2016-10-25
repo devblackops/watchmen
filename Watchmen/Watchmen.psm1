@@ -27,6 +27,7 @@ $script:CommandFences = @{
         'Notifies',
         'Email',
         'EventLog',
+        'InfluxDB'
         'LogFile',
         'PowerShell',
         'Slack',

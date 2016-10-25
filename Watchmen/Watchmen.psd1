@@ -12,7 +12,7 @@
 RootModule = 'Watchmen.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.1.0'
+ModuleVersion = '1.2.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -111,6 +111,11 @@ PrivateData = @{
 
         # ReleaseNotes of this module
         ReleaseNotes = '
+## 1.2.0 (2016-09-08)
+
+* Add InfluxDB notifier type.
+* Fix bug where only the first notifier would be called if the OVF module included more than one test.
+
 ## 1.1.0 (2016-09-03)
 
 * Allow notifiers to be optionally executed upon successful tests.

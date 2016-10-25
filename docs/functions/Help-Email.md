@@ -86,8 +86,8 @@ Hashtable of values needed to send a SMTP email.
 ```yaml
 Type: Hashtable
 Parameter Sets: (All)
-Aliases:
-Accepted values: Always, OnSuccess, OnFailure 
+Aliases: 
+Accepted values: Always, OnSuccess, OnFailure
 
 Required: True
 Position: 0
