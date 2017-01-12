@@ -20,7 +20,7 @@ This is not intended to be used anywhere but inside a 'Notifies' block inside a 
 'Notifies' block will throw an error.
 
 The 'Subject' and Message' fields inside the hashtable for this function support string interpolation. The following keywords can be placed inside
-the Subject or Message strings using the convention #{keyword} (case sensistive, so stick with camelCase). When the Email notifier is executed these placeholders will be replaced with values
+the Subject or Message strings using the convention #{keyword} (case sensitive, so stick with camelCase). When the Email notifier is executed these placeholders will be replaced with values
 from the test result:
 
 computername     - Computer name test was executed on
