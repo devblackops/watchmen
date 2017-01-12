@@ -32,24 +32,24 @@ this object will be available as $args[0]. When executing a script file the obje
 
 The following properties are available in the OVF test result object:
 
-Error                       - StackTrace message of failing Pester test  
-FileName                    - Path to Pester test script withing the OVF module  
-Module                      - PowerShell module of the OVF test  
-Name                        - Name of the OVF test executed  
-RawResult  
-    Context                 - Name of context block container test  
-    Describe                - Name of describe block containing test  
-    ErrorRecord             - Error record of failing test  
-    FailureMessage          - Pester failure message  
-    Name                    - Name of 'It' test  
-    ParameterizedSuiteName  - Test case name  
-    Parameters              - Parameters used in test case  
-    Passed                  - Passor fail status of test. Values are [True] or [False]  
-    Result                  - Pass or fail status of test. Values are [Passed] or [Failed]  
-    StackTrace              - StackTrace message of failing Pester test  
-    Time                    - Time Pester test took to execute  
-Result                      - Pass or fail status of test. Values are [Passed] or [Failed]  
-ShortName                   - File name of Pester test  
+Error                       - StackTrace message of failing Pester test
+FileName                    - Path to Pester test script withing the OVF module
+Module                      - PowerShell module of the OVF test
+Name                        - Name of the OVF test executed
+RawResult
+    Context                 - Name of context block container test
+    Describe                - Name of describe block containing test
+    ErrorRecord             - Error record of failing test
+    FailureMessage          - Pester failure message
+    Name                    - Name of 'It' test
+    ParameterizedSuiteName  - Test case name
+    Parameters              - Parameters used in test case
+    Passed                  - Passor fail status of test. Values are [True] or [False]
+    Result                  - Pass or fail status of test. Values are [Passed] or [Failed]
+    StackTrace              - StackTrace message of failing Pester test
+    Time                    - Time Pester test took to execute
+Result                      - Pass or fail status of test. Values are [Passed] or [Failed]
+ShortName                   - File name of Pester test
 ## EXAMPLES
 
 ### Example 1
@@ -70,7 +70,7 @@ WatchmenTest {
 }
 ```
 
- 
+
 
 Adds a PowerShell notifier to an individual Watchmen test. This PowerShell notifier will execute the 'notifier.ps1' script.
 ## PARAMETERS
@@ -81,11 +81,11 @@ Path to a PowerShell script to execute upon any failing tests.
 ```yaml
 Type: String
 Parameter Sets: script
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
-Default value: 
+Default value:
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -96,11 +96,11 @@ Script block to execute upon any failing tests.
 ```yaml
 Type: ScriptBlock
 Parameter Sets: ScriptBlock
-Aliases: 
+Aliases:
 
 Required: True
 Position: 0
-Default value: 
+Default value:
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -111,12 +111,12 @@ Specifies when notifier should be executed.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Always, OnSuccess, OnFailure
 
 Required: False
 Position: Named
-Default value: 
+Default value:
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

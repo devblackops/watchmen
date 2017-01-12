@@ -115,7 +115,7 @@
 <maml:para>computername     - Computer name test was executed on
 module           - OVF module name
 file             - Path to Pester test executed
-descibe          - Name of 'Describe' block in Pester test
+describe         - Name of 'Describe' block in Pester test
 context          - Name of 'Context' block in Pester test
 test             - Name of 'It' block in Pester test
 result           - Result of test. 'Passed' or 'Failed'
@@ -739,7 +739,7 @@ Module                      - PowerShell module of the OVF test
 Name                        - Name of the OVF test executed
 RawResult
 Context                 - Name of context block container test
-Describe                - Name of describe block containing test
+Describe               - Name of describe block containing test
 ErrorRecord             - Error record of failing test
 FailureMessage          - Pester failure message
 Name                    - Name of 'It' test
@@ -1365,7 +1365,7 @@ ShortName                   - File name of Pester test
             smtpServer = 'smtp.mydomain.tld'
             port = 25
             subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
-            to = 'admin@mydomain.tld'            
+            to = 'admin@mydomain.tld'
         }
         eventlog @{
             eventid = '1'
@@ -1375,7 +1375,7 @@ ShortName                   - File name of Pester test
         powershell {
             Write-Host "Something bad happended! $args[0]"
         }
-        powershell '\notifier.ps1'        
+        powershell '\notifier.ps1'
         slack @{
             Token = 'webhookurl'
             Channel = '#Watchmen'
@@ -1467,7 +1467,7 @@ ShortName                   - File name of Pester test
 </maml:alertSet>
 <command:examples><command:example><maml:title>Example 1</maml:title>
 <dev:code>WatchmenTest 'MyAppOVF' {
-    version 1.0.0 
+    version 1.0.0
     type 'Simple'
     test 'Storage.Capacity'
     fromSource 'PSGallery'

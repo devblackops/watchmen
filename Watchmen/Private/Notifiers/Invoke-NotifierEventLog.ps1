@@ -22,19 +22,12 @@ function Invoke-NotifierEventLog {
 Watchmen reported a failure in OVF test:
 
 Module: $($results.Module)
-
 File: $($results.FileName)
-
-Descibe:  $($results.RawResult.Describe)
-
+Describe: $($results.RawResult.Describe)
 Context: $($results.RawResult.Context)
-
 Test: $($results.RawResult.Name)
-
 Result: $($results.Result)
-
 Message: $($results.RawResult.FailureMessage)
-
 Duration: $($results.RawResult.Time.ToString())
 "@
     $params = @{
