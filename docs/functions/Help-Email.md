@@ -20,20 +20,20 @@ This is not intended to be used anywhere but inside a 'Notifies' block inside a 
 'Notifies' block will throw an error.
 
 The 'Subject' and Message' fields inside the hashtable for this function support string interpolation. The following keywords can be placed inside
-the Subject or Message strings using the convention #{keyword}. When the Email notifier is executed these placeholders will be replaced with values
+the Subject or Message strings using the convention #{keyword} (case sensistive, so stick with camelCase). When the Email notifier is executed these placeholders will be replaced with values
 from the test result:
 
-computername     - Computer name test was executed on  
-module           - OVF module name  
-file             - Path to Pester test executed  
-descibe          - Name of 'Describe' block in Pester test  
-context          - Name of 'Context' block in Pester test  
-test             - Name of 'It' block in Pester test  
-result           - Result of test. 'Passed' or 'Failed'  
-failureMessage   - Failure message from Pester test  
-duration         - Duration of Pester test  
-   
-Example:  
+computername     - Computer name test was executed on
+module           - OVF module name
+file             - Path to Pester test executed
+describe         - Name of 'Describe' block in Pester test
+context          - Name of 'Context' block in Pester test
+test             - Name of 'It' block in Pester test
+result           - Result of test. 'Passed' or 'Failed'
+failureMessage   - Failure message from Pester test
+duration         - Duration of Pester test
+
+Example:
     subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 ## EXAMPLES
 
@@ -74,24 +74,24 @@ Add an Email notifier to a WatchmenOptions block.
 ### -Options
 Hashtable of values needed to send a SMTP email.
 
-[string]FromAddress         - REQUIRED - From address for email  
-[string[]]To                - REQUIRED - Array of email addresses to send to  
-[string]SMTPServer          - REQUIRED - SMTP server FQDN or IP address  
-[int]Port                   - REQUIRED - SMTP port (usually 25)  
-[string]Subject             - OPTIONAL - Subject for email  
-[string]Message             - OPTIONAL - Message for email  
-[pscredential]Credential    - OPTIONAL - Credential to authenticate to SMTP server with  
-[bool]UseSSL                - OPTINOAL - Use SSL when connecting to SMTP server  
+[string]FromAddress         - REQUIRED - From address for email
+[string[]]To                - REQUIRED - Array of email addresses to send to
+[string]SMTPServer          - REQUIRED - SMTP server FQDN or IP address
+[int]Port                   - REQUIRED - SMTP port (usually 25)
+[string]Subject             - OPTIONAL - Subject for email
+[string]Message             - OPTIONAL - Message for email
+[pscredential]Credential    - OPTIONAL - Credential to authenticate to SMTP server with
+[bool]UseSSL                - OPTINOAL - Use SSL when connecting to SMTP server
 
 ```yaml
 Type: Hashtable
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Always, OnSuccess, OnFailure
 
 Required: True
 Position: 0
-Default value: 
+Default value:
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -102,12 +102,12 @@ Specifies when notifier should be executed.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 Accepted values: Always, OnSuccess, OnFailure
 
 Required: False
 Position: Named
-Default value: 
+Default value:
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
