@@ -14,33 +14,18 @@ function Invoke-NotifierEmail {
         $o = ($Notifier | Format-Table -Property *  -AutoSize| Out-String)
         Write-Debug -Message "Email notifier called with options:`n$o"
 
+
         # If a custom subject line was specified, replace any variables
-        if (($Notifier.Subject -ne [string]::Empty) -and ($null -ne $Notifier.Subject)) {
-            $subject = $Notifier.Subject
-            $subject = $subject.Replace('#{computername}', $env:COMPUTERNAME)
-            $subject = $subject.Replace('#{module}', $results.module)
-            $subject = $subject.Replace('#{file}', $results.FileName)
-            $subject = $subject.Replace('#{descibe}', $results.RawResult.Describe)
-            $subject = $subject.Replace('#{context}', $results.RawResult.Context)
-            $subject = $subject.Replace('#{test}', $results.RawResult.Name)
-            $subject = $subject.Replace('#{result}', $results.Result)
-            $subject = $subject.Replace('#{failureMessage}', $results.RawResult.FailureMessage)
-            $subject = $subject.Replace('#{duration}', $results.RawResult.Time.ToString())
+        if (-not [string]::IsNullOrEmpty($Notifier.Subject)) {
+            $Subject = ConvertFrom-PlaceholderString -InputObject $Notifier.Subject -Results $Results
+
         } else {
             $subject = "($env:COMPUTERNAME) - $($results.Result.ToUpper()) - $($results.RawResult.Name)"
         }
 
         # If a custom message was specified, replace any variables
-        if (($Notifier.Message -ne [string]::Empty) -and ($null -ne $Notifier.Message)) {
-            $msg = $Notifier.Message
-            $msg = $msg.Replace('#{module}', $results.module)
-            $msg = $msg.Replace('#{file}', $results.FileName)
-            $msg = $msg.Replace('#{descibe}', $results.RawResult.Describe)
-            $msg = $msg.Replace('#{context}', $results.RawResult.Context)
-            $msg = $msg.Replace('#{test}', $results.RawResult.Name)
-            $msg = $msg.Replace('#{result}', $results.Result)
-            $msg = $msg.Replace('#{failureMessage}', $results.RawResult.FailureMessage)
-            $msg = $msg.Replace('#{duration}', $results.RawResult.Time.ToString())
+        if (-not [string]::IsNullOrEmpty($Notifier.Message)) {
+            $msg = ConvertFrom-PlaceholderString -InputObject $Notifier.Message -Results $Results
         } else {
             $msg = @"
 Watchmen reported a failure in OVF test:
@@ -62,7 +47,7 @@ Duration: $($results.RawResult.Time.ToString())
             SmtpServer = $Notifier.SmtpServer
             Subject = $subject
             Body = $msg
-            UseSSL = $true
+            UseSSL = $Notifier.UseSSL
             Port = $Notifier.Port
         }
         if ($Notifier.Credential) {
