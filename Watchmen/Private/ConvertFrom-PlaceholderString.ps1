@@ -21,7 +21,7 @@
             $string = $string.Replace('#{computername}', $env:COMPUTERNAME)
             $string = $string.Replace('#{module}', $results.module)
             $string = $string.Replace('#{file}', $results.FileName)
-            $string = $string.Replace('#{descibe}', $results.RawResult.Describe)
+            $string = $string.Replace('#{describe}', $results.RawResult.Describe)
             $string = $string.Replace('#{context}', $results.RawResult.Context)
             $string = $string.Replace('#{test}', $results.RawResult.Name)
             $string = $string.Replace('#{result}', $results.Result)

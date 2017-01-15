@@ -115,7 +115,7 @@
 <maml:para>computername     - Computer name test was executed on
 module           - OVF module name
 file             - Path to Pester test executed
-descibe          - Name of 'Describe' block in Pester test
+describe         - Name of 'Describe' block in Pester test
 context          - Name of 'Context' block in Pester test
 test             - Name of 'It' block in Pester test
 result           - Result of test. 'Passed' or 'Failed'

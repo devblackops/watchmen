@@ -27,7 +27,7 @@ Module: $($results.Module)
 
 File: $($results.FileName)
 
-Descibe:  $($results.RawResult.Describe)
+Describe: $($results.RawResult.Describe)
 
 Context: $($results.RawResult.Context)
 
@@ -44,7 +44,7 @@ Duration: $($results.RawResult.Time.ToString())
             @{title = 'Computer'; value = $env:COMPUTERNAME; short = $true }
             @{title = 'Module'; value = $results.Module; short = $true }
             @{title = 'Test'; value = $results.RawResult.Name; short = $false }
-            @{title = 'Descibe'; value = $results.RawResult.Describe; short = $true }
+            @{title = 'Describe'; value = $results.RawResult.Describe; short = $true }
             @{title = 'Context'; value = $results.RawResult.Context; short = $true }
             @{title = 'File'; value = $results.FileName; short = $false }
             @{title = 'Result'; value = $results.Result; short = $true }
