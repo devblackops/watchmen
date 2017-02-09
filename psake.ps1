@@ -18,7 +18,7 @@ task Init {
     Get-Item ENV:BH*
 
     $modules = 'Pester', 'PSDeploy', 'PSScriptAnalyzer', 'platyPS', 'PSSlack', 'Posh-SYSLOG'
-    Install-Module $modules -Confirm:$false
+    Install-Module $modules -Repository PSGallery -Confirm:$false
     Import-Module $modules -Verbose:$false -Force
 }
 
@@ -33,7 +33,7 @@ task Analyze -Depends Init {
 }
 
 task Pester -Depends Init {
-   
+
     if(-not $ENV:BHProjectPath) {
         Set-BuildEnvironment -Path $PSScriptRoot\..
     }
