@@ -1,4 +1,12 @@
 
+## 1.2.1 (2017-02-09)
+
+* Fix bug where InfluxDB notifier function was not being exported (via @devblackops)
+* Fix all typos for Descibe -> Describe (via @megamorf)
+* Remove hardcoded $true for UseSSL value in Email notifier (via @megamorf)
+* Fix custom message attribute for Email (via @megamorf)
+* Fix variable replacement in LogFile notifier (via @megamorf)
+
 ## 1.2.0 (2016-09-08)
 
 * Add InfluxDB notifier type.
