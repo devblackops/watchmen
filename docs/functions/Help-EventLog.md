@@ -10,7 +10,7 @@ Specifies an EventLog notifier.
 ## SYNTAX
 
 ```
-EventLog -Options <Hashtable[]> [-When <String>] [<CommonParameters>]
+EventLog -Options <Hashtable[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -60,22 +60,6 @@ Parameter Sets: (All)
 Aliases: 
 
 Required: True
-Position: Named
-Default value: 
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -When
-Specifies when notifier should be executed.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: 
-Accepted values: Always, OnSuccess, OnFailure
-
-Required: False
 Position: Named
 Default value: 
 Accept pipeline input: False
