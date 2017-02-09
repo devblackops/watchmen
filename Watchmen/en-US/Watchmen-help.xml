@@ -112,18 +112,9 @@
 </maml:para>
 <maml:para>The 'Subject' and Message' fields inside the hashtable for this function support string interpolation. The following keywords can be placed inside the Subject or Message strings using the convention #{keyword}. When the Email notifier is executed these placeholders will be replaced with values from the test result:
 </maml:para>
-<maml:para>computername     - Computer name test was executed on
-module           - OVF module name
-file             - Path to Pester test executed
-describe         - Name of 'Describe' block in Pester test
-context          - Name of 'Context' block in Pester test
-test             - Name of 'It' block in Pester test
-result           - Result of test. 'Passed' or 'Failed'
-failureMessage   - Failure message from Pester test
-duration         - Duration of Pester test
-
-Example:
-subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
+<maml:para>computername     - Computer name test was executed on module           - OVF module name file             - Path to Pester test executed describe         - Name of 'Describe' block in Pester test context          - Name of 'Context' block in Pester test test             - Name of 'It' block in Pester test result           - Result of test. 'Passed' or 'Failed' failureMessage   - Failure message from Pester test duration         - Duration of Pester test
+</maml:para>
+<maml:para>Example:     subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>Email</maml:name>
@@ -146,6 +137,15 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <maml:uri /></dev:type>
 <dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
+<maml:Description><maml:para>Specifies when notifier should be executed.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Options</maml:name>
@@ -164,6 +164,15 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
 <dev:type><maml:name>Hashtable</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
+<maml:Description><maml:para>Specifies when notifier should be executed.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
 <dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
@@ -251,6 +260,15 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <maml:uri /></dev:type>
 <dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
+<maml:Description><maml:para>Specifies when notifier should be executed.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
 </command:syntaxItem>
 </command:syntax>
 <command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Options</maml:name>
@@ -263,6 +281,15 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">Hashtable[]</command:parameterValue>
 <dev:type><maml:name>Hashtable[]</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
+<maml:Description><maml:para>Specifies when notifier should be executed.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
 <dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
@@ -407,7 +434,16 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Options</maml:name>
 <maml:Description><maml:para>Hashtable of values needed to send a metric to InfluxDB.
 </maml:para>
-<maml:para>[string]Url                 - REQUIRED - URL of InfluxDB [string[]]Database          - REQUIRED - InfluxDB database to insert into [int]Port                   - OPTIONAL - Port of InfluxDB [string]MeasurementName     - OPTIONAL - The measurement name to store in InfluxDB [hashtable]Tags             - OPTIONAL - Tags to append to metric [string]RetentionPolicy     - OPTIONAL - InfluxDB database retention policy to use [int]Timeout                - OPTIONAL - HTTP timeout [pscredential]Credential    - OPTIONAL - Credential to authenticate to InfluxDB with [bool]SkipSSLVerification   - OPTIONAL - Skip SSL verification when connecting to InfluxDB
+<maml:para>[string]Url                 - REQUIRED - URL of InfluxDB
+[string[]]Database          - REQUIRED - InfluxDB database to insert into
+[int]Port                   - OPTIONAL - Port of InfluxDB
+[string]MeasurementName     - OPTIONAL - The measurement name to store in InfluxDB
+[hashtable]Tags             - OPTIONAL - Tags to append to metric
+[string]RetentionPolicy     - OPTIONAL - InfluxDB database retention policy to use
+[int]Timeout                - OPTIONAL - HTTP timeout
+[pscredential]Credential    - OPTIONAL - Credential to authenticate to InfluxDB with
+[bool]SkipSSLVerification   - OPTIONAL - Skip SSL verification when connecting to InfluxDB
+
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
@@ -433,7 +469,16 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Options</maml:name>
 <maml:Description><maml:para>Hashtable of values needed to send a metric to InfluxDB.
 </maml:para>
-<maml:para>[string]Url                 - REQUIRED - URL of InfluxDB [string[]]Database          - REQUIRED - InfluxDB database to insert into [int]Port                   - OPTIONAL - Port of InfluxDB [string]MeasurementName     - OPTIONAL - The measurement name to store in InfluxDB [hashtable]Tags             - OPTIONAL - Tags to append to metric [string]RetentionPolicy     - OPTIONAL - InfluxDB database retention policy to use [int]Timeout                - OPTIONAL - HTTP timeout [pscredential]Credential    - OPTIONAL - Credential to authenticate to InfluxDB with [bool]SkipSSLVerification   - OPTIONAL - Skip SSL verification when connecting to InfluxDB
+<maml:para>[string]Url                 - REQUIRED - URL of InfluxDB
+[string[]]Database          - REQUIRED - InfluxDB database to insert into
+[int]Port                   - OPTIONAL - Port of InfluxDB
+[string]MeasurementName     - OPTIONAL - The measurement name to store in InfluxDB
+[hashtable]Tags             - OPTIONAL - Tags to append to metric
+[string]RetentionPolicy     - OPTIONAL - InfluxDB database retention policy to use
+[int]Timeout                - OPTIONAL - HTTP timeout
+[pscredential]Credential    - OPTIONAL - Credential to authenticate to InfluxDB with
+[bool]SkipSSLVerification   - OPTIONAL - Skip SSL verification when connecting to InfluxDB
+
 </maml:para>
 </maml:Description>
 <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>

@@ -1,17 +1,18 @@
----
+﻿---
 external help file: Watchmen-help.xml
 online version: https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-InfluxDB.md
 schema: 2.0.0
 ---
 
 # InfluxDB
+
 ## SYNOPSIS
 Specifies an InfluxDB notifier.
 
 ## SYNTAX
 
 ```
-InfluxDB [-Options] <Hashtable> [-When <String>]
+InfluxDB [-Options] <Hashtable> [-When <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -48,24 +49,24 @@ Add an InfluxDB notifier to a WatchmenTest block.
 ### -Options
 Hashtable of values needed to send a metric to InfluxDB.
 
-[string]Url                 - REQUIRED - URL of InfluxDB
-[string[]]Database          - REQUIRED - InfluxDB database to insert into
-[int]Port                   - OPTIONAL - Port of InfluxDB
-[string]MeasurementName     - OPTIONAL - The measurement name to store in InfluxDB
-[hashtable]Tags             - OPTIONAL - Tags to append to metric
-[string]RetentionPolicy     - OPTIONAL - InfluxDB database retention policy to use
-[int]Timeout                - OPTIONAL - HTTP timeout
-[pscredential]Credential    - OPTIONAL - Credential to authenticate to InfluxDB with
-[bool]SkipSSLVerification   - OPTIONAL - Skip SSL verification when connecting to InfluxDB
+[string]Url                 - REQUIRED - URL of InfluxDB  
+[string[]]Database          - REQUIRED - InfluxDB database to insert into  
+[int]Port                   - OPTIONAL - Port of InfluxDB  
+[string]MeasurementName     - OPTIONAL - The measurement name to store in InfluxDB  
+[hashtable]Tags             - OPTIONAL - Tags to append to metric  
+[string]RetentionPolicy     - OPTIONAL - InfluxDB database retention policy to use  
+[int]Timeout                - OPTIONAL - HTTP timeout  
+[pscredential]Credential    - OPTIONAL - Credential to authenticate to InfluxDB with  
+[bool]SkipSSLVerification   - OPTIONAL - Skip SSL verification when connecting to InfluxDB  
 
 ```yaml
 Type: Hashtable
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 
 Required: True
 Position: 0
-Default value:
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -76,20 +77,22 @@ Specifies when notifier should be executed.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
 Accepted values: Always, OnSuccess, OnFailure
 
 Required: False
 Position: Named
-Default value:
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
-
 
 ## OUTPUTS
 

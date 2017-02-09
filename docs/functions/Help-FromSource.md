@@ -5,8 +5,10 @@ schema: 2.0.0
 ---
 
 # FromSource
+
 ## SYNOPSIS
 Specifies the PowerShell repository source to retrieve module from.
+
 ## SYNTAX
 
 ```
@@ -15,6 +17,7 @@ FromSource [-Source] <String> [<CommonParameters>]
 
 ## DESCRIPTION
 Specifies the PowerShell repository source to retrieve module from. This repository must already be registered on the system.
+
 ## EXAMPLES
 
 ### Example 1
@@ -25,6 +28,7 @@ WatchmenTest 'MyAppOVF' {
 ```
 
 Tells Watchmen to download and install the 'MyAppOVF' module from the public PowerShell Gallery.
+
 ### Example 2
 ```
 WatchmenTest 'MyOVFModule' {
@@ -33,6 +37,7 @@ WatchmenTest 'MyOVFModule' {
 ```
 
 Tells Watchmen to download and install the 'MyAppOVF' module from a private repository called 'PrivateRepository'.
+
 ## PARAMETERS
 
 ### -Source
@@ -45,13 +50,14 @@ Aliases:
 
 Required: True
 Position: 0
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
