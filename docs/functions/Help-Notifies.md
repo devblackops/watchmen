@@ -5,8 +5,10 @@ schema: 2.0.0
 ---
 
 # Notifies
+
 ## SYNOPSIS
 Specifies one or more notifiers to be executed upon any failing tests.
+
 ## SYNTAX
 
 ```
@@ -15,6 +17,7 @@ Notifies [-Script] <ScriptBlock> [-When <String>] [<CommonParameters>]
 
 ## DESCRIPTION
 Specifies one or more notifiers to be executed upon any failing tests.
+
 ## EXAMPLES
 
 ### Example 1
@@ -48,6 +51,7 @@ WatchmenOptions {
 ```
 
 Specifies various notifiers to be executed upon any failing tests.
+
 ## PARAMETERS
 
 ### -Script
@@ -60,7 +64,7 @@ Aliases:
 
 Required: True
 Position: 0
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -75,13 +79,14 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None

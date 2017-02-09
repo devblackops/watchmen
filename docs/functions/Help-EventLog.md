@@ -5,8 +5,10 @@ schema: 2.0.0
 ---
 
 # EventLog
+
 ## SYNOPSIS
 Specifies an EventLog notifier.
+
 ## SYNTAX
 
 ```
@@ -18,6 +20,7 @@ Specifies an EventLog notifier.
 
 This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'EventLog' function outside of a
 'Notifies' block will throw an error.
+
 ## EXAMPLES
 
 ### Example 1
@@ -33,6 +36,7 @@ WatchmenTest MyAppOVF {
 ```
 
 Add an EventLog notifier to a WatchmenTest block.
+
 ### Example 2
 ```
 WatchmenOptions {
@@ -46,22 +50,23 @@ WatchmenOptions {
 ```
 
 Add an EventLog notifier to a WatchmenOptions block.
+
 ## PARAMETERS
 
 ### -Options
 Hashtable of values needed to create an event log entry.
 
 [int]EventId         - REQUIRED - Specifies the event identifier. The maximum allowed value for the EventId parameter is 65535.  
-[string]EventType    - REQUIRED - The event type. Valid values are Error, Warning, Information, SuccessAudit, and FailureAudit.    
+[string]EventType    - REQUIRED - The event type. Valid values are Error, Warning, Information, SuccessAudit, and FailureAudit.  
 
 ```yaml
 Type: Hashtable[]
 Parameter Sets: (All)
-Aliases: 
+Aliases:
 
 Required: True
 Position: Named
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -72,18 +77,18 @@ Specifies when notifier should be executed.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: Always, OnSuccess, OnFailure
+Aliases:
 
 Required: False
 Position: Named
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None

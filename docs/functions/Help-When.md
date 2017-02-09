@@ -5,8 +5,10 @@ schema: 2.0.0
 ---
 
 # When
+
 ## SYNOPSIS
 Specifies when one or more notifiers should be executed.
+
 ## SYNTAX
 
 ```
@@ -15,6 +17,7 @@ When [-Condition] <String> [<CommonParameters>]
 
 ## DESCRIPTION
 Specifies when one or more notifiers should be executed.
+
 ## EXAMPLES
 
 ### Example 1
@@ -27,6 +30,7 @@ WatchmenOptions {
 ```
 
 Tells Watchmen to execute all notifiers regardless if they pass or fail.
+
 ## PARAMETERS
 
 ### -Condition
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None

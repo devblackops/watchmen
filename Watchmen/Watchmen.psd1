@@ -12,7 +12,7 @@
 RootModule = 'Watchmen.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.2.0'
+ModuleVersion = '1.2.1'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -69,8 +69,8 @@ FormatsToProcess = 'OperationValidation.Format.ps1xml'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Email', 'EventLog', 'FromSource', 'Get-WatchmenTest', 
-               'Invoke-WatchmenTest', 'LogFile', 'Notifies', 'Parameters', 'PowerShell', 
+FunctionsToExport = 'Email', 'EventLog', 'FromSource', 'Get-WatchmenTest', 'InfluxDB',
+               'Invoke-WatchmenTest', 'LogFile', 'Notifies', 'Parameters', 'PowerShell',
                'Slack', 'Syslog', 'Test', 'TestType', 'Version', 'When',
                'WatchmenOptions', 'WatchmenTest'
 
@@ -111,6 +111,14 @@ PrivateData = @{
 
         # ReleaseNotes of this module
         ReleaseNotes = '
+## 1.2.1 (2017-02-09)
+
+* Fix bug where InfluxDB notifier function was not being exported (via @devblackops)
+* Fix all typos for Descibe -> Describe (via @megamorf)
+* Remove hardcoded $true for UseSSL value in Email notifier (via @megamorf)
+* Fix custom message attribute for Email (via @megamorf)
+* Fix variable replacement in LogFile notifier (via @megamorf)
+
 ## 1.2.0 (2016-09-08)
 
 * Add InfluxDB notifier type.
@@ -129,7 +137,7 @@ PrivateData = @{
         # ExternalModuleDependencies = ''
 
     } # End of PSData hashtable
-    
+
  } # End of PrivateData hashtable
 
 # HelpInfo URI of this module

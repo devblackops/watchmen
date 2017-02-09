@@ -5,8 +5,10 @@ schema: 2.0.0
 ---
 
 # Email
+
 ## SYNOPSIS
 Specifies an Email notifier.
+
 ## SYNTAX
 
 ```
@@ -23,18 +25,19 @@ The 'Subject' and Message' fields inside the hashtable for this function support
 the Subject or Message strings using the convention #{keyword}. When the Email notifier is executed these placeholders will be replaced with values
 from the test result:
 
-computername     - Computer name test was executed on  
-module           - OVF module name  
-file             - Path to Pester test executed  
-descibe          - Name of 'Describe' block in Pester test  
-context          - Name of 'Context' block in Pester test  
-test             - Name of 'It' block in Pester test  
-result           - Result of test. 'Passed' or 'Failed'  
-failureMessage   - Failure message from Pester test  
-duration         - Duration of Pester test  
-   
-Example:  
+computername     - Computer name test was executed on
+module           - OVF module name
+file             - Path to Pester test executed
+describe         - Name of 'Describe' block in Pester test
+context          - Name of 'Context' block in Pester test
+test             - Name of 'It' block in Pester test
+result           - Result of test. 'Passed' or 'Failed'
+failureMessage   - Failure message from Pester test
+duration         - Duration of Pester test
+
+Example:
     subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
+
 ## EXAMPLES
 
 ### Example 1
@@ -53,6 +56,7 @@ WatchmenTest MyAppOVF {
 ```
 
 Add an Email notifier to a WatchmenTest block.
+
 ### Example 2
 ```
 WatchmenOptions {
@@ -69,6 +73,7 @@ WatchmenOptions {
 ```
 
 Add an Email notifier to a WatchmenOptions block.
+
 ## PARAMETERS
 
 ### -Options
@@ -86,12 +91,11 @@ Hashtable of values needed to send a SMTP email.
 ```yaml
 Type: Hashtable
 Parameter Sets: (All)
-Aliases: 
-Accepted values: Always, OnSuccess, OnFailure
+Aliases:
 
 Required: True
 Position: 0
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -102,18 +106,18 @@ Specifies when notifier should be executed.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: Always, OnSuccess, OnFailure
+Aliases:
 
 Required: False
 Position: Named
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None

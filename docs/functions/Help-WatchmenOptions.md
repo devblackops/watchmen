@@ -5,8 +5,10 @@ schema: 2.0.0
 ---
 
 # WatchmenOptions
+
 ## SYNOPSIS
 Specifies a global set of options that subsequent Watchmen tests will inherit from.
+
 ## SYNTAX
 
 ```
@@ -16,6 +18,7 @@ WatchmenOptions [[-Script] <ScriptBlock>] [<CommonParameters>]
 ## DESCRIPTION
 Specifies a global set of options that subsequent Watchmen tests will inherit from. Specifing notifiers within the WatchmenOptions block allows
 all subsequent Watchmen tests to use those notifiers in addition to any defined directly on the Watchmen test.
+
 ## EXAMPLES
 
 ### Example 1
@@ -52,6 +55,7 @@ WatchmenOptions {
 
 This defines a set of notifiers that will be executed upon any failing Watching tests. All Watchmen tests will execute notifiers specified in
 WatchmenOptions in addition to any specified directly on the Watchmen test.
+
 ## PARAMETERS
 
 ### -Script
@@ -64,13 +68,14 @@ Aliases:
 
 Required: False
 Position: 0
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None

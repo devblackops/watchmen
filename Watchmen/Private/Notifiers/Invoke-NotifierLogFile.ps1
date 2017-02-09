@@ -14,14 +14,20 @@ function Invoke-NotifierLogFile {
     Write-Debug -Message "Log file notifier called with options:`n$o"
 
     $time = "[$((Get-Date).ToUniversalTime().ToString('u'))]"
-    $sev = 'ERROR'
+    if ($Results.RawResult.Result -eq 'FAILED') {
+        $sev = 'ERROR'
+    } else {
+        $sev = 'INFO '
+    }
     $msg = "$($Results.RawResult.Describe) -> $($Results.RawResult.Context) -> $($Results.RawResult.Name) -> $($Results.RawResult.Result.ToUpper())"
     $logEntry = "$time - $sev - $msg"
 
     foreach ($path in $Notifier.Path) {
-        if (-not (Test-Path -LiteralPath $path)) {
-            New-Item -ItemType File -Path $path -Force -ErrorAction Stop | Out-Null
+        $ResolvedPath = ConvertFrom-PlaceholderString -InputObject $Path -Results $Results
+
+        if (-not (Test-Path -LiteralPath $ResolvedPath)) {
+            New-Item -ItemType File -Path $ResolvedPath -Force -ErrorAction Stop | Out-Null
         }
-        $logEntry | Out-File -FilePath $path -Append -Encoding utf8
+        $logEntry | Out-File -FilePath $ResolvedPath  -Append -Encoding utf8
     }
 }

@@ -112,18 +112,9 @@
 </maml:para>
 <maml:para>The 'Subject' and Message' fields inside the hashtable for this function support string interpolation. The following keywords can be placed inside the Subject or Message strings using the convention #{keyword}. When the Email notifier is executed these placeholders will be replaced with values from the test result:
 </maml:para>
-<maml:para>computername     - Computer name test was executed on
-module           - OVF module name
-file             - Path to Pester test executed
-descibe          - Name of 'Describe' block in Pester test
-context          - Name of 'Context' block in Pester test
-test             - Name of 'It' block in Pester test
-result           - Result of test. 'Passed' or 'Failed'
-failureMessage   - Failure message from Pester test
-duration         - Duration of Pester test
-
-Example:
-subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
+<maml:para>computername     - Computer name test was executed on module           - OVF module name file             - Path to Pester test executed describe         - Name of 'Describe' block in Pester test context          - Name of 'Context' block in Pester test test             - Name of 'It' block in Pester test result           - Result of test. 'Passed' or 'Failed' failureMessage   - Failure message from Pester test duration         - Duration of Pester test
+</maml:para>
+<maml:para>Example:     subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </maml:para>
 </maml:description>
 <command:syntax><command:syntaxItem><maml:name>Email</maml:name>
@@ -141,27 +132,19 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 
 </maml:para>
 </maml:Description>
-<command:parameterValueGroup><command:parameterValue required="false" variableLength="false">Always</command:parameterValue>
-<command:parameterValue required="false" variableLength="false">OnSuccess</command:parameterValue>
-<command:parameterValue required="false" variableLength="false">OnFailure</command:parameterValue>
-</command:parameterValueGroup>
 <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
 <dev:type><maml:name>Hashtable</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
 <maml:Description><maml:para>Specifies when notifier should be executed.
 </maml:para>
 </maml:Description>
-<command:parameterValueGroup><command:parameterValue required="false" variableLength="false">Always</command:parameterValue>
-<command:parameterValue required="false" variableLength="false">OnSuccess</command:parameterValue>
-<command:parameterValue required="false" variableLength="false">OnFailure</command:parameterValue>
-</command:parameterValueGroup>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
@@ -182,7 +165,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
 <dev:type><maml:name>Hashtable</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
 <maml:Description><maml:para>Specifies when notifier should be executed.
@@ -191,7 +174,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:parameters>
 <command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
@@ -275,20 +258,16 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">Hashtable[]</command:parameterValue>
 <dev:type><maml:name>Hashtable[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
 <maml:Description><maml:para>Specifies when notifier should be executed.
 </maml:para>
 </maml:Description>
-<command:parameterValueGroup><command:parameterValue required="false" variableLength="false">Always</command:parameterValue>
-<command:parameterValue required="false" variableLength="false">OnSuccess</command:parameterValue>
-<command:parameterValue required="false" variableLength="false">OnFailure</command:parameterValue>
-</command:parameterValueGroup>
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
@@ -303,7 +282,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">Hashtable[]</command:parameterValue>
 <dev:type><maml:name>Hashtable[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
 <maml:Description><maml:para>Specifies when notifier should be executed.
@@ -312,7 +291,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:parameters>
 <command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
@@ -384,7 +363,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
@@ -395,7 +374,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:parameters>
 <command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
@@ -439,6 +418,129 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 </command:relatedLinks>
 </command:command>
 <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+<command:details><command:name>InfluxDB</command:name>
+<command:verb>InfluxDB</command:verb>
+<command:noun></command:noun>
+<maml:description><maml:para>Specifies an InfluxDB notifier.
+</maml:para>
+</maml:description>
+</command:details>
+<maml:description><maml:para>Specifies an InfluxDB notifier.
+</maml:para>
+<maml:para>This is not intended to be used anywhere but inside a 'Notifies' block inside a Watchmen file. Directly calling the 'InfluxDB' function outside of a 'Notifies' block will throw an error.
+</maml:para>
+</maml:description>
+<command:syntax><command:syntaxItem><maml:name>InfluxDB</maml:name>
+<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Options</maml:name>
+<maml:Description><maml:para>Hashtable of values needed to send a metric to InfluxDB.
+</maml:para>
+<maml:para>[string]Url                 - REQUIRED - URL of InfluxDB
+[string[]]Database          - REQUIRED - InfluxDB database to insert into
+[int]Port                   - OPTIONAL - Port of InfluxDB
+[string]MeasurementName     - OPTIONAL - The measurement name to store in InfluxDB
+[hashtable]Tags             - OPTIONAL - Tags to append to metric
+[string]RetentionPolicy     - OPTIONAL - InfluxDB database retention policy to use
+[int]Timeout                - OPTIONAL - HTTP timeout
+[pscredential]Credential    - OPTIONAL - Credential to authenticate to InfluxDB with
+[bool]SkipSSLVerification   - OPTIONAL - Skip SSL verification when connecting to InfluxDB
+
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
+<dev:type><maml:name>Hashtable</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
+<maml:Description><maml:para>Specifies when notifier should be executed.
+</maml:para>
+</maml:Description>
+<command:parameterValueGroup><command:parameterValue required="false" variableLength="false">Always</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnSuccess</command:parameterValue>
+<command:parameterValue required="false" variableLength="false">OnFailure</command:parameterValue>
+</command:parameterValueGroup>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+</command:syntaxItem>
+</command:syntax>
+<command:parameters><command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Options</maml:name>
+<maml:Description><maml:para>Hashtable of values needed to send a metric to InfluxDB.
+</maml:para>
+<maml:para>[string]Url                 - REQUIRED - URL of InfluxDB
+[string[]]Database          - REQUIRED - InfluxDB database to insert into
+[int]Port                   - OPTIONAL - Port of InfluxDB
+[string]MeasurementName     - OPTIONAL - The measurement name to store in InfluxDB
+[hashtable]Tags             - OPTIONAL - Tags to append to metric
+[string]RetentionPolicy     - OPTIONAL - InfluxDB database retention policy to use
+[int]Timeout                - OPTIONAL - HTTP timeout
+[pscredential]Credential    - OPTIONAL - Credential to authenticate to InfluxDB with
+[bool]SkipSSLVerification   - OPTIONAL - Skip SSL verification when connecting to InfluxDB
+
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
+<dev:type><maml:name>Hashtable</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
+<maml:Description><maml:para>Specifies when notifier should be executed.
+</maml:para>
+</maml:Description>
+<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+<dev:type><maml:name>String</maml:name>
+<maml:uri /></dev:type>
+<dev:defaultValue>None</dev:defaultValue>
+</command:parameter>
+</command:parameters>
+<command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
+</dev:type>
+<maml:description><maml:para>
+</maml:para>
+</maml:description>
+</command:inputType>
+</command:inputTypes>
+<command:returnValues><command:returnValue><dev:type><maml:name>System.Object</maml:name>
+</dev:type>
+<maml:description><maml:para>
+</maml:para>
+</maml:description>
+</command:returnValue>
+</command:returnValues>
+<maml:alertSet><maml:alert><maml:para>
+</maml:para>
+</maml:alert>
+</maml:alertSet>
+<command:examples><command:example><maml:title>Example 1</maml:title>
+<dev:code>WatchmenTest MyAppOVF {
+    Notifies {
+        InfluxDB {
+            url 'http://influxdb.mydomain.tld'
+            port 8086
+            Database watchmen
+            MeasurementName watchmen_test
+            tags @{
+                prop1 = 'asdf'
+                prop2 = 'qwerty'
+                prop3 = 42
+            }
+        } -when 'always'
+    }
+}</dev:code>
+<dev:remarks><maml:para>Add an InfluxDB notifier to a WatchmenTest block.
+</maml:para>
+</dev:remarks>
+</command:example>
+</command:examples>
+<command:relatedLinks><maml:navigationLink><maml:linkText>Online Version:</maml:linkText>
+<maml:uri>https://github.com/devblackops/watchmen/blob/master/docs/functions/Help-InfluxDB.md</maml:uri>
+</maml:navigationLink>
+</command:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <command:details><command:name>LogFile</command:name>
 <command:verb>LogFile</command:verb>
 <command:noun></command:noun>
@@ -459,7 +561,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
 <dev:type><maml:name>String[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
 <maml:Description><maml:para>Specifies when notifier should be executed.
@@ -472,7 +574,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
@@ -483,7 +585,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
 <dev:type><maml:name>String[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
 <maml:Description><maml:para>Specifies when notifier should be executed.
@@ -492,7 +594,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:parameters>
 <command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
@@ -561,7 +663,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">ScriptBlock</command:parameterValue>
 <dev:type><maml:name>ScriptBlock</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
 <maml:Description><maml:para>{{Fill When Description}}
@@ -570,7 +672,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
@@ -581,7 +683,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">ScriptBlock</command:parameterValue>
 <dev:type><maml:name>ScriptBlock</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
 <maml:Description><maml:para>{{Fill When Description}}
@@ -590,7 +692,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:parameters>
 <command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
@@ -667,7 +769,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
 <dev:type><maml:name>Hashtable</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
@@ -678,7 +780,7 @@ subject = 'Watchmen alert - #{computername} - [#{test}] failed!'
 <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
 <dev:type><maml:name>Hashtable</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:parameters>
 <command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
@@ -762,7 +864,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
 <maml:Description><maml:para>Specifies when notifier should be executed.
@@ -775,7 +877,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:syntaxItem>
 <command:syntaxItem><maml:name>PowerShell</maml:name>
@@ -786,7 +888,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">ScriptBlock</command:parameterValue>
 <dev:type><maml:name>ScriptBlock</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
 <maml:Description><maml:para>Specifies when notifier should be executed.
@@ -799,7 +901,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
@@ -810,7 +912,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>ScriptBlock</maml:name>
 <maml:Description><maml:para>Script block to execute upon any failing tests.
@@ -819,7 +921,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">ScriptBlock</command:parameterValue>
 <dev:type><maml:name>ScriptBlock</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
 <maml:Description><maml:para>Specifies when notifier should be executed.
@@ -828,7 +930,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:parameters>
 <command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
@@ -902,7 +1004,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">Hashtable[]</command:parameterValue>
 <dev:type><maml:name>Hashtable[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
 <maml:Description><maml:para>Specifies when notifier should be executed.
@@ -915,7 +1017,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
@@ -934,7 +1036,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">Hashtable[]</command:parameterValue>
 <dev:type><maml:name>Hashtable[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
 <maml:Description><maml:para>Specifies when notifier should be executed.
@@ -943,7 +1045,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:parameters>
 <command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
@@ -1019,7 +1121,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
 <dev:type><maml:name>String[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
 <maml:Description><maml:para>Specifies when notifier should be executed.
@@ -1032,7 +1134,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
@@ -1043,7 +1145,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
 <dev:type><maml:name>String[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>When</maml:name>
 <maml:Description><maml:para>Specifies when notifier should be executed.
@@ -1052,7 +1154,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:parameters>
 <command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
@@ -1118,7 +1220,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
@@ -1129,7 +1231,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:parameters>
 <command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
@@ -1187,7 +1289,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
@@ -1198,7 +1300,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:parameters>
 <command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
@@ -1260,7 +1362,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
@@ -1271,7 +1373,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:parameters>
 <command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
@@ -1325,7 +1427,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">ScriptBlock</command:parameterValue>
 <dev:type><maml:name>ScriptBlock</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
@@ -1336,7 +1438,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">ScriptBlock</command:parameterValue>
 <dev:type><maml:name>ScriptBlock</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:parameters>
 <command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
@@ -1415,7 +1517,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Script</maml:name>
 <maml:Description><maml:para>Scriptblock containing commands to define the specific OVF module and/or test(s) to execute and under what conditions.
@@ -1424,7 +1526,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">ScriptBlock</command:parameterValue>
 <dev:type><maml:name>ScriptBlock</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:syntaxItem>
 </command:syntax>
@@ -1435,7 +1537,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 <dev:type><maml:name>String</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none"><maml:name>Script</maml:name>
 <maml:Description><maml:para>Scriptblock containing commands to define the specific OVF module and/or test(s) to execute and under what conditions.
@@ -1444,7 +1546,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">ScriptBlock</command:parameterValue>
 <dev:type><maml:name>ScriptBlock</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 </command:parameters>
 <command:inputTypes><command:inputType><dev:type><maml:name>None</maml:name>
@@ -1594,7 +1696,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">PSObject[]</command:parameterValue>
 <dev:type><maml:name>PSObject[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>PassThru</maml:name>
 <maml:Description><maml:para>Return test results after execution.
@@ -1637,7 +1739,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
 <dev:type><maml:name>String[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Recurse</maml:name>
 <maml:Description><maml:para>Recursively search for Watchmen files inside given path.
@@ -1674,7 +1776,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">PSObject[]</command:parameterValue>
 <dev:type><maml:name>PSObject[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>PassThru</maml:name>
 <maml:Description><maml:para>Return test results after execution.
@@ -1692,7 +1794,7 @@ ShortName                   - File name of Pester test
 <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
 <dev:type><maml:name>String[]</maml:name>
 <maml:uri /></dev:type>
-<dev:defaultValue></dev:defaultValue>
+<dev:defaultValue>None</dev:defaultValue>
 </command:parameter>
 <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none"><maml:name>Recurse</maml:name>
 <maml:Description><maml:para>Recursively search for Watchmen files inside given path.

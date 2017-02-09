@@ -25,7 +25,7 @@ Module: $($results.Module)
 
 File: $($results.FileName)
 
-Descibe:  $($results.RawResult.Describe)
+Describe: $($results.RawResult.Describe)
 
 Context: $($results.RawResult.Context)
 

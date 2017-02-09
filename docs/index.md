@@ -79,7 +79,7 @@ WatchmenOptions {
         logfile '\\fileserver01.mydomain.tld\monitoringshare\#{computername}.log'
         powershell {
             Write-Host "Something bad happended! $args[0]"
-        }
+        } -When 'OnFailure'
         powershell '\notifier.ps1'
         slack @{
             Token = '<webhookurl>'

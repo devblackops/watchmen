@@ -5,8 +5,10 @@ schema: 2.0.0
 ---
 
 # PowerShell
+
 ## SYNOPSIS
 Specifies an PowerShell notifier.
+
 ## SYNTAX
 
 ### ScriptBlock (Default)
@@ -50,6 +52,7 @@ RawResult
     Time                    - Time Pester test took to execute  
 Result                      - Pass or fail status of test. Values are [Passed] or [Failed]  
 ShortName                   - File name of Pester test  
+
 ## EXAMPLES
 
 ### Example 1
@@ -63,6 +66,7 @@ WatchmenOptions {
 
 Adds a PowerShell notifier to a WatchmenOptions block. This PowerShell script block will display a message using values contains withing test result
 object.
+
 ### Example 2
 ```
 WatchmenTest {
@@ -73,6 +77,7 @@ WatchmenTest {
  
 
 Adds a PowerShell notifier to an individual Watchmen test. This PowerShell notifier will execute the 'notifier.ps1' script.
+
 ## PARAMETERS
 
 ### -Path
@@ -85,7 +90,7 @@ Aliases:
 
 Required: True
 Position: 0
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -100,7 +105,7 @@ Aliases:
 
 Required: True
 Position: 0
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -116,13 +121,14 @@ Accepted values: Always, OnSuccess, OnFailure
 
 Required: False
 Position: Named
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
 ## INPUTS
 
 ### None
